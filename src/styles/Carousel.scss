@@ -1,0 +1,137 @@
+.carousel {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    border-radius: 12px;
+	scroll-snap-type: x mandatory;
+
+    gap: 32px;
+
+    #left, #right {
+        position: absolute;
+        z-index: 2;
+
+        top: 50%;
+
+        width: 30pt;
+
+        background-color: transparent;
+        border: none;
+
+        opacity: 0.5;
+
+        transition: 200ms;
+
+        &:hover {
+            opacity: 0.9;
+        }
+
+        cursor: pointer;
+        img {
+            width: 100%;
+        }
+    }
+
+    #left {
+        left: -16px;
+        transform: translateX(-100%);
+    }
+
+    #right {
+        right: -16px;
+        transform: translateX(100%);
+        img {
+            transform: scaleX(-1);
+        }
+    }
+
+    .debug-text {
+        position: absolute;
+        color: red;
+        left: 16px;
+        top: 16px;
+
+        z-index: 50;
+        background-color: black;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+	
+}
+
+@media (prefers-color-scheme: light) {
+	.carousel {
+        display: flex;
+        flex-direction: row;
+    
+        width: 100%;
+        overflow-x: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    
+        border-radius: 12px;
+        scroll-snap-type: x mandatory;
+    
+        gap: 16px;
+    
+        #left, #right {
+            opacity: 0.8;
+            filter: brightness(15%);
+
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1330px) {
+    .carousel {
+        #left, #right {
+            width: 30pt;
+        }
+
+        #left {
+            left: -4px;
+            transform: translateX(-50%);
+        }
+        
+        #right {
+            right: -4px;
+            transform: translateX(50%);
+        }
+    }
+
+	
+}
+
+@media only screen and (max-width: 768px) {
+    .carousel {
+        .element {
+            scroll-snap-align: start;
+            flex-grow: 0;
+        }
+
+        #left, #right {
+            width: 20pt;
+        }
+
+        #left {
+            left: -4px;
+            transform: translateX(-50%);
+        }
+        
+        #right {
+            right: -4px;
+            transform: translateX(50%);
+        }
+    }
+
+	
+}

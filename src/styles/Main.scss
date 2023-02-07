@@ -1,0 +1,151 @@
+@import "./GlobalVariables.scss";
+@import "./GlobalAnimations.scss";
+
+:root {
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 20px;
+	line-height: 36px;
+	font-weight: 400;
+
+	color-scheme: light dark;
+	color: $fontColorLight;
+
+	font-family: 'Kanit', sans-serif;
+
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	transition: 200ms;
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+	overflow-x: hidden;
+	transition: none;
+}
+
+p {
+	font-weight: 300;
+
+	b {
+		font-weight: 500;
+		color: $fontColorHighlighted;
+	}
+}
+
+h1 {
+	font-weight: 600;
+}
+h2 {
+	font-weight: 600;
+}
+h3 {
+	font-weight: 500;
+}
+h4 {
+	font-weight: 500;
+}
+h5 {
+	font-weight: 400;
+}
+
+
+.container {
+	width: 100%;
+	height: 100vh;
+	overflow-y: scroll;
+	scroll-behavior: smooth;
+
+	section {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		scroll-snap-align: start;
+		width: 100%;
+		min-height: 100vh;
+
+		overflow: hidden;
+
+		.content {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+
+			max-width: 1200px;
+			width: 95%;
+			padding: 24px;
+			border-radius: 16px;
+			border: 1px solid transparent;
+		}
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	body {
+		background-color: $backgroundColorDark;
+		color: $fontColorDark;
+	}
+
+	.container {
+		section {
+			.content {
+				background-color: $foregroundColorDark;
+				border-color: $primaryBorderColorDark;
+			}
+		}
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	body {
+		background-color: $backgroundColorLight;
+		color: $fontColorLight;
+	}
+
+	.container {
+		section {
+			.content {
+				background-color: $foregroundColorLight;
+				border-color: $primaryBorderColorLight;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	:root {
+		font-size: 16px;
+        line-height: 24px;
+	}
+
+	.container {
+		scroll-snap-type: y mandatory;
+		section {
+			justify-content: flex-start;
+			padding: 8px;
+			.content {
+				background-color: transparent;
+				border-color: transparent;
+				padding: 0;
+				margin-top: 2pt;
+			}
+		}
+	}
+}
