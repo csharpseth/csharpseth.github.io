@@ -12,6 +12,8 @@ $highlightedDelay: 50ms;
     justify-content: center;
     align-items: center;
 
+    gap: 48px;
+
     h1 {
         font-size: 3rem;
         margin-bottom: 16px;
@@ -30,11 +32,11 @@ $highlightedDelay: 50ms;
 
     .profile-picture {
         height: 350pt;
+        width: 233pt;
         border-radius: 16px;
     }
 
     .info {
-        margin-right: 16px;
         width: 80%;
         
         b {

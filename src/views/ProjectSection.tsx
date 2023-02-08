@@ -10,8 +10,8 @@ function Project(props: any) {
 
     return (
         <div className="project">
-            <img className="background-img" src={backgroundImg} alt="" />
-            <img className="background-gif" src={backgroundGif} alt="" />
+            <img className="background-img" src={backgroundImg} alt="" width="640" height="900" />
+            <video className="background-gif" src={backgroundGif} autoPlay loop muted width="640" height="900" />
             <h2>{title}</h2>
             <p>{body}</p>
             <div className="links">

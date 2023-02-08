@@ -1,6 +1,9 @@
 @import './GlobalVariables.scss';
 @import './GlobalAnimations.scss';
 
+$projectWidth: 320pt;
+$projectHeight: 450pt;
+
 * {
     transition-timing-function: ease-in-out;
 }
@@ -23,11 +26,13 @@
     }
 
     .carousel {
+        gap: 8px;
+
         .project {
             flex: none;
             position: relative;
-            width: 320pt;
-            height: 450pt;
+            width: $projectWidth;
+            height: $projectHeight;
 
             display: flex;
             flex-direction: column;
@@ -101,6 +106,7 @@
                 position: absolute;
 
                 width: 100%;
+                height: 100%;
 
                 top: 50%;
                 left: 50%;
@@ -116,6 +122,7 @@
                 position: absolute;
 
                 width: 100%;
+                height: 100%;
 
                 top: 50%;
                 left: 50%;
@@ -196,12 +203,14 @@
 
 @media only screen and (max-width: 768px) {
     .projects {
+        gap: 4px;
+
         .carousel {
             .element {
                 &#active {
                     .project {
                         .background-img {
-
+                            
                         }
     
                         .background-gif {
@@ -212,8 +221,8 @@
             }
 
             .project {
-                width: 90vw;
-                height: 60vh;
+                width: calc($projectWidth * 0.75);
+                height: calc($projectHeight * 0.75);
 
                 &:hover {
                     .background-img {

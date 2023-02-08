@@ -80,8 +80,8 @@ export default function CarouselComponent(props: any) {
 
     return (
         <div className="carousel" ref={carouselRef} onScroll={onScroll}>
-            <button id="left" onClick={() => Left()}><img src='/left-arrow.png' alt='left arrow' /></button>
-            <button id="right" onClick={() => Right()}><img src='/left-arrow.png' alt='right arrow' /></button>
+            <button id="left" onClick={() => Left()}><img src='/left-arrow.png' alt='left arrow' width="485" height="926" /></button>
+            <button id="right" onClick={() => Right()}><img src='/left-arrow.png' alt='right arrow' width="485" height="926" /></button>
             {props.children?.map((child: any, index: number) => {
                 return (
                     <div
