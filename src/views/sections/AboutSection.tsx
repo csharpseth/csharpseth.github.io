@@ -1,6 +1,6 @@
 import SectionComponent from "../components/SectionComponent";
 
-import '../styles/About.scss'
+import '../../styles/About.scss'
 
 export default function AboutSection() {
     return (

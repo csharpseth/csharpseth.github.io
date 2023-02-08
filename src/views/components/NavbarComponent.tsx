@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import '../styles/Navbar.scss'
+import '../../styles/Navbar.scss'
 import { Link } from './UtilityComponents';
 
 
 function NavbarItem(props: any) {
-    const { link, value, onClick } = props
+    const { link, to, value, onClick } = props
 
     return (
-        <Link to={link} onClick={() => {if(onClick) onClick()}}>
+        <Link to={to} link={link} onClick={() => {if(onClick) onClick()}}>
             <span>{value}</span>
             <div className="background" />
         </Link>
@@ -27,10 +27,10 @@ export default function NavbarComponent() {
 
         <nav className="navbar" id={open ? "open":""}>
             <img src="/logo.png" alt="Website Logo" />
-            <NavbarItem onClick={() => setOpen(false)} link="about" value="About" />
-            <NavbarItem onClick={() => setOpen(false)} link="projects" value="Projects" />
-            <NavbarItem onClick={() => setOpen(false)} link="" value="Articles" />
-            <NavbarItem onClick={() => setOpen(false)} link="" value="Contact" />
+            <NavbarItem onClick={() => setOpen(false)} to="about" link="/" value="About" />
+            <NavbarItem onClick={() => setOpen(false)} to="projects" link="/" value="Projects" />
+            <NavbarItem onClick={() => setOpen(false)} to="articles" link="/" value="Articles" />
+            <NavbarItem onClick={() => setOpen(false)} to="contact" link="/" value="Contact" />
         </nav>
         </>
     )

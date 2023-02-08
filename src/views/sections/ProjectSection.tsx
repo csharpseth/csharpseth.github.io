@@ -1,25 +1,32 @@
 import SectionComponent from "../components/SectionComponent";
 
-import '../styles/Projects.scss'
-import { Projects } from '../Data'
+import '../../styles/Projects.scss'
+import { Projects } from '../../Data'
 import CarouselComponent from "../components/CarouselComponent";
+import { useContext } from "react";
+import { DisplayContext } from "../../contexts/DisplayContext";
+import { Link } from "../components/UtilityComponents";
 
 function Project(props: any) {
 
-    const { title, body, backgroundGif, backgroundImg, projectLink, liveLink } = props
+    const { title, body, backgroundGif, backgroundImg, sourceLink, liveLink, pageLink } = props
+    const { isMobile } = useContext(DisplayContext)
 
     return (
         <div className="project">
             <img className="background-img" src={backgroundImg} alt="" width="640" height="900" />
-            <video className="background-gif" src={backgroundGif} autoPlay loop muted width="640" height="900" />
+            {isMobile ? '' : <video className="background-gif" src={backgroundGif} autoPlay loop muted width="640" height="900" />}
             <h2>{title}</h2>
             <p>{body}</p>
             <div className="links">
                 {liveLink ? 
-                <a target="_blank" rel="noopener noreferer" href={liveLink}>Use It</a>
+                <a target="_blank" rel="noreferer" href={liveLink}>Use It</a>
                 :''}
-                {projectLink ?
-                <a target="_blank" rel="noopener noreferer" href={projectLink}>GitHub</a>    
+                {pageLink ?
+                <Link link={pageLink}>Project</Link>    
+                :''}
+                {sourceLink ?
+                <a target="_blank" rel="noreferer" href={sourceLink}>GitHub</a>    
                 :''}
             </div>
         </div>
@@ -27,6 +34,7 @@ function Project(props: any) {
 }
 
 export default function ProjectSection() {
+
     return (
         <SectionComponent id="projects">
             <div className="projects">
@@ -36,12 +44,14 @@ export default function ProjectSection() {
                     {Projects.map((project, index) => {
                         return (
                             <Project
+                                key={index}
                                 title={project.title}
                                 body={project.body}
                                 backgroundImg={project.backgroundImg}
                                 backgroundGif={project.backgroundGif}
-                                projectLink={project.link}
                                 liveLink={project.liveLink}
+                                pageLink={project.pageLink}
+                                sourceLink={project.sourceLink}
                             />
                         )
                     })}

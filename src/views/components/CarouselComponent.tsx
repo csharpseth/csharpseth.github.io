@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import '../styles/Carousel.scss'
+import '../../styles/Carousel.scss'
 
 export default function CarouselComponent(props: any) {
 
