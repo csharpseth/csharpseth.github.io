@@ -1,9 +1,9 @@
-import SectionComponent from "../../components/SectionComponent";
+import ScrollSectionComponent from "../../components/ScrollSectionComponent";
 
 export default function SentimentRecognitionPage() {
     return (
-        <SectionComponent>
+        <ScrollSectionComponent>
             <h1>Sentiment Recognition</h1>
-        </SectionComponent>
+        </ScrollSectionComponent>
     )
 }

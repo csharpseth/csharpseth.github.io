@@ -1,9 +1,9 @@
-import SectionComponent from "../../components/SectionComponent";
+import ScrollSectionComponent from "../../components/ScrollSectionComponent";
 
 export default function TotoPage() {
     return (
-        <SectionComponent>
+        <ScrollSectionComponent>
             <h1>Toto - ToDo App</h1>
-        </SectionComponent>
+        </ScrollSectionComponent>
     )
 }

@@ -1,10 +1,36 @@
+export const About = {
+    title: "Hello! I'm Seth.",
+    links: [
+        {
+            href: "https://www.linkedin.com/in/sethhamm/",
+            icon: "/linkedin.png",
+            alt: "linkedin"
+        },
+        {
+            href: "https://github.com/csharpseth",
+            icon: "/github.png",
+            alt: "github"
+        },
+        {
+            href: "https://twitter.com/sethiesparkles",
+            icon: "/twitter.png",
+            alt: "twitter"
+        },
+        {
+            href: "https://www.youtube.com/@codewithseth",
+            icon: "/youtube.png",
+            alt: "youtube"
+        }
+    ]
+}
+
 interface Project {
     title: string
     body: string
     backgroundImg: string,
     backgroundGif: string
     sourceLink: string,
-    liveLink: string,
+    demoLink: string,
     pageLink: string
 }
 
@@ -15,7 +41,7 @@ export const Projects: Project[] = [
         backgroundImg: "/sentiment-recognition.webp",
         backgroundGif: "/sentiment-recognition.mp4",
         sourceLink: "https://github.com/csharpseth/expression-analysis",
-        liveLink: "",
+        demoLink: "",
         pageLink: "/ai-sentiment-recognition"
     },
     {
@@ -24,7 +50,7 @@ export const Projects: Project[] = [
         backgroundImg: "/distance-sorter.webp",
         backgroundGif: "/distance-sorter.mp4",
         sourceLink: "https://github.com/csharpseth/distance-sorter",
-        liveLink: "https://csharpseth.github.io/distance-sorter/",
+        demoLink: "https://csharpseth.github.io/distance-sorter/",
         pageLink: "/distance-sorter"
     },
     {
@@ -33,25 +59,7 @@ export const Projects: Project[] = [
         backgroundImg: "/triva.webp",
         backgroundGif: "/triva.mp4",
         sourceLink: "https://github.com/csharpseth/triva-the-trivia-app",
-        liveLink: "",
+        demoLink: "",
         pageLink: "/triva"
-    },
-    {
-        title: "ToTo - The ToDo App",
-        body:"Toto is a ToDo app created with React Native and JavaScript. It offers user login and authentication. Additionally I used MongoDB for my database.",
-        backgroundImg: "/toto.webp",
-        backgroundGif: "/toto.mp4",
-        sourceLink: "https://github.com/csharpseth/toto-todo-app",
-        liveLink: "",
-        pageLink: "/toto"
-    },
-    {
-        title: "Calculator App",
-        body:"A basic calculator built with React Native and JavaScript. Can Add, Subtract, Multiply, Divide, Convert to Percentage, and more.",
-        backgroundImg: "/calculator.webp",
-        backgroundGif: "/calculator.mp4",
-        sourceLink: "https://github.com/csharpseth/react-native-calculator",
-        liveLink: "",
-        pageLink: ""
-    },
+    }
 ]

@@ -6,6 +6,7 @@ import SentimentRecognitionPage from '../pages/projects/SentimentRecognitionPage
 import DistanceSorterPage from '../pages/projects/DistanceSorterPage';
 import TrivaPage from '../pages/projects/TrivaPage';
 import TotoPage from '../pages/projects/TotoPage';
+import ProjectsPage from '../pages/ProjectsPage';
 
 export default function RouterComponent(props: any) {
 
@@ -14,6 +15,9 @@ export default function RouterComponent(props: any) {
 			<NavbarComponent />
 			<Route path="/">
                 <HomePage />
+            </Route>
+			<Route path="/projects">
+                <ProjectsPage />
             </Route>
             <Route path="/ai-sentiment-recognition">
                 <SentimentRecognitionPage />

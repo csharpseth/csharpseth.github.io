@@ -1,8 +1,11 @@
+@import './GlobalVariables.scss';
+
 .carousel {
     display: flex;
     flex-direction: row;
 
     width: 100%;
+    overflow-y: hidden;
     overflow-x: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -51,16 +54,6 @@
         }
     }
 
-    .debug-text {
-        position: absolute;
-        color: red;
-        left: 16px;
-        top: 16px;
-
-        z-index: 50;
-        background-color: black;
-    }
-
     &::-webkit-scrollbar {
         display: none;
     }
@@ -86,11 +79,11 @@
         gap: 16px;
     
         #left, #right {
-            opacity: 0.8;
-            filter: brightness(15%);
+            opacity: 1;
+            filter: brightness(100%) drop-shadow(0 0 2px black);
 
             &:hover {
-                opacity: 0.5;
+                opacity: 0.7;
             }
         }
     }
@@ -116,7 +109,7 @@
 	
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: $mobileScreenWidth) {
     .carousel {
         .element {
             scroll-snap-align: start;

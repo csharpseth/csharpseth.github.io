@@ -1,6 +1,6 @@
 @import "./GlobalAnimations.scss";
 
-$highlightedDelay: 50ms;
+$highlightedDelay: 100ms;
 
 * {
     transition: none;
@@ -14,9 +14,11 @@ $highlightedDelay: 50ms;
 
     gap: 48px;
 
-    h1 {
+    .section-title {
         font-size: 3rem;
         margin-bottom: 16px;
+
+        transform: translateY(-200%);
 
         animation-name: DropInFromTop;
         animation-duration: 400ms;
@@ -40,20 +42,18 @@ $highlightedDelay: 50ms;
         width: 80%;
         
         b {
-		    opacity: 0;
+            opacity: 0.1;
 
             animation-name: FadeIn;
-            animation-duration: 500ms;
+            animation-duration: 300ms;
             animation-timing-function: ease-in-out;
             animation-fill-mode: forwards;
 
-            &:nth-child(1) { animation-delay: calc($highlightedDelay * 1); }
-            &:nth-child(2) { animation-delay: calc($highlightedDelay * 2); }
-            &:nth-child(3) { animation-delay: calc($highlightedDelay * 3); }
-            &:nth-child(4) { animation-delay: calc($highlightedDelay * 4); }
-            &:nth-child(5) { animation-delay: calc($highlightedDelay * 5); }
-            &:nth-child(6) { animation-delay: calc($highlightedDelay * 6); }
-            &:nth-child(7) { animation-delay: calc($highlightedDelay * 7); }
+            @for $i from 1 through 20 {
+                &:nth-child(#{$i}) {
+                    animation-delay: #{150ms + ($highlightedDelay * $i)};
+                }
+            }
         }
 
         .social-links {
@@ -120,16 +120,6 @@ $highlightedDelay: 50ms;
         justify-content: flex-start;
         align-items: flex-start;
 
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 8px;
-        }
-    
-        p {
-            margin-top: 12px;
-            margin-bottom: 12px;
-        }
-
         .profile-picture {
             width: 0;
             height: 0;
@@ -140,6 +130,13 @@ $highlightedDelay: 50ms;
             margin-right: 8px;
             width: 100%;
 
+            p {
+                transition: none;
+                margin-top: 12px;
+                margin-bottom: 12px;
+    
+            }
+
             .social-links {
                 gap: 10pt;
                 margin-top: 20px;
@@ -149,7 +146,6 @@ $highlightedDelay: 50ms;
                         display: flex;
                         width: 40pt;
                         height: 40pt;
-                        transition: 250ms;
 
                         &:hover {
                             width: 100%;

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import '../../styles/Navbar.scss'
+import HamburgerButtonComponent from './HamburgerButtonComponent';
 import { Link } from './UtilityComponents';
 
 
@@ -19,18 +20,14 @@ export default function NavbarComponent() {
 
     return (
         <>
-        <div onClick={() => setOpen(!open)} className="menuButton" id={open ? "open":""}>
-            <div id="bar"/>
-            <div id="bar"/>
-            <div id="bar"/>
-        </div>
+        <HamburgerButtonComponent value={open} onChange={(open: boolean) => setOpen(open)} />
 
         <nav className="navbar" id={open ? "open":""}>
             <img src="/logo.png" alt="Website Logo" />
-            <NavbarItem onClick={() => setOpen(false)} to="about" link="/" value="About" />
-            <NavbarItem onClick={() => setOpen(false)} to="projects" link="/" value="Projects" />
-            <NavbarItem onClick={() => setOpen(false)} to="articles" link="/" value="Articles" />
-            <NavbarItem onClick={() => setOpen(false)} to="contact" link="/" value="Contact" />
+            <NavbarItem to="about" link="/" value="About" />
+            <NavbarItem to="projects" link="/" value="Projects" />
+            <NavbarItem to="articles" link="/" value="Articles" />
+            <NavbarItem to="contact" link="/" value="Contact" />
         </nav>
         </>
     )

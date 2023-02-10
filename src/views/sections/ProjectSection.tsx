@@ -1,32 +1,35 @@
-import SectionComponent from "../components/SectionComponent";
+import ScrollSectionComponent from "../components/ScrollSectionComponent";
 
-import '../../styles/Projects.scss'
+import '../../styles/ProjectSection.scss'
 import { Projects } from '../../Data'
 import CarouselComponent from "../components/CarouselComponent";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { DisplayContext } from "../../contexts/DisplayContext";
 import { Link } from "../components/UtilityComponents";
+import { useIntersect, useInView } from "../../hooks/VisibilityHooks";
+import { Clamp, EaseInOutFunction, Lerp, RootFunction, SineFunction } from "../../MyMath";
 
 function Project(props: any) {
 
-    const { title, body, backgroundGif, backgroundImg, sourceLink, liveLink, pageLink } = props
-    const { isMobile } = useContext(DisplayContext)
+    const { title, body, backgroundGif, backgroundImg, sourceLink, demoLink, pageLink } = props
 
     return (
-        <div className="project">
-            <img className="background-img" src={backgroundImg} alt="" width="640" height="900" />
-            {isMobile ? '' : <video className="background-gif" src={backgroundGif} autoPlay loop muted width="640" height="900" />}
-            <h2>{title}</h2>
-            <p>{body}</p>
+        <div className={`project-item ${props.className}`}id={props.id}>
+            <img className="background-img" src={backgroundImg} alt=""/>
+            {props.isMobile ? '' : <video className="background-gif" src={backgroundGif} autoPlay loop muted />}
+            <div className="info">
+                <h2>{title}</h2>
+                <p>{body}</p>
+            </div>
             <div className="links">
-                {liveLink ? 
-                <a target="_blank" rel="noreferer" href={liveLink}>Use It</a>
+                {demoLink ? 
+                <a className="link-button" target="_blank" rel="noreferer" href={demoLink}>Use It</a>
                 :''}
                 {pageLink ?
-                <Link link={pageLink}>Project</Link>    
+                <Link className="link-button" link={pageLink}>Project</Link>    
                 :''}
                 {sourceLink ?
-                <a target="_blank" rel="noreferer" href={sourceLink}>GitHub</a>    
+                <a className="link-button" target="_blank" rel="noreferer" href={sourceLink}>GitHub</a>    
                 :''}
             </div>
         </div>
@@ -35,12 +38,20 @@ function Project(props: any) {
 
 export default function ProjectSection() {
 
+    const sectionRef = useRef(null)
+    const sectionInView = useInView(sectionRef, 0.3)
+
+    const { isMobile } = useContext(DisplayContext)
+
+
     return (
-        <SectionComponent id="projects">
-            <div className="projects">
-                <h1>Projects</h1>
-                <span>These are some projects I am involved with.</span>
-                <CarouselComponent className="carousel">
+        <ScrollSectionComponent id="projects" ref={sectionRef}>
+            <div className="projects-section">
+                <div className="header">
+                    <h1 className="section-title" id={sectionInView ? "in-view":""}>Projects</h1>
+                    <Link className="link-button link-view-all">View All</Link>
+                </div>
+                <CarouselComponent className="carousel" canScroll={isMobile}>
                     {Projects.map((project, index) => {
                         return (
                             <Project
@@ -49,14 +60,17 @@ export default function ProjectSection() {
                                 body={project.body}
                                 backgroundImg={project.backgroundImg}
                                 backgroundGif={project.backgroundGif}
-                                liveLink={project.liveLink}
+                                demoLink={project.demoLink}
                                 pageLink={project.pageLink}
                                 sourceLink={project.sourceLink}
+                                isMobile={isMobile}
+                                className={sectionInView ? 'in-view':''}
+                                id={sectionInView ? `in-view-${index}`:""}
                             />
                         )
                     })}
                 </CarouselComponent>
             </div>
-        </SectionComponent>
+        </ScrollSectionComponent>
     )
 }

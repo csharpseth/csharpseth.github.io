@@ -1,14 +1,33 @@
+$mobileScreenWidth: 768px;
+
+$scrollSpeed: 300ms;
+
 $navbarHeight: 50pt;
+$navbarMenuOpenSpeed: 300ms;
+$navbarMenuIconSize: 30pt;
+$navbarOpenWidth: 50vw;
 
 $fontColorLight: #111111;
 $backgroundColorLight: #DDDDDD;
 $foregroundColorLight: #EEEEEE;
 $primaryBorderColorLight: #BBBBBB;
+$dividerColorLight: #BBBBBB;
 
 $fontColorDark: #eeeeee;
 $backgroundColorDark: #111111;
 $foregroundColorDark: #1a1a1a;
 $primaryBorderColorDark: #333333;
+$dividerColorDark: #333333;
 
 $fontColorHighlighted: #4488e7;
 $buttonColor: #4488e7;
+$buttonShadowColor: #1d56a5;
+
+@mixin NoSelect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

@@ -11,12 +11,22 @@ export default function HomePage(props: any) {
 
     useEffect(() => {
         ExecuteSuspendedHash()
-    }, [ExecuteSuspendedHash])
+    }, [])
 
     return (
         <>
             <AboutSection />
             <ProjectSection />
+            <AboutSection />
+            <AboutSection />
+            <AboutSection />
+            <AboutSection />
+            <AboutSection />
+            <AboutSection />
+            <AboutSection />
+            <AboutSection />
+            <AboutSection />
+            <AboutSection />
         </>
     )
 }

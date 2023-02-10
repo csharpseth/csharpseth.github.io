@@ -1,9 +1,9 @@
-import SectionComponent from "../components/SectionComponent";
+import ScrollSectionComponent from "../components/ScrollSectionComponent";
 
 export default function ExperienceSection() {
     return (
-        <SectionComponent>
+        <ScrollSectionComponent>
             <h1>Experience</h1>
-        </SectionComponent>
+        </ScrollSectionComponent>
     )
 }

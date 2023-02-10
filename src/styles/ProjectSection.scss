@@ -1,0 +1,325 @@
+@import './GlobalVariables.scss';
+@import './GlobalAnimations.scss';
+
+* {
+    transition: none;
+}
+ 
+.projects-section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    gap: 8px;
+
+    .header {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+
+        width: 100%;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+
+    .link-view-all {
+        
+    }
+
+    .section-title {
+        padding-bottom: 8px;
+        font-size: 3rem;
+
+        opacity: 1;
+    }
+
+    .carousel {
+        gap: 8px;
+
+        .element {
+            width: calc(100%/3);
+            aspect-ratio: 1/1.5;
+
+            opacity: 0;
+            transform: translateY(50%);
+
+            &.in-view {
+                animation: PopInFromBottom 550ms forwards;
+                opacity: 1;
+            }
+
+            &:nth-child(1) {
+                animation-delay: 0ms;
+            }
+            &:nth-child(2) {
+                animation-delay: 75ms;
+            }
+            &:nth-child(3) {
+                animation-delay: 150ms;
+            }
+        }
+
+        .project-item {
+            flex: none;
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
+            height: 100%;
+
+            border-radius: 12px;
+
+            padding: 16px;
+
+            overflow: hidden;
+
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            h2 {
+                position: relative;
+                z-index: 1;
+                transition: 300ms;
+                width: 100%;
+                text-align: center;
+
+                padding: 8px;
+                border-radius: 8px;
+            }
+
+            p {
+
+                transition: 400ms;
+                z-index: 1;
+                overflow-y: hidden;
+                max-height: 0;
+
+                margin-top: 0;
+                padding: 8px;
+                border-radius: 8px;
+                text-align: center;
+                line-height: 24px;
+
+                width: 100%;
+            }
+
+            .background-img {
+                position: absolute;
+
+                width: 100%;
+
+                top: 50%;
+                left: 50%;
+
+                transform: translate(-50%, -50%);
+
+                opacity: 1;
+
+                transition: 300ms;
+            }
+
+            .background-gif {
+                position: absolute;
+
+                width: 100%;
+
+                top: 50%;
+                left: 50%;
+
+                transform: translate(-50%, -50%);
+                opacity: 0;
+
+                transition: 300ms;
+            }
+
+            .links {
+                z-index: 1;
+                position: absolute;
+                bottom: 0;
+
+                padding: 4px;
+                margin-bottom: 12px;
+                border-radius: 12px;
+
+                display: flex;
+                flex-direction: row;
+
+                gap: 8px;
+                
+                transition: 300ms;
+
+            }
+        }
+    }
+}
+
+@media(prefers-color-scheme: light) {
+    .projects-section {
+        .carousel {
+            .project-item {
+                
+                background-color: $backgroundColorDark;
+                border: 1px solid $primaryBorderColorLight;
+
+                color: $fontColorLight;
+
+                h2 {
+                    background-color: $foregroundColorLight;
+                }
+
+                p {
+                    background-color: $foregroundColorLight;
+                }
+
+                .background-img {
+                    filter: brightness(100%);
+                }
+            }
+        }
+    }
+}
+
+@media(prefers-color-scheme: dark) {
+    .projects-section {
+        .carousel {
+            .project-item {
+                border: 1px solid $primaryBorderColorDark;
+
+                &:hover {
+                    
+                    .background-gif {
+                        filter: brightness(25%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $mobileScreenWidth) {
+    .project-item {
+        h2 {
+            filter: opacity(0%);
+        }
+
+        p {
+            filter: opacity(0%);
+        }
+
+        .background-img {
+            opacity: 1;
+        }
+
+        .background-gif {
+            opacity: 0;
+        }
+
+        .links {
+            filter: opacity(0%);
+        }
+
+
+        &:hover {
+            h2 {
+                filter: opacity(100%);
+            }
+
+            p {
+                max-height: 100%;
+                margin-top: 30pt;
+                filter: opacity(100%);
+            }
+
+            .background-img {
+                opacity: 0;
+            }
+
+            .background-gif {
+                width: 110%;
+                opacity: 1;
+            }
+
+            .links {
+                filter: opacity(100%);
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: $mobileScreenWidth) {
+    .projects-section {
+        gap: 4px;
+
+        .header {
+            justify-content: flex-start;
+        }
+
+        .section-title {
+            
+        }
+
+        .carousel {
+            .element {
+                aspect-ratio: 1/1.5;
+                width: calc(80vh / 1.5);
+                height: calc(80vh - 2em);
+                transform: scale(100%);
+
+                &.in-view {
+                    animation: none;
+                }
+            }
+
+            .project-item {
+
+                &:hover {
+                    .background-img {
+                        filter: blur(6px) brightness(100%);
+                    }
+                }
+
+                h2 {
+                    top: 0;
+                    transform: translateY(0);
+                    filter: opacity(100%);
+                }
+
+                p {
+                    max-height: 100%;
+                    filter: opacity(100%);
+                    margin-top: 20pt;
+                }
+
+                .background-img {
+                    width: 110%;
+
+                    opacity: 1;
+                }
+
+                .background-gif {
+                    display: none;
+                }
+
+                .links {
+                    position: relative;
+                    margin-top: 16px;
+                    filter: opacity(100%);
+                }
+            }
+        }
+    }
+}

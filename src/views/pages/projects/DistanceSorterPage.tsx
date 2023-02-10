@@ -1,9 +1,9 @@
-import SectionComponent from "../../components/SectionComponent";
+import ScrollSectionComponent from "../../components/ScrollSectionComponent";
 
 export default function DistanceSorterPage() {
     return (
-        <SectionComponent>
+        <ScrollSectionComponent>
             <h1>Distance Sorter</h1>
-        </SectionComponent>
+        </ScrollSectionComponent>
     )
 }
