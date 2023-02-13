@@ -24,10 +24,10 @@ export default function NavbarComponent() {
 
         <nav className="navbar" id={open ? "open":""}>
             <img src="/logo.png" alt="Website Logo" />
-            <NavbarItem to="about" link="/" value="About" />
-            <NavbarItem to="projects" link="/" value="Projects" />
-            <NavbarItem to="articles" link="/" value="Articles" />
-            <NavbarItem to="contact" link="/" value="Contact" />
+            <NavbarItem link="/" value="About" />
+            <NavbarItem link="/" value="Projects" />
+            <NavbarItem link="/" value="Articles" />
+            <NavbarItem link="/" value="Contact" />
         </nav>
         </>
     )

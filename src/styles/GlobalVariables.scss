@@ -1,4 +1,4 @@
-$mobileScreenWidth: 768px;
+$mobileScreenWidth: 800px;
 
 $scrollSpeed: 300ms;
 
@@ -23,6 +23,9 @@ $fontColorHighlighted: #4488e7;
 $buttonColor: #4488e7;
 $buttonShadowColor: #1d56a5;
 
+$darkShadow: rgba(0, 0, 0, 0.7);
+$lightShadow: rgba(100, 100, 100, 0.4);
+
 @mixin NoSelect {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -30,4 +33,11 @@ $buttonShadowColor: #1d56a5;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+@mixin LinkHover {
+    transition: 350ms cubic-bezier(.64,.04,0,1.92);//cubic-bezier(.64,.04,.09,1.57);
+    &:hover {
+        transform: scale(120%) translateY(-15%);
+    }
 }

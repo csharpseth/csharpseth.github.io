@@ -2,31 +2,45 @@ import ScrollSectionComponent from "../components/ScrollSectionComponent";
 
 import { About } from '../../Data'
 import '../../styles/About.scss'
+import { useContext } from "react";
+import { DisplayContext } from "../../contexts/DisplayContext";
+import { RelativeRemap } from "../../MyMath";
 
 export default function AboutSection() {
+
+    const { scrollPercent, mouseX, mouseY, windowWidth, windowHeight } = useContext(DisplayContext)
+
     return (
         <ScrollSectionComponent id="about">
-            <div className="profile">
+            <div className="profile" style={{
+                opacity: (1 - RelativeRemap(scrollPercent, 0.05, 0.15))
+            }}>
+                <img className="profile__img" src="/me.webp" alt="profile picture"/>
                 <div className="info">
-                    <h1 className="section-title">{About.title}</h1>
-                    <p>
-                    As a Frontend Web and Mobile Developer, I bring to the table a unique combination of technical proficiency in <b>React</b> and <b>React-Native</b>, along with a commitment to using modern frontend development practices such as <b>Sass</b> for styling and <b>TypeScript</b> for optimal type safety.
-                    </p>
-                    <p>
-                    My aim is to create visually stunning and innovative applications that engage users through dynamic and interactive interfaces, reflecting my unwavering dedication to elevating the user experience.
-                    </p>
-                    <p>
-                    My ultimate goal is to deliver user-centric solutions that not only meet, but exceed the expectations of both clients and end-users alike.
-                    </p>
-                    <div className="social-links">
-                        {About.links.map((link: any, index: number) => {
-                            return (
-                                <a key={index} target="_blank" href={link.href}><img className="social-icon" src={link.icon} alt={link.alt} width="512" height="512"/></a>
-                            )
-                        })}
+                    <h1>{About.title}</h1>
+                    <div className="bio">
+                        <p>
+                        A passionate Frontend <b>Web</b> and <b>Mobile</b> Developer, I bring a unique combination of technical proficiency in <b>React</b> and <b>React-Native</b>, along with a deep commitment to utilizing modern frontend development practices such as incorporating <b>Sass</b> for styling and <b>TypeScript</b> for optimal type safety.
+                        </p>
                     </div>
                 </div>
-                <img className="profile-picture" src="/me.webp" alt="My Profile Picture" width="1000" height="1500" />
+
+                <div className="links" style={{
+                    opacity: (1 - RelativeRemap(scrollPercent, 0, 0.2))
+                }}>
+                    <a className="link" href="#">
+                        <img className="icon" src="/linkedin.png" alt="" />
+                    </a>
+                    <a className="link" href="#">
+                        <img className="icon" src="/github.png" alt="" />
+                    </a>
+                    <a className="link" href="#">
+                        <img className="icon" src="/twitter.png" alt="" />
+                    </a>
+                    <a className="link" href="#">
+                        <img className="icon" src="/youtube.png" alt="" />
+                    </a>
+                </div>
             </div>
         </ScrollSectionComponent>
     )

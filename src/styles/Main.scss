@@ -17,6 +17,8 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
+
+	
 }
 
 * {
@@ -27,7 +29,7 @@
 }
 
 html {
-	
+
 }
 
 img {
@@ -44,6 +46,8 @@ body {
 	overflow: hidden;
 	transition: none;
 }
+
+
 
 p {
 	font-weight: 300;
@@ -74,11 +78,40 @@ br {
 .container {
 	position: absolute;
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 
 	transition: top $scrollSpeed ease-in-out;
 	scrollbar-width: none;
-	
+	scroll-behavior: smooth;
+
+	.scroll-path {
+		opacity: 1;
+		position: fixed;
+		width: 100%;
+		top: $navbarHeight;
+		fill: transparent;
+
+		pointer-events: none;
+
+		@for $x from 1 through 10 {
+			&:nth-child(#{$x}) {
+				.path {
+					stroke: rgba(10*$x, 100*$x, 70*$x);
+					stroke-linecap: round;
+					transition: 200ms;
+		
+					@for $i from 1 through 10 {
+						&:nth-child(#{$i}) {
+							stroke-width: calc((($i / 10) * 1 - ($x / 10)) * 150px);
+							opacity: calc((1 - ($i / 10)) * 0.02);
+							r: calc(150px * $i)
+						}
+					}
+				}
+			}
+		}
+		
+	}	
 
 	.scroll-section {
 		display: flex;
@@ -99,7 +132,6 @@ br {
 		}
 
 		.content {
-			position: relative;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
@@ -109,36 +141,7 @@ br {
 			width: 95%;
 			padding: 24px;
 			border-radius: 16px;
-			border: 1px solid transparent;
 		}
-	}
-}
-
-.link-button {
-	color: $fontColorDark;
-	background-color: $buttonColor;
-	text-decoration: none;
-	font-weight: 400;
-
-	border-radius: 8px;
-	padding: 4px 12px;
-	transition: 200ms;
-	filter: drop-shadow(0 6px 0 $buttonShadowColor) brightness(100%);
-	transform: translateY(-2px);
-
-	&:hover {
-		filter: drop-shadow(0 4px 0 $buttonShadowColor) brightness(110%);
-		transform: translateY(0px);
-	}
-
-	&:focus {
-		filter: drop-shadow(0 0px 0 $buttonShadowColor) brightness(90%);
-		transform: translateY(4px);
-	}
-
-	&:disabled {
-		filter: drop-shadow(0 4px 0 $buttonShadowColor) brightness(100%) saturate(0%);
-		transform: translateY(0px);
 	}
 }
 
@@ -151,8 +154,7 @@ br {
 	.container {
 		.scroll-section {
 			.content {
-				background-color: $foregroundColorDark;
-				border-color: $primaryBorderColorDark;
+				
 			}
 		}
 	}
@@ -167,23 +169,25 @@ br {
 	.container {
 		.scroll-section {
 			.content {
-				background-color: $foregroundColorLight;
-				border-color: $primaryBorderColorLight;
+				
 			}
 		}
 	}
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: $mobileScreenWidth) {
 	:root {
 		font-size: 16px;
         line-height: 24px;
 	}
 
+	_::-webkit-full-page-media, _:future, :root .safari_only {
+	    padding-bottom: 55pt;
+    }
+
 	.container {
 		overflow-y: scroll;
 		scroll-behavior: smooth;
-		scroll-snap-type: y mandatory;
 		.scroll-section {
 			justify-content: flex-start;
 			padding: 8px;

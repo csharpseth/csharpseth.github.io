@@ -1,32 +1,18 @@
-import { useContext, useEffect } from 'react';
-
-import { NavigationContext } from "../../contexts/NavigationContext";
-
 import AboutSection from "../sections/AboutSection";
 import ProjectSection from "../sections/ProjectSection";
 
+import "../../styles/HomePage.scss"
+import ReadProgressBar from '../components/fx/ReadProgressBar';
+import { PageSpacerComponent } from '../components/PageSpacerComponent';
+
 export default function HomePage(props: any) {
-
-    const { ExecuteSuspendedHash } = useContext(NavigationContext)
-
-    useEffect(() => {
-        ExecuteSuspendedHash()
-    }, [])
 
     return (
         <>
             <AboutSection />
+            <PageSpacerComponent />
             <ProjectSection />
-            <AboutSection />
-            <AboutSection />
-            <AboutSection />
-            <AboutSection />
-            <AboutSection />
-            <AboutSection />
-            <AboutSection />
-            <AboutSection />
-            <AboutSection />
-            <AboutSection />
+            <PageSpacerComponent />
         </>
     )
 }

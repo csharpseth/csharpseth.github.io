@@ -1,0 +1,39 @@
+@import "./GlobalVariables.scss";
+
+$padding: 4px;
+$offsetTop: $navbarHeight + $padding;
+$height: calc(100vh - ($offsetTop + $padding));
+
+.page-read {
+    position: fixed;
+    right: $padding;
+    bottom: 0;
+    height: $height;
+    z-index: 100;
+
+
+    pointer-events: none;
+
+    .line {
+        stroke: $buttonColor;
+        stroke-width: 6px;
+        stroke-linecap: round;
+
+        &.shadow {
+            filter: drop-shadow(2px 0 0 $buttonShadowColor);
+        }
+    }
+
+}
+
+@media(prefers-color-scheme: light) {
+    
+}
+
+@media(prefers-color-scheme: dark) {
+    
+}
+
+@media only screen and (max-width: 768px) {
+
+}

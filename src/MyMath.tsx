@@ -46,3 +46,26 @@ export function SineFunction(
 ): number {
     return  amplitude * (Math.sin(Math.PI * (time + xOffset) * frequency) + yOffset)
 }
+
+export function RelativeRemap(value:number, min:number, max:number):number {
+    const newPercent = (value-min)/(max-min)
+    return newPercent
+}
+
+export function RemapPercent(value:number, min:number, max:number):number {
+    const range: number = max - min
+    const n: number = (value * range) + min
+    return n
+}
+
+export function SlopeToAngle(x: number, y: number):number {
+    let angle = Math.atan2(y, x) * 180 / Math.PI;
+    angle = angle < 0 ? 360 + angle : angle;
+    return angle;
+}
+
+export function DegreeAngleToZero(xPercent: number, yPercent: number):number {
+    const ang = Math.atan(yPercent/xPercent)
+
+    return (ang * 180)/Math.PI
+}

@@ -7,6 +7,7 @@ $rDelay: $translateSpeed;
 $rSpeed: 200ms;
 
 .hamburgerButtonContainer {
+    opacity: 0;
     z-index: 20;
     position: fixed;
 
@@ -109,4 +110,10 @@ $rSpeed: 200ms;
             backdrop-filter: blur(0) brightness(100%);
         }
     }
+}
+
+@media only screen and (max-width: $mobileScreenWidth) {
+     .hamburgerButtonContainer {
+        opacity: 1;
+     }
 }

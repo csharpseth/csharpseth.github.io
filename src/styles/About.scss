@@ -1,48 +1,55 @@
+@import "./GlobalVariables.scss";
 @import "./GlobalAnimations.scss";
 
-$highlightedDelay: 100ms;
+$highlightedDelay: 200ms;
+
+$heroTitleAnimationDuration: 1500ms;
+$heroAnimationDuration: $heroTitleAnimationDuration;
 
 * {
     transition: none;
 }
 
 .profile {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    h1 {
+        color: #efefef;
+        position: absolute;
+        left: 50%;
+        top: 50%;
 
-    gap: 48px;
-
-    .section-title {
+        height: max-content;
         font-size: 3rem;
-        margin-bottom: 16px;
 
-        transform: translateY(-200%);
+        mix-blend-mode: difference;
 
-        animation-name: DropInFromTop;
-        animation-duration: 400ms;
+        animation-name: TitleIn;
+        animation-delay: 0;
+        animation-duration: $heroTitleAnimationDuration;
+        animation-timing-function: cubic-bezier(.42,0,.35,1.41);
+        animation-fill-mode: forwards;
+    }
+
+    .profile__img {
+        opacity: 0;
+
+        animation-name: SlideIn;
+        animation-delay: $heroTitleAnimationDuration;
+        animation-duration: 500ms;
         animation-timing-function: ease-in-out;
         animation-fill-mode: forwards;
     }
 
-    p {
-        text-align: left;
-        margin-top: 12px;
-        margin-bottom: 12px;
-    }
-
-    .profile-picture {
-        height: 350pt;
-        width: 233pt;
-        border-radius: 16px;
+    .bio {
+        animation-name: BodyIn;
+        animation-delay: $heroTitleAnimationDuration;
+        animation-duration: 1000ms;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
     }
 
     .info {
-        width: 80%;
-        
         b {
-            opacity: 0.1;
+            opacity: 0.01;
 
             animation-name: FadeIn;
             animation-duration: 300ms;
@@ -51,47 +58,87 @@ $highlightedDelay: 100ms;
 
             @for $i from 1 through 20 {
                 &:nth-child(#{$i}) {
-                    animation-delay: #{150ms + ($highlightedDelay * $i)};
+                    animation-delay: #{$heroAnimationDuration + 200ms + ($highlightedDelay * $i)};
                 }
             }
         }
+    }
 
-        .social-links {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            gap: 40pt;
-            margin-top: 24px;
-
-            a {
-                width: 40pt;
-                height: 40pt;
-
-                .social-icon {
-                    width: 100%;
-                    height: 100%;
-                    transition: 250ms;
-
-                    &:hover {
-                        width: 130%;
-                        height: 130%;
-
-                        transform: translate(-15%, -15%) rotate(5deg)
-                    }
-                }
-
+    .links {
+        position: absolute;
+        bottom: 2vh;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: row;
+        gap: 2em;
+    
+        .link {
+            width: 40pt;
+            height: 40pt;
+            opacity: 0;
+            transform: translateY(100%);
+    
+            animation-name: PopInFromBottom;
+            animation-duration: 600ms;
+            animation-timing-function: ease-in-out;
+            animation-fill-mode: forwards;
+            
+            &:nth-child(1) {
+                animation-delay: calc($heroAnimationDuration + 400ms);
+            }
+            &:nth-child(2) {
+                animation-delay: calc($heroAnimationDuration + 200ms);
+            }
+            &:nth-child(3) {
+                animation-delay: calc($heroAnimationDuration + 300ms);
+            }
+            &:nth-child(4) {
+                animation-delay: calc($heroAnimationDuration + 500ms);
+            }
+    
+            .icon {
+                width: 100%;
+                height: 100%;
             }
         }
+    }
+}
+
+
+
+@keyframes SlideIn {
+    100% {
+        clip-path: circle(50%);
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes BodyIn {
+    100% {
+        clip-path: circle(150%);
+    }
+}
+
+@keyframes TitleIn {
+    0% {
+        transform: translate(-50%, -50%) scale(200%);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(200%);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0%);
     }
 }
 
 @media(prefers-color-scheme: light) {
     .social-links {
         a {
-            .social-icon {
-                filter: brightness(15%);
-            }
+            
         }
     }
 }
@@ -99,63 +146,95 @@ $highlightedDelay: 100ms;
 @media(prefers-color-scheme: dark) {
     .social-links {
         a {
-            .social-icon {
-                filter: brightness(95%);
-
-                &:hover {
-                    filter: brightness(120%)
-                }
-            }
+            
         }
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (min-width: $mobileScreenWidth) {
+    .profile {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    
+        height: 30vh;
+    
+        gap: 2em; 
+    
+        .bio {
+            clip-path: circle(0% at 0% 50%);
+        }
+
+        p {
+            text-align: left;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            font-size: 24px;
+            font-weight: 200;
+            line-height: 32px;
+        }
+    
+        .profile__img {
+            height: 100%;
+            clip-path: circle(0% at 50% 50%);
+    
+            transform: translateX(-5%);
+        }
+
+        
+        .links {
+            .link {
+                .icon {
+                    @include LinkHover;
+                }
+            }
+        }
+    
+    }
+    
+}
+
+@media only screen and (max-width: $mobileScreenWidth) {
     * {
         transition: none;
     }
 
     .profile {
+        display: flex;
         flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
+        justify-content: center;
+        align-items: center;
 
-        .profile-picture {
-            width: 0;
-            height: 0;
-            opacity: 0;
+        width: 100%;
+
+        .bio {
+            clip-path: circle(0% at 50% 0%);
         }
-    
+        .profile__img {
+            transform: translateY(-10%);
+            opacity: 0;
+            width: 70%;
+            clip-path: circle(0% at 50% 50%);
+        }
         .info {
-            margin-right: 8px;
             width: 100%;
 
             p {
-                transition: none;
-                margin-top: 12px;
-                margin-bottom: 12px;
-    
+                text-align: justify;
+                margin: 16px;
             }
 
-            .social-links {
-                gap: 10pt;
-                margin-top: 20px;
-    
-                a {
-                    .social-icon {
-                        display: flex;
-                        width: 40pt;
-                        height: 40pt;
+            h1 {
+                position: absolute;
+                top: 50%;
+                left: 50%;
 
-                        &:hover {
-                            width: 100%;
-                            height: 100%;
+                transform: translate(-50%, -50%);
 
-                            transform: none
-                        }
-                    }
-                }
+                font-size: 1rem;
             }
+
         }
     }
 }
