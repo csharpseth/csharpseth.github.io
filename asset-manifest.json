@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.c803ff34.css",
-    "main.js": "/static/js/main.474ccf64.js",
+    "main.css": "/static/css/main.2bda3d8f.css",
+    "main.js": "/static/js/main.f723aecc.js",
     "static/media/Kanit-SemiBold.woff": "/static/media/Kanit-SemiBold.68cfdfddccf634b0c1a3.woff",
     "static/media/Kanit-Black.woff": "/static/media/Kanit-Black.12eb02f7c51370bda17d.woff",
     "static/media/Kanit-Bold.woff": "/static/media/Kanit-Bold.d3364d9b2969fb0cda74.woff",
@@ -10,11 +10,11 @@
     "static/media/Kanit-Light.woff": "/static/media/Kanit-Light.dcbece63bd378e01abb9.woff",
     "static/media/Kanit-ExtraLight.woff": "/static/media/Kanit-ExtraLight.ea582f8d173413c5649d.woff",
     "index.html": "/index.html",
-    "main.c803ff34.css.map": "/static/css/main.c803ff34.css.map",
-    "main.474ccf64.js.map": "/static/js/main.474ccf64.js.map"
+    "main.2bda3d8f.css.map": "/static/css/main.2bda3d8f.css.map",
+    "main.f723aecc.js.map": "/static/js/main.f723aecc.js.map"
   },
   "entrypoints": [
-    "static/css/main.c803ff34.css",
-    "static/js/main.474ccf64.js"
+    "static/css/main.2bda3d8f.css",
+    "static/js/main.f723aecc.js"
   ]
 }
