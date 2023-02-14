@@ -69,3 +69,16 @@ export function DegreeAngleToZero(xPercent: number, yPercent: number):number {
 
     return (ang * 180)/Math.PI
 }
+
+export function CubeRootFunction(
+    x: number,
+    verticalScale: number = 1,
+    xOffset: number = 0,
+    yOffset: number = 0
+):number {
+    let value = 0
+
+    value = (verticalScale * Math.cbrt((x + xOffset))) + yOffset
+
+    return Clamp01(value)
+}

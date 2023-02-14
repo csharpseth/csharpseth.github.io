@@ -158,6 +158,10 @@ br {
 			}
 		}
 	}
+
+	.background-text {
+		color: $backgroundFontColorDark;
+	}
 }
 
 @media (prefers-color-scheme: light) {
@@ -172,6 +176,10 @@ br {
 				
 			}
 		}
+	}
+
+	.background-text {
+		color: $backgroundFontColorLight;
 	}
 }
 

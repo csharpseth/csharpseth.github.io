@@ -19,23 +19,28 @@ export function DisplayProvider(props: any) {
     const [scrollPercent, setScrollPercent] = useState<number>(1)
 
     const container = useRef<Element | null>()
+    let wHeight = useRef<number>(windowHeight)
+    wHeight.current = windowHeight
 
     function CalculateScrollPercent():number {
-        if(!container) return 0
-        let scroll = container?.current?.scrollTop
+        if(!container.current) return 0
+        let scrollTop = container?.current?.scrollTop
+        let windowHeight = wHeight.current
         let scrollHeight = container?.current?.scrollHeight
 
-        scroll = !scroll ? 1 : scroll
-        scrollHeight = !scrollHeight ? 1 : scrollHeight
+        let percent = scrollTop / (scrollHeight - windowHeight);
 
-        let percent = scroll/scrollHeight
-        if(percent > 0.5) {
-            percent = scroll/(scrollHeight - windowHeight)
-        }
+        // scrollTop = !scrollTop ? 1 : scrollTop
+        // scrollHeight = !scrollHeight ? 1 : scrollHeight
 
-        percent = Clamp01(percent)
-        percent = percent < 0.001 ? 0.0 : percent
-        percent = percent > 0.999 ? 1.0 : percent
+        // let percent = scrollTop/scrollHeight
+        // if(percent > 0.5) {
+        //     percent = scrollTop/(scrollHeight - windowHeight)
+        // }
+
+        // percent = Clamp01(percent)
+        // percent = percent < 0.001 ? 0.0 : percent
+        // percent = percent > 0.999 ? 1.0 : percent
 
         return percent
     }

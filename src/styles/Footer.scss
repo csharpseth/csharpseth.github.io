@@ -89,7 +89,11 @@ footer {
 
 @media (prefers-color-scheme: light) {
 	footer {
-        
+        .socials {
+			.link {
+				filter: brightness(5%);
+			}
+		}
     }
 }
 

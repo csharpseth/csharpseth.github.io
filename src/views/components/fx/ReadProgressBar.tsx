@@ -24,8 +24,8 @@ export default function ReadProgressBar() {
     function ScrollBar() {
         return (
             <line className='line'
-                x1={(windowWidth - 5)}
-                x2={(windowWidth - 5)}
+                x1={(5)}
+                x2={(5)}
                 y1={
                     Clamp(TopY() + (BottomY() * scrollPercent), padding, BottomY() - 30)
                 }

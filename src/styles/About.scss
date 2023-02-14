@@ -4,6 +4,7 @@
 $highlightedDelay: 200ms;
 
 $heroTitleAnimationDuration: 1500ms;
+$heroAnimationDelay: $heroTitleAnimationDuration - 500ms;
 $heroAnimationDuration: $heroTitleAnimationDuration;
 
 * {
@@ -33,7 +34,7 @@ $heroAnimationDuration: $heroTitleAnimationDuration;
         opacity: 0;
 
         animation-name: SlideIn;
-        animation-delay: $heroTitleAnimationDuration;
+        animation-delay: $heroAnimationDelay;
         animation-duration: 500ms;
         animation-timing-function: ease-in-out;
         animation-fill-mode: forwards;
@@ -41,7 +42,7 @@ $heroAnimationDuration: $heroTitleAnimationDuration;
 
     .bio {
         animation-name: BodyIn;
-        animation-delay: $heroTitleAnimationDuration;
+        animation-delay: $heroAnimationDelay;
         animation-duration: 1000ms;
         animation-timing-function: ease-in-out;
         animation-fill-mode: forwards;
@@ -58,7 +59,7 @@ $heroAnimationDuration: $heroTitleAnimationDuration;
 
             @for $i from 1 through 20 {
                 &:nth-child(#{$i}) {
-                    animation-delay: #{$heroAnimationDuration + 200ms + ($highlightedDelay * $i)};
+                    animation-delay: #{$heroAnimationDelay + 200ms + ($highlightedDelay * $i)};
                 }
             }
         }
@@ -67,10 +68,13 @@ $heroAnimationDuration: $heroTitleAnimationDuration;
     .links {
         position: absolute;
         bottom: 2vh;
-        left: 50%;
-        transform: translateX(-50%);
+        width: 100%;
         display: flex;
         flex-direction: row;
+
+        justify-content: center;
+        align-items: center;
+
         gap: 2em;
     
         .link {
@@ -85,16 +89,16 @@ $heroAnimationDuration: $heroTitleAnimationDuration;
             animation-fill-mode: forwards;
             
             &:nth-child(1) {
-                animation-delay: calc($heroAnimationDuration + 400ms);
+                animation-delay: calc($heroAnimationDelay + 400ms);
             }
             &:nth-child(2) {
-                animation-delay: calc($heroAnimationDuration + 200ms);
+                animation-delay: calc($heroAnimationDelay + 200ms);
             }
             &:nth-child(3) {
-                animation-delay: calc($heroAnimationDuration + 300ms);
+                animation-delay: calc($heroAnimationDelay + 300ms);
             }
             &:nth-child(4) {
-                animation-delay: calc($heroAnimationDuration + 500ms);
+                animation-delay: calc($heroAnimationDelay + 500ms);
             }
     
             .icon {
@@ -136,9 +140,9 @@ $heroAnimationDuration: $heroTitleAnimationDuration;
 }
 
 @media(prefers-color-scheme: light) {
-    .social-links {
-        a {
-            
+    .links {
+        .link {
+            filter: brightness(5%);
         }
     }
 }

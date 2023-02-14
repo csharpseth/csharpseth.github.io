@@ -3,16 +3,20 @@ import ProjectSection from "../sections/ProjectSection";
 
 import "../../styles/HomePage.scss"
 import ReadProgressBar from '../components/fx/ReadProgressBar';
-import { PageSpacerComponent } from '../components/PageSpacerComponent';
+import { HalfPageSpacerComponent, QuarterPageSpacerComponent } from '../components/PageSpacerComponent';
+import ContactSection from "../sections/ContactSection";
 
 export default function HomePage(props: any) {
 
     return (
         <>
             <AboutSection />
-            <PageSpacerComponent />
+            <HalfPageSpacerComponent />
             <ProjectSection />
-            <PageSpacerComponent />
+            <HalfPageSpacerComponent />
+            <ContactSection />
+            <QuarterPageSpacerComponent />
+            <ReadProgressBar />
         </>
     )
 }

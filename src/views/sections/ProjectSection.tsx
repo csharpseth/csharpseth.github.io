@@ -9,7 +9,7 @@ export default function ProjectSection() {
     return (
         <ScrollSectionComponent id="projects">
             <div className="projects">
-                <h1>Some of my Projects...</h1>
+                <h1 className="background-text">Projects</h1>
                 {Projects.map((project: any, index: number) => {
                     return (
                         <ProjectComponent project={project}/>

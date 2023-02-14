@@ -8,23 +8,30 @@ $navbarMenuIconSize: 30pt;
 $navbarOpenWidth: 50vw;
 
 $fontColorLight: #111111;
+$backgroundFontColorLight: #777777;
 $backgroundColorLight: #DDDDDD;
 $foregroundColorLight: #EEEEEE;
 $primaryBorderColorLight: #BBBBBB;
 $dividerColorLight: #BBBBBB;
+$formFieldLight: $foregroundColorLight;
+$formFieldBorderLight: $primaryBorderColorLight;
 
 $fontColorDark: #eeeeee;
+$backgroundFontColorDark: #AAAAAA;
 $backgroundColorDark: #111111;
-$foregroundColorDark: #1a1a1a;
+$foregroundColorDark: #1e1e1e;
 $primaryBorderColorDark: #333333;
 $dividerColorDark: #333333;
+$formFieldDark: $foregroundColorDark;
+$formFieldBorderDark: $primaryBorderColorDark;
+
 
 $fontColorHighlighted: #4488e7;
 $buttonColor: #4488e7;
 $buttonShadowColor: #1d56a5;
 
-$darkShadow: rgba(0, 0, 0, 0.7);
-$lightShadow: rgba(100, 100, 100, 0.4);
+$darkShadow: rgba(0, 0, 0, 1);
+$lightShadow: rgba(30, 30, 30, 0.4);
 
 @mixin NoSelect {
     -webkit-touch-callout: none;
@@ -38,6 +45,12 @@ $lightShadow: rgba(100, 100, 100, 0.4);
 @mixin LinkHover {
     transition: 350ms cubic-bezier(.64,.04,0,1.92);//cubic-bezier(.64,.04,.09,1.57);
     &:hover {
-        transform: scale(120%) translateY(-15%);
+        transform: scale(115%) translateY(-10%);
     }
+}
+
+@mixin ScreenReaderText {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
 }
