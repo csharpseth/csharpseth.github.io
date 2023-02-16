@@ -1,0 +1,27 @@
+@import "./GlobalVariables.scss";
+
+.project-wrapper {
+    min-height: 100vh;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    h1 {
+        margin: 0.5em;
+    }
+
+    .banner {
+        border-radius: $primaryBorderRadius;
+        width: 100%;
+        margin-bottom: 2em;
+    }
+    
+    .paragraph {
+        line-height: 1.5em;
+        padding: 8px;
+        margin-bottom: 0.5em;
+    }
+}

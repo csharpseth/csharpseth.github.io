@@ -22,6 +22,10 @@ export default function NavbarComponent() {
     const headerRef = useRef(null)
     const visible = useInView(headerRef, 0.2)
 
+    function Close() {
+        setOpen(false)
+    }
+
     return (
         <>
         <HamburgerButtonComponent value={open} onChange={(open: boolean) => setOpen(open)} />
@@ -29,10 +33,10 @@ export default function NavbarComponent() {
             <img src="/logo.png" alt="Website Logo" />
         </div>
         <nav className={`navbar ${visible ? "":"undocked"}`} id={open ? "open":""}>
-            <NavbarItem link="/" value="Home" />
-            <NavbarItem link="/" value="Projects" />
-            <NavbarItem link="/" value="Articles" />
-            <NavbarItem link="/" value="Contact" />
+            <NavbarItem link="/" value="Home" onClick={Close} />
+            <NavbarItem link="/" value="Projects" onClick={Close} />
+            <NavbarItem link="/" value="Articles" onClick={Close} />
+            <NavbarItem link="/" value="Contact" onClick={Close} />
         </nav>
         </>
     )

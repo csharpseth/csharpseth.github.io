@@ -2,17 +2,21 @@ import ScrollSectionComponent from "../components/ScrollSectionComponent";
 
 import { About } from '../../Data'
 import '../../styles/AboutSection.scss'
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DisplayContext } from "../../contexts/DisplayContext";
 import { RelativeRemap } from "../../MyMath";
 
 export default function AboutSection() {
 
-    const { scrollPercent, mouseX, mouseY, windowWidth, windowHeight } = useContext(DisplayContext)
+    const { scrollPercent, SetLandingPlayed, landingPlayed } = useContext(DisplayContext)
+
+    useEffect(() => {
+        setTimeout(SetLandingPlayed, 2000)
+    }, [])
 
     return (
         <ScrollSectionComponent id="about">
-            <div className="profile" style={{
+            <div className={`profile ${landingPlayed ? "":"play"}`} style={{
                 opacity: (1 - RelativeRemap(scrollPercent, 0.05, 0.15))
             }}>
                 <img className="profile__img" src="/me.webp" alt="profile picture"/>
@@ -23,7 +27,7 @@ export default function AboutSection() {
                         A front-end <b>Web</b> and <b>Mobile</b> developer skilled in <b>React</b>, <b>React-Native</b>, <b>TypeScript</b>, and <b>SASS</b>.
                         </p>
                         <p>
-                            I build efficient and responsive user interfaces while prioritizing type safety and maintainability in my code. My communication skills and ability to collaborate effectively make me a valuable team member for any development project.
+                        I build efficient and responsive user interfaces. My communication skills and ability to collaborate effectively make me a valuable team member for any development project.
                         </p>
                     </div>
                 </div>

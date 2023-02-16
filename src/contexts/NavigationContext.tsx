@@ -1,10 +1,13 @@
 import React, { createContext, useContext, useLayoutEffect, useState } from 'react'
+import { DisplayContext } from './DisplayContext'
 
 export const NavigationContext = createContext({} as any)
 
 export function NavigationProvider(props: any) {
     const [currentPath, setCurrentPath] = useState<string>("/")
     const [suspendedHash, setSuspendedHash] = useState<SuspendedHash>()
+
+    const { ScrollToTop } = useContext(DisplayContext)
 
     function SetURL(href: string) {
         window.history.replaceState("", "", `${href}`)
@@ -48,6 +51,7 @@ export function NavigationProvider(props: any) {
     }
 
     function NavigatePath(to: string) {
+        ScrollToTop()
         SetURL(to)
         setCurrentPath(to)
     }

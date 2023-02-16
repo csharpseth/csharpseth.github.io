@@ -9,13 +9,13 @@ import ContactSection from "../sections/ContactSection";
 export default function HomePage(props: any) {
 
     return (
-        <>
+        <div className="container">
             <AboutSection />
             <HalfPageSpacerComponent />
             <ProjectSection />
             <HalfPageSpacerComponent />
             <ContactSection />
             <ReadProgressBar />
-        </>
+        </div>
     )
 }

@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { DisplayContext } from '../../../contexts/DisplayContext';
-import { Clamp, Clamp01, EaseInOutFunction, RelativeRemap } from '../../../MyMath';
+import { Clamp } from '../../../MyMath';
 
 import '../../../styles/ReadProgressBar.scss'
 

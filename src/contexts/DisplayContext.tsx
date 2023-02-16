@@ -18,6 +18,8 @@ export function DisplayProvider(props: any) {
 	const [isMobile, setIsMobile] = useState<boolean>(windowWidth <= 768)
     const [scrollPercent, setScrollPercent] = useState<number>(1)
 
+    const [landingPlayed, setLandingPlayed] = useState<boolean>(false)
+
     const container = useRef<Element | null>()
     let wHeight = useRef<number>(windowHeight)
     wHeight.current = windowHeight
@@ -47,6 +49,21 @@ export function DisplayProvider(props: any) {
 
     function ToggleDarkMode(active: boolean) {
         setDarkMode(active)
+    }
+
+    function SetLandingPlayed() {
+        setLandingPlayed(true)
+    }
+
+    function ScrollToTop(smooth: boolean = false) {
+        if(!container.current) return
+
+        console.log(`Current Top: ${container.current.scrollTop}`)
+
+        container.current.scrollTo({
+            top: 0,
+            behavior: smooth ? 'smooth':'auto'
+        })
     }
 
     useEffect(() => {
@@ -89,7 +106,20 @@ export function DisplayProvider(props: any) {
     }, [document.querySelector('.container')])
 
     return (
-        <DisplayContext.Provider value={{ darkMode, isMobile, windowWidth, windowHeight, mouseX, mouseY, container, scrollPercent, ToggleDarkMode }}>
+        <DisplayContext.Provider value={{
+            darkMode,
+            isMobile,
+            windowWidth,
+            windowHeight,
+            mouseX,
+            mouseY,
+            container,
+            scrollPercent,
+            landingPlayed,
+            SetLandingPlayed,
+            ScrollToTop,
+            ToggleDarkMode
+        }}>
             {props.children}
         </DisplayContext.Provider>
     );
