@@ -1,7 +1,7 @@
 @import "./GlobalVariables.scss";
 @import "./GlobalAnimations.scss";
 
-$highlightedDelay: 200ms;
+$highlightedDelay: 450ms;
 
 $heroTitleAnimationDuration: 1500ms;
 $heroAnimationDelay: $heroTitleAnimationDuration - 500ms;
@@ -50,16 +50,14 @@ $heroAnimationDuration: $heroTitleAnimationDuration;
 
     .info {
         b {
-            opacity: 0.01;
-
-            animation-name: FadeIn;
-            animation-duration: 300ms;
+            animation-name: BrightIn;
+            animation-duration: 400ms;
             animation-timing-function: ease-in-out;
             animation-fill-mode: forwards;
 
             @for $i from 1 through 20 {
                 &:nth-child(#{$i}) {
-                    animation-delay: #{$heroAnimationDelay + 200ms + ($highlightedDelay * $i)};
+                    animation-delay: #{$heroAnimationDelay + 220ms + ($highlightedDelay * $i)};
                 }
             }
         }
@@ -109,7 +107,11 @@ $heroAnimationDuration: $heroTitleAnimationDuration;
     }
 }
 
-
+@keyframes BrightIn {
+    100% {
+        color: $fontColorHighlighted;
+    }
+}
 
 @keyframes SlideIn {
     100% {

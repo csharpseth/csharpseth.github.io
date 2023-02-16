@@ -1,43 +1,28 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { DisplayContext } from "../contexts/DisplayContext";
+import { Clamp } from "../MyMath";
 
 export function useIntersect(ref: any):number {
     const [amount, setAmount] = useState<number>(0)
-    const container = useRef<Element>()
+    const { container, scrollPercent, windowHeight, isMobile } = useContext(DisplayContext)
 
     useEffect(() => {
-        const element = document.querySelector('.container')
-        if(element) {
-            container.current = element
-        }
-    }, [])
+        if(!ref.current || !container.current) return
 
-    useEffect(() => {
-        
+        const c = container.current as HTMLDivElement
+        const scrollBottom = c.scrollTop + windowHeight
+        const offsetTop = ref.current.offsetTop - (windowHeight/2)
+        const height = ref.current.offsetHeight
 
-        function OnScrollContainer() {
-            if(!container.current) return
-            
-            const distance = container.current.scrollTop + window.innerHeight - ref.current.offsetTop
-            const percentage = Math.min(1, Math.max(0, distance / window.innerHeight))
-
-            setAmount(percentage)
-        }
-
-        function OnScrollWindow() {
-            
-        }
-
-        if(container) {
-            container.current?.addEventListener("scroll", OnScrollContainer)
+        let v = 0
+        if(isMobile) {
+            v = Clamp(scrollBottom-(offsetTop+(height/2)), 0, height) / height
         } else {
-            window.addEventListener("scroll", OnScrollWindow)
+            v = Clamp(scrollBottom-(offsetTop+height), 0, height) / height
         }
 
-        return () => {
-            container.current?.removeEventListener("scroll", OnScrollContainer)
-            window.removeEventListener("scroll", OnScrollWindow)
-        }
-    }, [container, ref])
+        setAmount(v)
+    }, [scrollPercent, ref])
 
     return amount
 }

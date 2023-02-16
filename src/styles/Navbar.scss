@@ -5,9 +5,8 @@
 $navbarItemSpeed: 150ms;
 $navbarItemTransitionDelay: 60ms;
 
-
-.navbar {
-    position: fixed;
+.navbar-header {
+    position: absolute;
     top: 0;
     right: 0;
 
@@ -27,11 +26,10 @@ $navbarItemTransitionDelay: 60ms;
     border-bottom: 1px solid transparent;
     overflow: hidden;
 
-    z-index: 12;
+    z-index: 10;
+    opacity: 0;
 
-    .openButton {
-        display: none;
-    }
+    transition: opacity 200ms ease-in-out;
 
     img {
         position: absolute;
@@ -41,12 +39,47 @@ $navbarItemTransitionDelay: 60ms;
         @include NoSelect;
 
         transform: translateY(-150%);
+        z-index: inherit;
 
         animation-name: DropInFromTop;
         animation-duration: 300ms;
         animation-timing-function: ease-in-out;
         animation-fill-mode: forwards;
     }
+
+    &.visible {
+        opacity: 1;
+        
+    }
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    
+    height: $navbarHeight;
+
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0;
+    border: 1px solid transparent;
+    border-bottom-left-radius: $primaryBorderRadius;
+    border-bottom-right-radius: $primaryBorderRadius;
+    overflow: hidden;
+    transition:
+        background-color 100ms ease-in-out,
+        border-color 100ms ease-in-out,
+        height 150ms ease-in-out,
+        filter 200ms ease-in-out
+    ;
+    
+    filter: drop-shadow(0 0 4px transparent);
+
+    z-index: 11;
 
     a {
         display: flex;
@@ -56,6 +89,8 @@ $navbarItemTransitionDelay: 60ms;
         position: relative;
         text-decoration: none;
         padding: 8px;
+        padding-inline: 20px;
+        flex: 1;
 
         border-radius: 8px;
         overflow: hidden;
@@ -63,6 +98,8 @@ $navbarItemTransitionDelay: 60ms;
         font-size: 20px;
 
         @include NoSelect;
+
+        transition: border-radius 200ms $popBezierCurve;
 
         transform: translateY(-150%);
 
@@ -77,8 +114,18 @@ $navbarItemTransitionDelay: 60ms;
             }
         }
 
+        &:hover, &:focus {
+            outline: none;
+
+            span {
+                transform: scale(115%);
+            }
+        }
+
         span {
             z-index: 1;
+
+            transition: transform 250ms $popBezierCurve;
         }
 
         .background {
@@ -91,71 +138,115 @@ $navbarItemTransitionDelay: 60ms;
             left: 0;
             right: 0;
             bottom: 0;
+
+            transition: background-color 200ms ease-in-out;
         }
     }
 }
 
 @media (prefers-color-scheme: dark) {
-	.navbar {
+
+    .navbar-header {
+        
 		background-color: $foregroundColorDark;
+        border-color: $primaryBorderColorDark;
+
+    }
+
+
+	.navbar {
 		color: $fontColorDark;
 
-        border-color: $primaryBorderColorDark;
+        @media screen and (min-width: $mobileScreenWidth) {
+            &.undocked {
+                background-color: rgba($color: $foregroundColorDark, $alpha: 0.6);
+                backdrop-filter: blur(10px);
+                //border-color: $primaryBorderColorLight;
+            }
+        }
         
+        @media screen and (max-width: $mobileScreenWidth) {
+            background-color: $foregroundColorDark;
+        }
+
         img {
             filter: brightness(80%);
         }
 
         a {
             color: $fontColorDark;
-
-            .background {
-                background-color: $foregroundColorDark;
-            }
         }
 
-        a:hover {
-            span {
-                filter: brightness(110%)
-            }
+        a:hover, a:focus {
             .background {
-                filter: brightness(150%);
+                background-color: $foregroundHoverColorDark;
             }
         }
 	}
 }
 
 @media (prefers-color-scheme: light) {
-	.navbar {
+    .navbar-header {
+        
 		background-color: $foregroundColorLight;
-		color: $fontColorLight;
         border-color: $primaryBorderColorLight;
 
         img {
             filter: brightness(15%);
         }
 
-        a {
-            color: $fontColorLight;
-            
-            .background {
-                background-color: $foregroundColorLight;
+    }
+
+	.navbar {
+        @media screen and (min-width: $mobileScreenWidth) {
+            &.undocked {
+                background-color: rgba($color: $foregroundColorLight, $alpha: 0.6);
+                backdrop-filter: blur(10px);
+                //border-color: $primaryBorderColorLight;
             }
         }
 
-        a:hover {
+        @media screen and (max-width: $mobileScreenWidth) {
+            background-color: $foregroundColorLight;
+        }
+
+        a {
+            color: $fontColorLight;
+        }
+
+        a:hover, a:focus {
             .background {
-                filter: brightness(92%);
+                background-color: $foregroundHoverColorLight;
             }
         }
 	}
 
 }
 
+@media only screen and (min-width: $mobileScreenWidth) {
+    .navbar {
+        right: 50%;
+        transform: translateX(50%);
+
+        &.undocked {
+            transition: background-color 300ms ease-in-out, border-color 300ms ease-in-out, height 300ms ease-in-out;
+            height: calc($navbarHeight * 0.7);
+    
+            a {
+                border-radius: 0;
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: $mobileScreenWidth) {
+    .navbar-header {
+        display: none;
+    }
+
     .navbar {
         position: fixed;
-        left: none;
+        top: 0;
         right: 0;
         height: 100vh;
         width: 0;
@@ -173,6 +264,10 @@ $navbarItemTransitionDelay: 60ms;
         border-bottom: none;
 
         transition: width $navbarMenuOpenSpeed ease-in-out;
+
+        a {
+            flex: none;
+        }
 
         &#open {
             width: $navbarOpenWidth;

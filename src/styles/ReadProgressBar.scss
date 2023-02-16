@@ -18,20 +18,8 @@ $height: calc(100vh - ($offsetTop + $padding));
         stroke: $buttonColor;
         stroke-width: 6px;
         stroke-linecap: round;
-
-        &.shadow {
-            filter: drop-shadow(2px 0 0 $buttonShadowColor);
-        }
     }
 
-}
-
-@media(prefers-color-scheme: light) {
-    
-}
-
-@media(prefers-color-scheme: dark) {
-    
 }
 
 @media only screen and (max-width: 768px) {

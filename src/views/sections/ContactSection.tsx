@@ -1,15 +1,30 @@
 import ScrollSectionComponent from "../components/ScrollSectionComponent";
 import '../../styles/ContactSection.scss'
-import { useState, useRef, useContext } from "react";
+import { useState, useRef, useContext, useEffect } from "react";
 import { DisplayContext } from "../../contexts/DisplayContext";
+import TextAreaComponent from "../components/TextAreaComponent";
+import { ButtonComponent } from "../components/Buttons";
+import { useIntersect } from "../../hooks/VisibilityHooks";
+import { TextInputComponent } from "../components/Inputs";
+import { FormComponent } from "../components/FormComponent";
 
 export default function ContactSection() {
 
     const [copied, setCopied] = useState<boolean>(false)
     const [sent, setSent] = useState<boolean>(false)
+    const sectionRef = useRef<HTMLDivElement>(null)
     const formRef = useRef<HTMLFormElement>(null)
-    
+    const submitButtonRef = useRef<HTMLButtonElement>(null)
+
+    const visibility = useIntersect(formRef)
+
     const { isMobile } = useContext(DisplayContext)
+
+    useEffect(() => {
+        if(!sectionRef.current) return
+        sectionRef.current.style.setProperty("--visibility", `${visibility}`)
+    }, [visibility, sectionRef])
+
 
     function CopyEmailToClipboard(e: any) {
         if(isMobile) {
@@ -21,18 +36,19 @@ export default function ContactSection() {
         setCopied(true)
     }
 
-    function SubmitForm(e: any) {
-        if(!formRef.current) return
+    function OnSubmitForm(e: any) {
+        if(submitButtonRef.current) {
+            submitButtonRef.current.blur()
+        }
         if(!sent) {
             setSent(true)
             setTimeout(() => setSent(false), 1500)
         }
-        //formRef.current.submit()
     }
 
     return (
         <ScrollSectionComponent id="contact">
-            <div className="contact-wrapper">
+            <div className="contact-wrapper" ref={sectionRef}>
                 <h1 className="background-text">Contact Me</h1>
                 <div className="email" onClick={CopyEmailToClipboard} onMouseLeave={() => setCopied(false)}>
                     <h1>csharpseth@gmail.com</h1>
@@ -42,61 +58,52 @@ export default function ContactSection() {
                     </div>
                 </div>
                 <span className="background-text">Or</span>
-                <form className="contact-form" action="" method="" ref={formRef}>
+                <FormComponent className="contact-form" ref={formRef}>
                     <div className="horizontal">
+                        <TextInputComponent
+                            title="Enter your first name."
+                            id="firstName"
+                            name="firstName"
+                            required={true}
+                            placeholder="First Name"
+                            label="First Name:"
+                        />
 
-                    <label htmlFor="firstName">First Name:</label>
-                    <input
-                        title="Enter your first name."
-                        type="text"
-                        id="firstName"
-                        name="firstName"
-                        required
-                        placeholder="First Name"
-                    />
-
-                    <label htmlFor="lastName">Last Name:</label>
-                    <input
-                        title="Enter your last name."
-                        type="text"
-                        id="lastName"
-                        name="lastName"
-                        required
-                        placeholder="Last Name"
-                    />
-
+                        <TextInputComponent
+                            title="Enter your last name."
+                            id="lastName"
+                            name="lastName"
+                            required={true}
+                            placeholder="Last Name"
+                        />
                     </div>
                     
                     <div className="horizontal">
                     
-                    <label htmlFor="email">Email</label>
-                    <input
-                        title="Enter your email address."
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        placeholder="Email"
+                        <TextInputComponent
+                            title="Enter your email address."
+                            type="email"
+                            id="email"
+                            name="email"
+                            required={true}
+                            placeholder="Email"
+                        />
+
+                    </div>
+
+                    <TextAreaComponent
+                        label="Message:"
+                        title="Write Seth a brief message."
+                        id="message"
+                        name="message"
+                        placeholder="Write a brief message..."
+                        rows={4}
                     />
-                    </div>
-
-                    <label htmlFor="message">Message</label>
-                    <div className="textArea-wrapper">
-                        <textarea
-                            title="Write me a brief message."
-                            id="message"
-                            name="message"
-                            required 
-                            placeholder="Message..."
-                            rows={4}
-                        ></textarea>
-                    </div>
-
-                    <button type="button" className={`submit-wrapper ${sent ? 'sent':''}`} onClick={SubmitForm}>
+                    <ButtonComponent type="submit" ref={submitButtonRef} className={`submit-wrapper ${sent ? 'sent':''}`} onClick={OnSubmitForm}>
                         <span>Send</span>
                         <img src="/icon-send.png" alt="" />
-                    </button>
-                </form>
+                    </ButtonComponent>
+                </FormComponent>
 
             </div>
         </ScrollSectionComponent>

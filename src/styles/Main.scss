@@ -37,7 +37,7 @@ img {
 }
 
 a {
-	@include NoSelect;
+	@include NoSelect;	
 }
 
 body {
@@ -53,8 +53,7 @@ p {
 	font-weight: 300;
 
 	b {
-		font-weight: 500;
-		color: $fontColorHighlighted;
+		font-weight: 400;
 	}
 }
 
@@ -151,9 +150,18 @@ br {
 		color: $fontColorDark;
 	}
 
+	a {
+		&:focus {
+			@include SelectDark;
+			img {
+				filter: brightness(0.8);
+			}
+		}
+	}
+
 	.container {
 		.scroll-section {
-			.content {
+			.content {				
 				
 			}
 		}
@@ -168,6 +176,15 @@ br {
 	body {
 		background-color: $backgroundColorLight;
 		color: $fontColorLight;
+	}
+
+	a {
+		&:focus {
+			@include SelectLight;
+			img {
+				filter: brightness(1.5);
+			}
+		}
 	}
 
 	.container {

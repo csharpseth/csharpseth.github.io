@@ -3,12 +3,14 @@ import { DisplayContext } from "../../contexts/DisplayContext";
 import { Link } from "../components/UtilityComponents";
 import { useIntersect } from "../../hooks/VisibilityHooks";
 import { Clamp, Clamp01, RemapPercent, SlopeToAngle } from "../../MyMath";
+import { LinkButtonComponent } from "./Buttons";
 
 export default function ProjectComponent(props: any) {
     const { mouseX, mouseY, windowWidth, windowHeight, scrollPercent, container, isMobile } = useContext(DisplayContext)
     const mediaRef = useRef<HTMLDivElement>(null)
 
     const projectRef = useRef<HTMLDivElement>(null)
+    const visibility = useIntersect(projectRef)
 
     function ResetMediaTransform() {
         if(!mediaRef.current) return
@@ -56,24 +58,9 @@ export default function ProjectComponent(props: any) {
     }, [mouseX, mouseY])
 
     useEffect(() => {
-        if(!projectRef.current || !container.current) return
-
-        const c = container.current as HTMLDivElement
-        const scrollBottom = c.scrollTop + windowHeight
-        const offsetTop = projectRef.current.offsetTop - (windowHeight/2)
-        const height = projectRef.current.offsetHeight
-
-        let v = 0
-        if(isMobile) {
-            v = Clamp(scrollBottom-(offsetTop+(height/2)), 0, height) / height
-        } else {
-            v = Clamp(scrollBottom-(offsetTop+height), 0, height) / height
-        }
-
-        projectRef.current.style.setProperty("--visibility", `${v}`)
-
-
-    }, [scrollPercent, projectRef])
+        if(!projectRef.current) return
+        projectRef.current.style.setProperty("--visibility", `${visibility}`)
+    }, [visibility, projectRef])
 
     return (
         <div
@@ -92,13 +79,19 @@ export default function ProjectComponent(props: any) {
                 <p>{props.project.body}</p>
                 <div className="links">
                     {props.project.demoLink ? 
-                    <a className="link-button" target="_blank" rel="noreferer" href={props.project.demoLink}>Demo</a>
+                    <LinkButtonComponent href={props.project.demoLink}>
+                        Demo
+                    </LinkButtonComponent>
                     :''}
                     {props.project.pageLink ?
-                    <Link className="link-button" link={props.project.pageLink}>More Info</Link>    
+                    <LinkButtonComponent link={props.project.pageLink}>
+                        More Info
+                    </LinkButtonComponent>    
                     :''}
                     {props.project.sourceLink ?
-                    <a className="link-button" target="_blank" rel="noreferer" href={props.project.sourceLink}>GitHub</a>    
+                    <LinkButtonComponent href={props.project.sourceLink}>
+                        GitHub
+                    </LinkButtonComponent>    
                     :''}
                 </div>
             </div>

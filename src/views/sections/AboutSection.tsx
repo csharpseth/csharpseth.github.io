@@ -1,7 +1,7 @@
 import ScrollSectionComponent from "../components/ScrollSectionComponent";
 
 import { About } from '../../Data'
-import '../../styles/About.scss'
+import '../../styles/AboutSection.scss'
 import { useContext } from "react";
 import { DisplayContext } from "../../contexts/DisplayContext";
 import { RelativeRemap } from "../../MyMath";
@@ -20,7 +20,10 @@ export default function AboutSection() {
                     <h1>{About.title}</h1>
                     <div className="bio">
                         <p>
-                        A passionate Frontend <b>Web</b> and <b>Mobile</b> Developer, I bring a unique combination of technical proficiency in <b>React</b> and <b>React-Native</b>, along with a deep commitment to utilizing modern frontend development practices such as incorporating <b>Sass</b> for styling and <b>TypeScript</b> for optimal type safety.
+                        A front-end <b>Web</b> and <b>Mobile</b> developer skilled in <b>React</b>, <b>React-Native</b>, <b>TypeScript</b>, and <b>SASS</b>.
+                        </p>
+                        <p>
+                            I build efficient and responsive user interfaces while prioritizing type safety and maintainability in my code. My communication skills and ability to collaborate effectively make me a valuable team member for any development project.
                         </p>
                     </div>
                 </div>

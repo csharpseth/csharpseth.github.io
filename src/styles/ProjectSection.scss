@@ -6,6 +6,13 @@
     flex-direction: column;
     gap: 10em;
 
+
+    .title {
+        text-align: center;
+        font-size: 4rem;
+    }
+
+
     .project-item {
 
         .links {
@@ -16,67 +23,9 @@
             align-items: center;
 
             gap: 12px;
-
-            .link-button {
-                color: $fontColorDark;
-                background-color: $buttonColor;
-                text-decoration: none;
-                font-weight: 400;
-            
-                border-radius: 8px;
-                padding: 4px 12px;
-                transition: 200ms;
-                filter: drop-shadow(0 6px 0 $buttonShadowColor) brightness(100%);
-                transform: translateY(-2px);
-            
-                &:hover {
-                    filter: drop-shadow(0 4px 0 $buttonShadowColor) brightness(110%);
-                    transform: translateY(0);
-                }
-            
-                &:focus {
-                    filter: drop-shadow(0 0px 0 $buttonShadowColor) brightness(90%);
-                    transform: translateY(4px);
-                }
-            
-                &:disabled {
-                    filter: drop-shadow(0 4px 0 $buttonShadowColor) brightness(100%) saturate(0%);
-                    transform: translateY(0px);
-                }
-            }
         }
 
         
-    }
-}
-
-@media(prefers-color-scheme: light) {
-    .projects {
-        .project-item {
-            .media {
-                border-color: $primaryBorderColorLight;
-                filter: drop-shadow(var(--shadowX) var(--shadowY) 12px $lightShadow);
-            }
-            .info {
-                background: rgba($color: $foregroundColorLight, $alpha: calc(var(--visibility) * 0.5));
-                border-color: $primaryBorderColorLight;
-            }
-        }
-    }   
-}
-
-@media(prefers-color-scheme: dark) {
-    .projects {
-        .project-item {
-            .media {
-                border-color: $primaryBorderColorDark;
-                filter: drop-shadow(var(--shadowX) var(--shadowY) 12px $darkShadow);
-            }
-            .info {
-                background: rgba($color: $foregroundColorDark, $alpha: calc(var(--visibility) * 0.5));
-                border-color: $primaryBorderColorDark;
-            }
-        }
     }
 }
 
@@ -94,7 +43,6 @@
             flex-direction: row-reverse;
             justify-content: flex-start;
             align-items: flex-start;
-            
             gap: 2em;
 
             --visibility: 0;
@@ -107,7 +55,12 @@
                 align-items: center;
     
                 flex-shrink: 1;
-                width: fit-content;
+                min-width: 350px;
+                padding: clamp(8px, 3vw, 3em);
+                border-radius: $primaryBorderRadius;
+                border: 1px solid transparent;
+
+                gap: 1em;
     
                 h2 {
                     opacity: var(--visibility);
@@ -147,7 +100,7 @@
                 height: 100%;
     
                 border: 2px solid transparent;
-                border-radius: 24px;
+                border-radius: $primaryBorderRadius;
     
                 --mouseX: 0.0;
                 --mouseY: 0.0;
@@ -155,8 +108,8 @@
                 --shadowX: calc(var(--mouseX) * -12px);
                 --shadowY: calc(var(--mouseY) * -12px);
     
-                --rotateX: calc(var(--mouseY) * 8deg);
-                --rotateY: calc(var(--mouseX) * 8deg);
+                --rotateX: calc(var(--mouseY) * 12deg);
+                --rotateY: calc(var(--mouseX) * 12deg);
                 
                 --lightAngle: 90deg;
                 --lightColor: rgba(255, 255, 255, 0.2);
@@ -174,12 +127,12 @@
                     left: 0;
                     position: absolute;
     
-                    border-radius: 24px;
+                    border-radius: inherit;
     
                     transition: opacity 400ms ease-in-out;
     
                     mix-blend-mode: screen;
-                    background: linear-gradient(var(--lightAngle), var(--lightColor) -10%, rgba(255,255,255,0) 80%);
+                    background: linear-gradient(var(--lightAngle), var(--lightColor) -150%, rgba(255,255,255,0) 100%);
                 }
     
                 &:hover {
@@ -201,7 +154,7 @@
                     position: absolute;
                     opacity: 1;
                     height: 100%;
-                    border-radius: 24px;
+                    border-radius: inherit;
     
                     transition: opacity 600ms ease-in-out;
                 }
@@ -209,7 +162,7 @@
                 .background-gif {
                     opacity: 0;
                     height: 100%;
-                    border-radius: 24px;
+                    border-radius: inherit;
     
                     transition: opacity 600ms ease-in-out;
                 }
@@ -243,6 +196,7 @@
 @media only screen and (max-width: $mobileScreenWidth) {
     .projects {
         gap: 5em;
+
         .project-item {
             position: relative;
             width: 90vw;
@@ -253,9 +207,9 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            border-radius: $primaryBorderRadius;
 
             padding: 24px;
-            border-radius: 24px;
 
             --visibility: 0;
     
@@ -269,9 +223,10 @@
 
                 padding: 16px;
                 transform: scale(min(calc(var(--visibility) * 100% + 50%), 100%));
-                backdrop-filter: blur(calc(var(--visibility) * 10px));
                 border: 2px solid transparent;
-                border-radius: 24px;
+                border-radius: $primaryBorderRadius;
+                border-width: 1px;
+                border-style: solid;
     
                 h2 {
                     align-self: flex-start;
@@ -290,10 +245,8 @@
                 position: absolute;
                 width: 100%;
     
-                border: 2px solid transparent;
-                border-radius: 24px;
-                
-                transform-origin: center;
+                border: 0px solid transparent;
+                overflow: hidden;
 
                 .background-img {
                     opacity: 1;
@@ -313,6 +266,44 @@
                 .link-button {
                     font-size: 16px;
                 }
+            }
+        }
+    }
+}
+
+@media(prefers-color-scheme: light) {
+    .projects {
+        .project-item {
+            filter: drop-shadow(var(--shadowX, 0) var(--shadowY, 0) 8px $lightShadow);
+            .media {
+                border-color: $primaryBorderColorLight;
+
+                @media screen and (max-width: $mobileScreenWidth) {
+                    .background-img {
+                        filter: brightness(90%) blur(calc(4px * var(--visibility)));
+                    }
+                }
+            }
+            .info {
+                background: rgba($color: $foregroundColorLight, $alpha: var(--visibility));
+                border-color: $primaryBorderColorLight;
+                filter: drop-shadow(0 0 4px rgba($color: $lightShadow, $alpha: 0.2));
+            }
+        }
+    }   
+}
+
+@media(prefers-color-scheme: dark) {
+    .projects {
+        .project-item {
+            filter: drop-shadow(var(--shadowX) var(--shadowY) 8px $darkShadow);
+            .media {
+                border-color: $primaryBorderColorDark;
+            }
+            .info {
+                background: rgba($color: $foregroundColorDark, $alpha: var(--visibility));
+                border-color: $primaryBorderColorDark;
+                filter: drop-shadow(0 0 8px rgba($color: $darkShadow, $alpha: 1));
             }
         }
     }

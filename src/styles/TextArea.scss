@@ -1,0 +1,36 @@
+@import './GlobalVariables.scss';
+
+.textArea-wrapper {
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    padding: 12px;
+
+    textarea {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        resize: none;
+        overflow-y: scroll;
+        border: none;
+        outline: none;
+
+        background-color: transparent;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+	.textArea-wrapper {
+        background-color: $formFieldDark;
+        border-color: $formFieldBorderDark;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+	.textArea-wrapper {
+        background-color: $formFieldLight;
+        border-color: $formFieldBorderLight;
+    }
+}

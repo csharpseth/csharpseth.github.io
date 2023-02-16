@@ -15,7 +15,6 @@ export default function HomePage(props: any) {
             <ProjectSection />
             <HalfPageSpacerComponent />
             <ContactSection />
-            <QuarterPageSpacerComponent />
             <ReadProgressBar />
         </>
     )

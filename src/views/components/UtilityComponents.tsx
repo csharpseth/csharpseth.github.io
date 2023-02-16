@@ -1,10 +1,10 @@
-import { useContext, useEffect, useRef } from "react"
+import { forwardRef, useContext, useEffect, useRef } from "react"
 import ReactDOM from "react-dom"
 
 import { DisplayContext } from "../../contexts/DisplayContext"
 import { NavigationContext } from "../../contexts/NavigationContext"
 
-export function Link(props: any) {
+export const Link = forwardRef((props: any, ref: any) => {
     const element = useRef<HTMLDivElement | null>()
     
     const { container } = useContext(DisplayContext)
@@ -15,6 +15,10 @@ export function Link(props: any) {
     }, [document.querySelector(`#${props.to}`)])
 
     function OnClick(event: any) {
+
+        if(props.href) {
+            return
+        }
         event.preventDefault()
 
         if(props.onClick) props.onClick()
@@ -42,14 +46,13 @@ export function Link(props: any) {
 
     function Link() {
         if(!props.link) return
-        console.log('Nav to link')
         Navigate(props.link)
     }
 
     return (
-        <a id={props.id} className={props.className} href={`#${props.to}`} onClick={OnClick}>
+        <a ref={ref} id={props.id} className={props.className} href={props.href ? props.href : `#${props.to}`} onClick={OnClick} target="_blank" rel="noreferer" >
             {props.children}
         </a>
     )
 
-}
+})

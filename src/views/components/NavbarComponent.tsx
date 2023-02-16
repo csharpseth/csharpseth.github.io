@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { useInView } from '../../hooks/VisibilityHooks';
 import '../../styles/Navbar.scss'
 import HamburgerButtonComponent from './HamburgerButtonComponent';
 import { Link } from './UtilityComponents';
@@ -18,13 +19,17 @@ function NavbarItem(props: any) {
 export default function NavbarComponent() {
     const [open, setOpen] = useState(false)
 
+    const headerRef = useRef(null)
+    const visible = useInView(headerRef, 0.2)
+
     return (
         <>
         <HamburgerButtonComponent value={open} onChange={(open: boolean) => setOpen(open)} />
-
-        <nav className="navbar" id={open ? "open":""}>
+        <div className={`navbar-header ${visible ? "visible":""}`} ref={headerRef}>
             <img src="/logo.png" alt="Website Logo" />
-            <NavbarItem link="/" value="About" />
+        </div>
+        <nav className={`navbar ${visible ? "":"undocked"}`} id={open ? "open":""}>
+            <NavbarItem link="/" value="Home" />
             <NavbarItem link="/" value="Projects" />
             <NavbarItem link="/" value="Articles" />
             <NavbarItem link="/" value="Contact" />

@@ -4,7 +4,7 @@ import { NavigationContext } from "../../contexts/NavigationContext";
 import { MergeRefs } from "../../Utility";
 
 
-const ScrollSectionComponent = forwardRef((props: any, ref) => {
+const ScrollSectionComponent = forwardRef((props: any, ref: any) => {
     const sectionRef = useRef(null)
     const onScreen = useInView(sectionRef)
 
