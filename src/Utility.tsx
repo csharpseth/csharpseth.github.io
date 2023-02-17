@@ -11,3 +11,11 @@ refs: Array<React.MutableRefObject<T> | React.LegacyRef<T>>
         });
     };
 }
+
+export function FormDataToObject(formData: FormData): any {
+    const obj: any = {}
+    for (let [key, value] of formData.entries()) {
+        obj[key] = value
+    }
+    return obj
+}

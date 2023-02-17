@@ -79,6 +79,77 @@
 
         transform: scale(calc(var(--visibility) * 10% + 90%));
 
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background-color: transparent;
+
+            clip-path: circle(0% at 50% 50%);
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            background-color: $accentColorGreen;
+            
+            svg {
+                width: 16%;
+                //outline: 1px solid red;
+            }
+
+            $checkDuration: 2500ms;
+
+            .checkmark {
+                stroke: #FFF;
+                stroke-width: 80;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+
+                stroke-dasharray: 700pt 100vh;
+                stroke-dashoffset: 700pt;
+
+                fill: none;
+                transform: translate(10%, 5%);
+                transform-origin: center;
+            }
+
+            &.playSuccess {
+                animation-name: PopInCircle;
+                animation-duration: $checkDuration;
+                animation-timing-function: $popBezierCurve;
+                animation-fill-mode: forwards;
+
+                .checkmark {
+                    animation-name: Check;
+                    animation-delay: calc($checkDuration * 0.1);
+                    animation-duration: 700ms;
+                    animation-timing-function: ease-in-out;
+                    animation-fill-mode: forwards;
+                }
+            }
+
+            
+
+            @keyframes PopInCircle {
+                50% {
+                    clip-path: circle(15%);
+                }
+                100% {
+                    clip-path: circle(0%);
+                }
+            }
+
+            @keyframes Check {
+                80% {
+                    stroke-dashoffset: 0pt;
+                }
+                100% {
+                    stroke-dashoffset: 0pt;
+                }
+            }
+        }
+
         label {
             @include ScreenReaderText;
         }
