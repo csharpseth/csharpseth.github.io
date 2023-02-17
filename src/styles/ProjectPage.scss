@@ -1,5 +1,7 @@
 @import "./GlobalVariables.scss";
 
+$maxWidth: 600px;
+
 .project-wrapper {
     min-height: 100vh;
     width: 100%;
@@ -10,18 +12,78 @@
     align-items: center;
 
     h1 {
-        margin: 0.5em;
+        text-align: left;
+        margin-block: 0.8em 0em;
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        margin-block: 0.8em 0;
+        font-size: 1.3rem;
+    }
+
+    img {
+        max-width: 110%;
+        border-radius: $primaryBorderRadius;
+        border: 2px solid transparent;
+    }
+
+    .paragraph, h1, h2 {
+        width: calc(100vw - 3em);
+        max-width: $maxWidth;
     }
 
     .banner {
-        border-radius: $primaryBorderRadius;
-        width: 100%;
+        width: calc(100vw - 2em);
+        max-width: 800px;
         margin-bottom: 2em;
+    }
+
+    .screenshot {
+        width: calc(100vw - 2em);
+        max-width: $maxWidth;
+        margin-block: 1em;
     }
     
     .paragraph {
         line-height: 1.5em;
-        padding: 8px;
-        margin-bottom: 0.5em;
+        margin-bottom: 1em;
+
+        ul {
+            margin-left: 2em;
+
+            a {
+                color: inherit;
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+@media(prefers-color-scheme: light) {
+    .project-wrapper {
+        img {
+            border-color: $primaryBorderColorLight;
+        }
+    }
+}
+
+@media(prefers-color-scheme: dark) {
+    .project-wrapper {
+        img {
+            border-color: $primaryBorderColorDark;
+        }
+    }
+}
+
+@media only screen and (max-width: $mobileScreenWidth) {
+    .project-wrapper {
+        .banner {
+            margin-bottom: 1em;
+        }
+
+        img {
+            border-width: 1px;
+        }
     }
 }

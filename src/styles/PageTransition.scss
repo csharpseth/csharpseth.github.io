@@ -1,0 +1,124 @@
+@import "./GlobalVariables.scss";
+
+.page-transition-wrapper {
+    position: fixed;
+    inset: 0;
+
+    z-index: 100;
+    isolation: isolate;
+    pointer-events: none;
+    backdrop-filter: blur(0px);
+
+    .page-transition {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: max(130vh, 130vw);
+        height: max(130vh, 130vw);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transform-origin: center;
+        transform: translate(-50%, -50%) rotate(45deg);
+        
+        .element {
+            width: 110%;
+            height: 100%;
+            background-color: $accentColorBlue;
+            border-radius: 50vh;
+            pointer-events: all;
+    
+            transform: translate(-300%, 0) scaleY(115%);
+    
+    
+            filter: drop-shadow(0 0 12px $lightShadow);
+            
+            &:nth-child(1) {
+                animation-delay: 0ms;
+                z-index: 2;
+                background-color: $accentColorBlue;
+            }
+            &:nth-child(2) {
+                animation-delay: 150ms;
+                z-index: 1;
+                background-color: $accentColorGreen;
+            }
+            &:nth-child(3) {
+                animation-delay: 50ms;
+                z-index: 2;
+                background-color: $accentColorOrange;
+            }
+            &:nth-child(4) {
+                animation-delay: 200ms;
+                z-index: 1;
+                background-color: $accentColorRed;
+            }
+            &:nth-child(5) {
+                animation-delay: 0ms;
+                z-index: 2;
+                background-color: $accentColorBlue;
+            }
+            &:nth-child(6) {
+                animation-delay: 300ms;
+                z-index: 1;
+                background-color: $accentColorGreen;
+            }
+            &:nth-child(7) {
+                animation-delay: 250ms;
+                z-index: 2;
+                background-color: $accentColorOrange;
+            }
+            &:nth-child(8) {
+                animation-delay: 150ms;
+                z-index: 1;
+                background-color: $accentColorRed;
+            }
+        }
+    }
+
+    &.play {
+        animation-name: BlurBG;
+        animation-duration: 1200ms;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-in-out;
+        
+        .page-transition {
+            .element {
+                animation-name: TransitionFromLeft;
+                animation-duration: 1200ms;
+                animation-fill-mode: forwards;
+                animation-timing-function: ease-in-out;
+            }
+        }
+    }
+}
+
+
+
+@keyframes TransitionFromLeft {
+    0% {
+        transform: translate(-300%, 0) scaleY(110%);
+    }
+    50% {
+        transform: translate(0, 0) scaleY(110%);
+    }
+    100% {
+        transform: translate(300%, 0) scaleY(110%);
+    }
+}
+
+@keyframes BlurBG {
+    0% {
+        pointer-events: all;
+        backdrop-filter: blur(0px);
+    }
+    60% {
+        backdrop-filter: blur(30px);
+        pointer-events: all;
+    }
+    100% {
+        backdrop-filter: blur(0px);
+        pointer-events: none;
+    }
+}

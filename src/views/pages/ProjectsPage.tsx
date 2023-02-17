@@ -1,9 +1,10 @@
 import '../../styles/ProjectsPage.scss'
+import ContainerComponent from '../components/ContainerComponent'
 
 export default function ProjectsPage() {
     return (
-        <div className='projects-page'>
-            PROJECTS
-        </div>
+        <ContainerComponent>
+            
+        </ContainerComponent>
     )
 }

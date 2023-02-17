@@ -1,21 +1,22 @@
+import { HalfPageSpacerComponent } from '../components/PageSpacerComponent';
+
 import AboutSection from "../sections/AboutSection";
 import ProjectSection from "../sections/ProjectSection";
+import ContactSection from "../sections/ContactSection";
+import ContainerComponent from "../components/ContainerComponent";
 
 import "../../styles/HomePage.scss"
-import ReadProgressBar from '../components/fx/ReadProgressBar';
-import { HalfPageSpacerComponent, QuarterPageSpacerComponent } from '../components/PageSpacerComponent';
-import ContactSection from "../sections/ContactSection";
+
 
 export default function HomePage(props: any) {
 
     return (
-        <div className="container">
+        <ContainerComponent>
             <AboutSection />
             <HalfPageSpacerComponent />
             <ProjectSection />
             <HalfPageSpacerComponent />
             <ContactSection />
-            <ReadProgressBar />
-        </div>
+        </ContainerComponent>
     )
 }

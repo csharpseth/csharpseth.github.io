@@ -51,7 +51,7 @@ export const Projects: Project[] = [
         backgroundGif: "/distance-sorter.mp4",
         sourceLink: "https://github.com/csharpseth/distance-sorter",
         demoLink: "https://csharpseth.github.io/distance-sorter/",
-        pageLink: "/distance-sorter"
+        pageLink: ""
     },
     {
         title: "Triva - The Trivia App (WIP)",
@@ -60,6 +60,6 @@ export const Projects: Project[] = [
         backgroundGif: "/triva.mp4",
         sourceLink: "https://github.com/csharpseth/triva-the-trivia-app",
         demoLink: "",
-        pageLink: "/triva"
+        pageLink: ""
     }
 ]

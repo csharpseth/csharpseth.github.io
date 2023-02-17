@@ -11,6 +11,7 @@ export function DisplayProvider(props: any) {
 
 	const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth)
     const [windowHeight, setWindowHeight] = useState<number>(window.innerHeight)
+    const [scrollHeight, setScrollHeight] = useState<number>(0)
 
     const [mouseX, setMouseX] = useState<number>(0)
     const [mouseY, setMouseY] = useState<number>(0)
@@ -66,7 +67,20 @@ export function DisplayProvider(props: any) {
         })
     }
 
+    function UpdateContainer() {
+        if(container.current) {
+            container.current?.removeEventListener("scroll", HandleScrollEvent)
+        }
+        container.current = ReactDOM.findDOMNode(document.querySelector('.container')) as Element
+        
+        container.current.addEventListener("scroll", HandleScrollEvent)
+        setScrollPercent(CalculateScrollPercent())
+
+        setScrollHeight(container.current.scrollHeight)
+    }
+
     useEffect(() => {
+        UpdateContainer()
         function HandleWindowResize() {
             setWindowWidth(window.innerWidth)
             setWindowHeight(window.innerHeight)
@@ -87,23 +101,10 @@ export function DisplayProvider(props: any) {
 
 
     }, [])
-
-    useEffect(() => {
-        container.current = ReactDOM.findDOMNode(document.querySelector('.container')) as Element
-        
-        function HandleScrollEvent() {
-            setScrollPercent(CalculateScrollPercent())
-        }   
-
-        container.current.addEventListener("scroll", HandleScrollEvent)
-        setScrollPercent(CalculateScrollPercent())
-
-
-        return () => {
-            container.current?.removeEventListener("scroll", HandleScrollEvent)
-        }
     
-    }, [document.querySelector('.container')])
+    function HandleScrollEvent() {
+        setScrollPercent(CalculateScrollPercent())
+    }   
 
     return (
         <DisplayContext.Provider value={{
@@ -116,6 +117,8 @@ export function DisplayProvider(props: any) {
             container,
             scrollPercent,
             landingPlayed,
+            scrollHeight,
+            UpdateContainer,
             SetLandingPlayed,
             ScrollToTop,
             ToggleDarkMode

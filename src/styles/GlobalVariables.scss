@@ -14,7 +14,7 @@ $fontColorLight: #111111;
 $backgroundFontColorLight: #777777;
 $backgroundColorLight: #DDDDDD;
 $foregroundColorLight: #EEEEEE;
-$foregroundHoverColorLight: darken($foregroundColorLight, 10%);
+$foregroundHoverColorLight: darken($foregroundColorLight, 15%);
 $primaryBorderColorLight: #BBBBBB;
 $dividerColorLight: #BBBBBB;
 $formFieldLight: $foregroundColorLight;
@@ -36,6 +36,11 @@ $fontColorHighlighted: #4488e7;
 $buttonColor: #4283df;
 $buttonFontColor: $fontColorDark;
 $buttonShadowColor: #1b509b;
+
+$accentColorBlue: #4283df;
+$accentColorRed: #DB2955;
+$accentColorOrange: #EE7B30;
+$accentColorGreen: #3BB273;
 
 $buttonHoverColor: darken($buttonColor, 4%);
 $buttonHoverShadowColor: darken($buttonShadowColor, 4%);

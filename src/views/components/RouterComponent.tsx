@@ -1,17 +1,15 @@
 import NavbarComponent from './NavbarComponent';
 
-import { NavigationProvider, Route } from "../../contexts/NavigationContext";
+import { Route } from "../../contexts/NavigationContext";
 import HomePage from '../pages/HomePage';
 import SentimentRecognitionPage from '../pages/projects/SentimentRecognitionPage';
 import DistanceSorterPage from '../pages/projects/DistanceSorterPage';
-import TrivaPage from '../pages/projects/TrivaPage';
-import TotoPage from '../pages/projects/TotoPage';
 import ProjectsPage from '../pages/ProjectsPage';
 
-export default function RouterComponent(props: any) {
+export default function RouterComponent() {
 
     return (
-        <NavigationProvider>
+        <>
 			<NavbarComponent />
 			<Route path="/">
                 <HomePage />
@@ -25,12 +23,6 @@ export default function RouterComponent(props: any) {
             <Route path="/distance-sorter">
                 <DistanceSorterPage />
             </Route>
-            <Route path="/triva">
-                <TrivaPage />
-            </Route>
-            <Route path="/toto">
-                <TotoPage />
-            </Route>
-        </NavigationProvider>
+        </>
     )
 }

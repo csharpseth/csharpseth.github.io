@@ -1,16 +1,20 @@
-import React, { createContext, useContext, useLayoutEffect, useState } from 'react'
-import { DisplayContext } from './DisplayContext'
+import { createContext, useContext, useLayoutEffect, useState } from 'react'
 
 export const NavigationContext = createContext({} as any)
 
 export function NavigationProvider(props: any) {
     const [currentPath, setCurrentPath] = useState<string>("/")
     const [suspendedHash, setSuspendedHash] = useState<SuspendedHash>()
+    const [transitioning, setTransitioning] = useState<boolean>(false)
 
-    const { ScrollToTop } = useContext(DisplayContext)
+    const overallTransitionTime = 1600
 
-    function SetURL(href: string) {
-        window.history.replaceState("", "", `${href}`)
+    function SetURL(href: string, addToHistory: boolean = false) {
+        if(addToHistory) {
+            window.history.pushState("", "", `${href}`)
+        } else {
+            window.history.replaceState("", "", `${href}`)
+        }
     }
 
     function SetSuspendedHash(link: string, hash: string, loadCallback: any) {
@@ -51,9 +55,16 @@ export function NavigationProvider(props: any) {
     }
 
     function NavigatePath(to: string) {
-        ScrollToTop()
-        SetURL(to)
-        setCurrentPath(to)
+        if(currentPath === to) return
+
+        setTransitioning(true)
+        setTimeout(() => {
+            SetURL(to)
+            setCurrentPath(to)
+        }, (overallTransitionTime / 2))
+        setTimeout(() => {
+            setTransitioning(false)
+        }, overallTransitionTime)
     }
 
     function NavigatHash(to: string) {
@@ -62,13 +73,14 @@ export function NavigationProvider(props: any) {
 
     useLayoutEffect(() => {
         setCurrentPath(window.location.pathname)
-    }, [window.location.hash])
+    }, [window.location.pathname])
 
     return (
         <NavigationContext.Provider value={{
             Navigate,
             SetSuspendedHash,
             ExecuteSuspendedHash,
+            transitioning,
             currentPath,
         }}>
             {props.children}

@@ -1,5 +1,6 @@
-import { useRef, useState } from 'react';
-import { useInView } from '../../hooks/VisibilityHooks';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { DisplayContext } from '../../contexts/DisplayContext';
+import { NavigationContext } from '../../contexts/NavigationContext';
 import '../../styles/Navbar.scss'
 import HamburgerButtonComponent from './HamburgerButtonComponent';
 import { Link } from './UtilityComponents';
@@ -7,9 +8,10 @@ import { Link } from './UtilityComponents';
 
 function NavbarItem(props: any) {
     const { link, to, value, onClick } = props
+    const { currentPath } = useContext(NavigationContext)
 
     return (
-        <Link to={to} link={link} onClick={() => {if(onClick) onClick()}}>
+        <Link to={to} link={link} onClick={() => {if(onClick) onClick()}} className={currentPath === link ? "active":""}>
             <span>{value}</span>
             <div className="background" />
         </Link>
@@ -17,14 +19,23 @@ function NavbarItem(props: any) {
 }
 
 export default function NavbarComponent() {
+    const { scrollPercent, scrollHeight } = useContext(DisplayContext)
     const [open, setOpen] = useState(false)
+    const [visible, setVisible] = useState<boolean>(true)
 
-    const headerRef = useRef(null)
-    const visible = useInView(headerRef, 0.2)
+    const headerRef = useRef<HTMLDivElement>(null)
 
     function Close() {
         setOpen(false)
     }
+
+    useEffect(() => {
+        if(!headerRef.current) return
+
+        const height = headerRef.current.offsetHeight
+        const portion = height / scrollHeight
+        setVisible(scrollPercent <= portion)
+    }, [scrollPercent, headerRef])
 
     return (
         <>
@@ -34,9 +45,8 @@ export default function NavbarComponent() {
         </div>
         <nav className={`navbar ${visible ? "":"undocked"}`} id={open ? "open":""}>
             <NavbarItem link="/" value="Home" onClick={Close} />
-            <NavbarItem link="/" value="Projects" onClick={Close} />
-            <NavbarItem link="/" value="Articles" onClick={Close} />
-            <NavbarItem link="/" value="Contact" onClick={Close} />
+            <NavbarItem link="/projects" value="Projects" onClick={Close} />
+            <NavbarItem link="/articles" value="Articles" onClick={Close} />
         </nav>
         </>
     )
