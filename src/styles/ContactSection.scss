@@ -79,6 +79,15 @@
 
         transform: scale(calc(var(--visibility) * 10% + 90%));
 
+        .errorMessage {
+            color: $accentColorRed;
+            font-weight: 400;
+            font-size: 1rem;
+            transform: translateY(120%);
+            position: absolute;
+            bottom: 0;
+        }
+
         .overlay {
             position: absolute;
             inset: 0;
@@ -98,7 +107,7 @@
                 //outline: 1px solid red;
             }
 
-            $checkDuration: 2500ms;
+            $checkDuration: 2000ms;
 
             .checkmark {
                 stroke: #FFF;
@@ -123,7 +132,7 @@
                 .checkmark {
                     animation-name: Check;
                     animation-delay: calc($checkDuration * 0.1);
-                    animation-duration: 700ms;
+                    animation-duration: 600ms;
                     animation-timing-function: ease-in-out;
                     animation-fill-mode: forwards;
                 }

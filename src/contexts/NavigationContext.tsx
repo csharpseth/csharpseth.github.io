@@ -1,4 +1,5 @@
 import { createContext, useContext, useLayoutEffect, useState } from 'react'
+import { DisplayContext } from './DisplayContext'
 
 export const NavigationContext = createContext({} as any)
 
@@ -7,7 +8,12 @@ export function NavigationProvider(props: any) {
     const [suspendedHash, setSuspendedHash] = useState<SuspendedHash>()
     const [transitioning, setTransitioning] = useState<boolean>(false)
 
+    const { ScrollToTop } = useContext(DisplayContext)
+
     const overallTransitionTime = 1600
+
+    let changePage: any
+    let endTransition: any
 
     function SetURL(href: string, addToHistory: boolean = false) {
         if(addToHistory) {
@@ -55,14 +61,22 @@ export function NavigationProvider(props: any) {
     }
 
     function NavigatePath(to: string) {
-        if(currentPath === to) return
+        if(currentPath === to) {
+            ScrollToTop()
+            return
+        }   
+
+        if(transitioning === true) {
+            clearTimeout(changePage)
+            clearTimeout(endTransition)
+        }
 
         setTransitioning(true)
-        setTimeout(() => {
+        changePage = setTimeout(() => {
             SetURL(to)
             setCurrentPath(to)
         }, (overallTransitionTime / 2))
-        setTimeout(() => {
+        endTransition = setTimeout(() => {
             setTransitioning(false)
         }, overallTransitionTime)
     }

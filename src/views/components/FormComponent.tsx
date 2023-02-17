@@ -17,6 +17,7 @@ export const FormComponent = forwardRef((props: any, ref: any) => {
         e.preventDefault()
         if(!formRef.current || waitingForResponse) return
 
+        setResponseMessage("")
         setWaitingForResponse(true)
 
         const formData = new FormData(formRef.current)
@@ -24,18 +25,19 @@ export const FormComponent = forwardRef((props: any, ref: any) => {
 
         axios.post("http://localhost:4000/contactme", data)
         .then(res => {
-            setResponseMessage(res.data.message)
-
-            setTimeout(() => {
-                setSuccess(res.data.success)
-            }, 300)
+            setSuccess(res.data.success)
             setTimeout(() => {
                 setSuccess(false)
                 setWaitingForResponse(false)
-            }, 2800)
+            }, 2500)
+
+            if(res.data.success === false) {
+                setResponseMessage(res.data.message)
+            }
         })
         .catch(err => {
             console.log(`Form Post Error :: ${err}`)
+            setResponseMessage("Failed To Send Contact Request: Server Down.")
             setTimeout(() => {
                 setSuccess(false)
                 setWaitingForResponse(false)
@@ -46,12 +48,12 @@ export const FormComponent = forwardRef((props: any, ref: any) => {
     return (
         <form className={`form ${className}`} onSubmit={OnSubmit} ref={MergeRefs([formRef, ref])}>
             {props.children}
-            <div className={`overlay ${waitingForResponse ? (success ? "playSuccess":""):""}`}>
+            <div className={`overlay ${waitingForResponse && success ? "playSuccess":""}`}>
                 <svg viewBox="0 0 650 650">
                     <polyline className="checkmark" points="0 358.93 206.05 547.97 462.82 0"/>
                 </svg>
             </div>
-            <span>{responseMessage}</span>
+            <span className="errorMessage">{responseMessage}</span>
         </form>
     )
 })
