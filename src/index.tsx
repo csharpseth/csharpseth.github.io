@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import { AnalyticaProvider } from './contexts/AnalyticaContext';
 import { DisplayProvider } from './contexts/DisplayContext';
 import { NavigationProvider } from './contexts/NavigationContext';
 
@@ -11,9 +12,11 @@ const root = ReactDOM.createRoot(
 root.render(
 	<React.StrictMode>
 		<DisplayProvider>
-			<NavigationProvider>
-				<App />
-			</NavigationProvider>
+			<AnalyticaProvider>
+				<NavigationProvider>
+					<App />
+				</NavigationProvider>
+			</AnalyticaProvider>
 		</DisplayProvider>
 	</React.StrictMode>
 )

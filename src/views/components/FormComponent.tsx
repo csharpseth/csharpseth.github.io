@@ -23,7 +23,7 @@ export const FormComponent = forwardRef((props: any, ref: any) => {
         const formData = new FormData(formRef.current)
         const data = FormDataToObject(formData)
 
-        axios.post("http://localhost:4000/contactme", data)
+        axios.post("http://csharpseth.com:4000/contact/request", data)
         .then(res => {
             setSuccess(res.data.success)
             setTimeout(() => {
