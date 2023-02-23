@@ -1,3 +1,6 @@
+const URL = "http://csharpseth.com:4000/analytics"
+const PING_DELAY_SECONDS = 5
+
 const mobile = (window.innerWidth <= 768)
 
 async function POST(url, data) {
@@ -12,7 +15,14 @@ async function POST(url, data) {
     return response.json()
 }
 
-POST("http://csharpseth.com:4000/analytics/record_visit", { mobile: mobile })
+POST(`${URL}/push/visit`, { mobile: mobile })
 .then(res => {
     console.log(res)
 })
+
+setInterval(() => {
+    POST(`${URL}/push/duration`, { mobile: mobile })
+    .then(res => {
+        console.log(res)
+    })
+}, (PING_DELAY_SECONDS * 1000))
