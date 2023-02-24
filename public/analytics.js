@@ -16,13 +16,7 @@ async function POST(url, data) {
 }
 
 POST(`${URL}/push/visit`, { mobile: mobile })
-.then(res => {
-    console.log(res)
-})
 
 setInterval(() => {
     POST(`${URL}/push/duration`, { mobile: mobile })
-    .then(res => {
-        console.log(res)
-    })
 }, (PING_DELAY_SECONDS * 1000))

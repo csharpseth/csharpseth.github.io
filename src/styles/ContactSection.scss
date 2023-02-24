@@ -100,8 +100,6 @@
             justify-content: center;
             align-items: center;
 
-            background-color: $accentColorGreen;
-            
             svg {
                 width: 16%;
                 //outline: 1px solid red;
@@ -159,10 +157,6 @@
             }
         }
 
-        label {
-            @include ScreenReaderText;
-        }
-
         label, input, textarea, span {
             display: block;
             font-size: 1.2rem;
@@ -214,7 +208,6 @@
             img {
                 height: 20pt;
                 translate: 10% 0;
-                @include NoSelect;
             }
 
             @keyframes SendIcon {
