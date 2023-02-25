@@ -71,8 +71,8 @@ export default function ProjectComponent(props: any) {
         >
 
             <div className="media" ref={mediaRef} onMouseLeave={ResetMediaTransform}>
-                <img className="background-img" src={`${API_MEDIA_URL}/${props.project.coverImageURL}`} alt=""/>
-                {props.isMobile ? '' : <video className="background-gif" src={`${API_MEDIA_URL}/${props.project.coverVideoURL}`} autoPlay loop muted />}
+                <img className="background-img" src={`${props.coverImageURL}`} alt=""/>
+                {props.isMobile ? '' : <video className="background-gif" src={`${props.coverVideoURL}`} autoPlay loop muted />}
             </div>
 
             <div className="info">

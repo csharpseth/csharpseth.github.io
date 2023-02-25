@@ -4,19 +4,51 @@ const PING_DELAY_SECONDS = 5
 const mobile = (window.innerWidth <= 768)
 
 async function POST(url, data) {
-    const response = await fetch(url, {
-        method: 'post',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-
-    return response.json()
+    try {
+        const response = await fetch(url, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        if(response.status !== 200) return { success: false }
+        return response.json()
+    } catch (err) {
+        
+        return { success: false }
+    }
 }
 
-POST(`${URL}/push/visit`, { mobile: mobile })
+async function EstablishAnalyticVisit() {
+    try {
+        POST(`${URL}/push/visit`, { mobile: mobile }).then(res => {
+            
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
 
-setInterval(() => {
-    POST(`${URL}/push/duration`, { mobile: mobile })
+EstablishAnalyticVisit()
+
+const interval = setInterval(() => {
+    try {
+        fetch(`${URL}/push/duration`, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ mobile: false })
+        }).then(res => res.json())
+        .then(data => {
+            if(!data) {
+                clearInterval(interval)
+            }
+        }).catch(err => {
+            clearInterval(interval)
+        })
+    } catch (err) {
+        clearInterval(interval)
+    }
 }, (PING_DELAY_SECONDS * 1000))
