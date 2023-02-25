@@ -4,6 +4,7 @@ import { Link } from "../components/UtilityComponents";
 import { useIntersect } from "../../hooks/VisibilityHooks";
 import { Clamp, Clamp01, RemapPercent, SlopeToAngle } from "../../MyMath";
 import { LinkButtonComponent } from "./Buttons";
+import { API_MEDIA_URL } from "../../config/Config";
 
 export default function ProjectComponent(props: any) {
     const { mouseX, mouseY, windowWidth, windowHeight, scrollPercent, container, isMobile } = useContext(DisplayContext)
@@ -70,13 +71,13 @@ export default function ProjectComponent(props: any) {
         >
 
             <div className="media" ref={mediaRef} onMouseLeave={ResetMediaTransform}>
-                <img className="background-img" src={props.project.backgroundImg} alt=""/>
-                {props.isMobile ? '' : <video className="background-gif" src={props.project.backgroundGif} autoPlay loop muted />}
+                <img className="background-img" src={`${API_MEDIA_URL}/${props.project.coverImageURL}`} alt=""/>
+                {props.isMobile ? '' : <video className="background-gif" src={`${API_MEDIA_URL}/${props.project.coverVideoURL}`} autoPlay loop muted />}
             </div>
 
             <div className="info">
                 <h2>{props.project.title}</h2>
-                <p>{props.project.body}</p>
+                <p>{props.project.previewText}</p>
                 <div className="links">
                     {props.project.demoLink ? 
                     <LinkButtonComponent href={props.project.demoLink}>
