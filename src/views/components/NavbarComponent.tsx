@@ -13,7 +13,6 @@ function NavbarItem(props: any) {
     return (
         <Link to={to} link={link} onClick={() => {if(onClick) onClick()}} className={currentPath === link ? "active":""}>
             <span>{value}</span>
-            <div className="background" />
         </Link>
     )
 }

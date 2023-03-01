@@ -14,11 +14,9 @@ export default function ProjectSection() {
     const mediaAcquired = useRef<boolean>(false)
 
     async function GetData() {
-        console.log(projects)
         axios.get("http://csharpseth.com:4000/projects/showcased")
         .then(res => {
             if(!res.data || res.status !== 200 || res.data.success === false) return
-            console.log("using fetched data")
             setProjects(res.data.projects)
             mediaAcquired.current = true
         }).catch(err => {

@@ -1,0 +1,25 @@
+.project-preview {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    .text {
+        .title {
+
+        }
+
+        .client {
+            color: var(--fontColorFaint);
+        }
+    }
+
+    .media {
+        position: relative;
+
+
+        .cover-image {
+            width: 100%;
+        }
+    }
+}

@@ -1,7 +1,7 @@
 @import './GlobalVariables.scss';
 
-$translateDelay: calc(($navbarMenuOpenSpeed/5));
-$translateSpeed: calc($navbarMenuOpenSpeed - $translateDelay);
+$translateDelay: calc((var(--navbarMenuOpenSpeed)/5));
+$translateSpeed: calc(var(--navbarMenuOpenSpeed) - $translateDelay);
 $vSpeed: $translateSpeed;
 $rDelay: $translateSpeed;
 $rSpeed: 200ms;
@@ -15,8 +15,8 @@ $rSpeed: 200ms;
     right: 0;
     padding: 8px;
 
-    width: $navbarMenuIconSize;
-    height: $navbarMenuIconSize;
+    width: var(--navbarMenuIconSize);
+    height: var(--navbarMenuIconSize);
 
     cursor: pointer;
     box-sizing: content-box;
@@ -26,7 +26,7 @@ $rSpeed: 200ms;
     border: none;
     border-radius: 8px;
 
-    transition: right $navbarMenuOpenSpeed ease-in-out 0ms, backdrop-filter 250ms ease-in-out $navbarMenuOpenSpeed;
+    transition: right var(--navbarMenuOpenSpeed) ease-in-out 0ms, backdrop-filter 250ms ease-in-out var(--navbarMenuOpenSpeed);
 
     .buttonArea {
         width: 100%;
@@ -57,7 +57,7 @@ $rSpeed: 200ms;
 
     &#open {
         transition: right $translateSpeed ease-in-out $translateDelay, backdrop-filter $translateDelay ease-in-out;
-        right: calc($navbarOpenWidth - ($navbarMenuIconSize + 16px));
+        right: calc(var(--navbarOpenWidth) - (var(--navbarMenuIconSize) + 16px));
 
 
         .buttonArea {
@@ -84,12 +84,6 @@ $rSpeed: 200ms;
     .hamburgerButtonContainer {
         backdrop-filter: blur(8px);
 
-        .buttonArea {
-            .line {
-                fill: $fontColorLight;
-            }
-        }
-
         &#open {
             backdrop-filter: blur(0);
         }
@@ -100,11 +94,6 @@ $rSpeed: 200ms;
     .hamburgerButtonContainer {
         backdrop-filter: blur(8px) brightness(50%);
 
-        .buttonArea {
-            .line {
-                fill: $fontColorDark;
-            }
-        }
 
         &#open {
             backdrop-filter: blur(0) brightness(100%);
@@ -112,7 +101,7 @@ $rSpeed: 200ms;
     }
 }
 
-@media only screen and (max-width: $mobileScreenWidth) {
+@media only screen and (max-width: var(--mobileScreenWidth)) {
      .hamburgerButtonContainer {
         display: block;
      }

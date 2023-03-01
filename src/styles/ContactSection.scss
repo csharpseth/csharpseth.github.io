@@ -1,6 +1,8 @@
 @import './GlobalVariables.scss';
 
 
+$mobileScreenWidth: 800px;
+
 .contact-wrapper {
     width: 100%;
     display: flex;
@@ -80,7 +82,7 @@
         transform: scale(calc(var(--visibility) * 10% + 90%));
 
         .errorMessage {
-            color: $accentColorRed;
+            color: var(--accentColorRed);
             font-weight: 400;
             font-size: 1rem;
             transform: translateY(120%);
@@ -123,8 +125,8 @@
 
             &.playSuccess {
                 animation-name: PopInCircle;
-                animation-duration: $checkDuration;
-                animation-timing-function: $popBezierCurve;
+                animation-duration: var(--checkDuration);
+                animation-timing-function: var(--popBezierCurve);
                 animation-fill-mode: forwards;
 
                 .checkmark {
@@ -253,44 +255,12 @@
 
 
 @media (prefers-color-scheme: dark) {
-	.contact-wrapper {
-        .contact-form {
-            input[type=text], input[type=email] {
-                background-color: $formFieldDark;
-                border-color: $formFieldBorderDark;
-            }
-
-            .focus {
-                @include SelectDark;
-            }
-
-            input[type=text], input[type=email] {
-                &:focus {
-                    @include SelectDark;
-                }
-            }
-        }
-    }
+	
 }
 
 @media (prefers-color-scheme: light) {
 	.contact-wrapper {
         .contact-form {
-            input[type=text], input[type=email] {
-                background-color: $formFieldLight;
-                border-color: $formFieldBorderLight;
-            }
-
-            .focus {
-                @include SelectLight;
-            }
-
-            input[type=text], input[type=email] {
-                &:focus {
-                    @include SelectLight;
-                }
-            }
-
             .submit-wrapper {
                 img {
                     filter: brightness(5%);

@@ -1,54 +1,54 @@
-$mobileScreenWidth: 800px;
+// $mobileScreenWidth: 800px;
 
-$scrollSpeed: 300ms;
+// $scrollSpeed: 300ms;
 
-$navbarHeight: 50pt;
-$navbarMenuOpenSpeed: 300ms;
-$navbarMenuIconSize: 30pt;
-$navbarOpenWidth: 50vw;
+// $navbarHeight: 50pt;
+// $navbarMenuOpenSpeed: 300ms;
+// $navbarMenuIconSize: 30pt;
+// $navbarOpenWidth: 50vw;
 
-$primaryBorderRadius: 12px;
-$buttonBorderRadius: 8px;
+// $primaryBorderRadius: 12px;
+// $buttonBorderRadius: 8px;
 
-$fontColorLight: #111111;
-$backgroundFontColorLight: #777777;
-$backgroundColorLight: #DDDDDD;
-$foregroundColorLight: #EEEEEE;
-$foregroundHoverColorLight: darken($foregroundColorLight, 15%);
-$primaryBorderColorLight: #BBBBBB;
-$dividerColorLight: #BBBBBB;
-$formFieldLight: $foregroundColorLight;
-$formFieldBorderLight: $primaryBorderColorLight;
+// $fontColorLight: #111111;
+// $backgroundFontColorLight: #777777;
+// $backgroundColorLight: #DDDDDD;
+// $foregroundColorLight: #EEEEEE;
+// $foregroundHoverColorLight: darken($foregroundColorLight, 15%);
+// $primaryBorderColorLight: #BBBBBB;
+// $dividerColorLight: #BBBBBB;
+// $formFieldLight: $foregroundColorLight;
+// $formFieldBorderLight: $primaryBorderColorLight;
 
-$fontColorDark: #eeeeee;
-$backgroundFontColorDark: #AAAAAA;
-$backgroundColorDark: #111111;
-$foregroundColorDark: #1e1e1e;
-$foregroundHoverColorDark: lighten($foregroundColorDark, 10%);
-$primaryBorderColorDark: #333333;
-$dividerColorDark: #333333;
-$formFieldDark: $foregroundColorDark;
-$formFieldBorderDark: $primaryBorderColorDark;
+// $fontColorDark: #eeeeee;
+// $backgroundFontColorDark: #AAAAAA;
+// $backgroundColorDark: #111111;
+// $foregroundColorDark: #1e1e1e;
+// $foregroundHoverColorDark: lighten($foregroundColorDark, 10%);
+// $primaryBorderColorDark: #333333;
+// $dividerColorDark: #333333;
+// $formFieldDark: $foregroundColorDark;
+// $formFieldBorderDark: $primaryBorderColorDark;
 
 
-$fontColorHighlighted: #4488e7;
+// $fontColorHighlighted: #4488e7;
 
-$buttonColor: #4283df;
-$buttonFontColor: $fontColorDark;
-$buttonShadowColor: #1b509b;
+// $buttonColor: #4283df;
+// $buttonFontColor: $fontColorDark;
+// $buttonShadowColor: #1b509b;
 
-$accentColorBlue: #4283df;
-$accentColorRed: #e12727;
-$accentColorOrange: #EE7B30;
-$accentColorGreen: #3BB273;
+// $accentColorBlue: #4283df;
+// $accentColorRed: #e12727;
+// $accentColorOrange: #EE7B30;
+// $accentColorGreen: #3BB273;
 
-$buttonHoverColor: darken($buttonColor, 4%);
-$buttonHoverShadowColor: darken($buttonShadowColor, 4%);
+// $buttonHoverColor: darken($buttonColor, 4%);
+// $buttonHoverShadowColor: darken($buttonShadowColor, 4%);
 
-$darkShadow: rgba(0, 0, 0, 1);
-$lightShadow: rgba(30, 30, 30, 0.4);
+// $darkShadow: rgba(0, 0, 0, 1);
+// $lightShadow: rgba(30, 30, 30, 0.4);
 
-$popBezierCurve: cubic-bezier(.64,.04,0,1.92);
+// $popBezierCurve: cubic-bezier(.64,.04,0,1.92);
 
 @mixin NoSelect {
     -webkit-touch-callout: none;
@@ -60,7 +60,7 @@ $popBezierCurve: cubic-bezier(.64,.04,0,1.92);
 }
 
 @mixin LinkHover {
-    transition: 350ms $popBezierCurve;//cubic-bezier(.64,.04,.09,1.57);
+    transition: 350ms var(--popBezierCurve);//cubic-bezier(.64,.04,.09,1.57);
     &:hover {
         transform: scale(115%) translateY(-10%);
     }
@@ -70,12 +70,4 @@ $popBezierCurve: cubic-bezier(.64,.04,0,1.92);
     position: absolute;
     top: -9999px;
     left: -9999px;
-}
-
-@mixin SelectDark {
-    border-color: $fontColorDark;
-}
-
-@mixin SelectLight {
-    border-color: $fontColorLight;
 }

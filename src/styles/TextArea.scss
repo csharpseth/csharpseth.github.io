@@ -20,17 +20,3 @@
         background-color: transparent;
     }
 }
-
-@media (prefers-color-scheme: dark) {
-	.textArea-wrapper {
-        background-color: $formFieldDark;
-        border-color: $formFieldBorderDark;
-    }
-}
-
-@media (prefers-color-scheme: light) {
-	.textArea-wrapper {
-        background-color: $formFieldLight;
-        border-color: $formFieldBorderLight;
-    }
-}

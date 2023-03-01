@@ -29,7 +29,7 @@
     }
 }
 
-@media only screen and (min-width: $mobileScreenWidth) {
+@media only screen and (min-width: var(--mobileScreenWidth)) {
     .projects {
         display: flex;
         flex-direction: column;
@@ -57,7 +57,7 @@
                 flex-shrink: 1;
                 min-width: 350px;
                 padding: clamp(8px, 3vw, 3em);
-                border-radius: $primaryBorderRadius;
+                border-radius: var(--primaryBorderRadius);
                 border: 1px solid transparent;
 
                 gap: 1em;
@@ -100,7 +100,7 @@
                 height: 100%;
     
                 border: 2px solid transparent;
-                border-radius: $primaryBorderRadius;
+                border-radius: var(--primaryBorderRadius);
     
                 --mouseX: 0.0;
                 --mouseY: 0.0;
@@ -193,7 +193,7 @@
         }
     }
 }
-@media only screen and (max-width: $mobileScreenWidth) {
+@media only screen and (max-width: var(--mobileScreenWidth)) {
     .projects {
         gap: 5em;
 
@@ -207,7 +207,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            border-radius: $primaryBorderRadius;
+            border-radius: var(--primaryBorderRadius);
 
             padding: 24px;
 
@@ -224,7 +224,7 @@
                 padding: 16px;
                 transform: scale(min(calc(var(--visibility) * 100% + 50%), 100%));
                 border: 2px solid transparent;
-                border-radius: $primaryBorderRadius;
+                border-radius: var(--primaryBorderRadius);
                 border-width: 1px;
                 border-style: solid;
     
@@ -274,20 +274,20 @@
 @media(prefers-color-scheme: light) {
     .projects {
         .project-item {
-            filter: drop-shadow(var(--shadowX, 0) var(--shadowY, 0) 8px $lightShadow);
+            filter: drop-shadow(var(--shadowX, 0) var(--shadowY, 0) 8px var(--lightShadow));
             .media {
-                border-color: $primaryBorderColorLight;
+                border-color: var(--primaryBorderColorLight);
 
-                @media screen and (max-width: $mobileScreenWidth) {
+                @media screen and (max-width: var(--mobileScreenWidth)) {
                     .background-img {
                         filter: brightness(90%) blur(calc(4px * var(--visibility)));
                     }
                 }
             }
             .info {
-                background: rgba($color: $foregroundColorLight, $alpha: var(--visibility));
-                border-color: $primaryBorderColorLight;
-                filter: drop-shadow(0 0 4px rgba($color: $lightShadow, $alpha: 0.2));
+                background: rgba($color: var(--foregroundColorLight), $alpha: var(--visibility));
+                border-color: var(--primaryBorderColorLight);
+                filter: drop-shadow(0 0 4px rgba($color: var(--lightShadow), $alpha: 0.2));
             }
         }
     }   
@@ -296,14 +296,14 @@
 @media(prefers-color-scheme: dark) {
     .projects {
         .project-item {
-            filter: drop-shadow(var(--shadowX) var(--shadowY) 8px $darkShadow);
+            filter: drop-shadow(var(--shadowX) var(--shadowY) 8px var(--darkShadow));
             .media {
-                border-color: $primaryBorderColorDark;
+                border-color: var(--primaryBorderColorDark);
             }
             .info {
-                background: rgba($color: $foregroundColorDark, $alpha: var(--visibility));
-                border-color: $primaryBorderColorDark;
-                filter: drop-shadow(0 0 8px rgba($color: $darkShadow, $alpha: 1));
+                background: rgba($color: var(--foregroundColorDark), $alpha: var(--visibility));
+                border-color: var(--primaryBorderColorDark);
+                filter: drop-shadow(0 0 8px rgba($color: var(--darkShadow), $alpha: 1));
             }
         }
     }

@@ -19,14 +19,14 @@
     padding: 4px 12px;
     transition:
         opacity 300ms ease-in-out,
-        transform 300ms $popBezierCurve,
-        filter 300ms $popBezierCurve,
+        transform 300ms var(--popBezierCurve),
+        filter 300ms var(--popBezierCurve),
         background-color 200ms ease-in-out;
 
     transform: translateY(-2px);
 
     transform-style: preserve-3d;
-    background-color: $buttonColor;
+    background-color: var(--buttonColor);
 
     cursor: pointer;
 
@@ -42,42 +42,17 @@
         transform: translateZ(-1px) translateY(6px);
         transition: inherit;
 
-        background-color: $buttonShadowColor;
+        background-color: var(--buttonShadowColor);
     }
 
     &:hover, &:focus {
         //filter: drop-shadow(0 4px 0 $buttonShadowColor) brightness(110%);
         transform: translateY(0);
-        background-color: $buttonHoverColor;
+        background-color: var(--buttonHoverColor);
 
         &::before {
-            background-color: $buttonHoverShadowColor;
+            background-color: var(--buttonHoverShadowColor);
             transform: translateZ(-1px) translateY(4px);
-        }
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-	.button {
-        color: $fontColorDark;
-        &:focus {
-            @include SelectDark;
-            &::before {
-                @include SelectDark;
-            }
-        }
-    }
-}
-
-@media (prefers-color-scheme: light) {
-	.button {
-        color: $fontColorLight;
-
-        &:focus {
-            @include SelectLight;
-            &::before {
-                @include SelectLight;
-            }
         }
     }
 }

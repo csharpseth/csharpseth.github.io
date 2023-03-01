@@ -5,6 +5,7 @@ import { AnalyticaProvider } from './contexts/AnalyticaContext';
 import { DisplayProvider } from './contexts/DisplayContext';
 import { NavigationProvider } from './contexts/NavigationContext';
 
+
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
 )

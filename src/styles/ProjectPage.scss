@@ -24,7 +24,7 @@ $maxWidth: 600px;
 
     img {
         max-width: 110%;
-        border-radius: $primaryBorderRadius;
+        border-radius: var(--primaryBorderRadius);
         border: 2px solid transparent;
     }
 
@@ -63,7 +63,7 @@ $maxWidth: 600px;
 @media(prefers-color-scheme: light) {
     .project-wrapper {
         img {
-            border-color: $primaryBorderColorLight;
+            border-color: var(--primaryBorderColorLight);
         }
     }
 }
@@ -71,12 +71,12 @@ $maxWidth: 600px;
 @media(prefers-color-scheme: dark) {
     .project-wrapper {
         img {
-            border-color: $primaryBorderColorDark;
+            border-color: var(--primaryBorderColorDark);
         }
     }
 }
 
-@media only screen and (max-width: $mobileScreenWidth) {
+@media only screen and (max-width: var(--mobileScreenWidth)) {
     .project-wrapper {
         .banner {
             margin-bottom: 1em;
