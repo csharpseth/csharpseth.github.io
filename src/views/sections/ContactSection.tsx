@@ -51,7 +51,7 @@ export default function ContactSection() {
             <div className="contact-wrapper" ref={sectionRef}>
                 <h1 className="background-text">Contact Me</h1>
                 <div className="email" onClick={CopyEmailToClipboard} onMouseLeave={() => setCopied(false)}>
-                    <h1>csharpseth<span className="at-sign">@</span>gmail<span className="at-sign">.com</span></h1>
+                    <h1>csharpseth@gmail.com</h1>
                     <div className="copy-indicator">
                         <img src={`/icon_${isMobile ? "goto":"clipboard"}.png`} alt="clipboard" />
                         <span id={copied ? 'active':''}>Copied!</span>

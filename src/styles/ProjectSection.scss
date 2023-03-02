@@ -216,6 +216,8 @@ $mobileScreenWidth: 800px;
             align-items: center;
             border-radius: var(--primaryBorderRadius);
 
+
+
             padding: 24px;
 
             --visibility: 0;
@@ -230,10 +232,12 @@ $mobileScreenWidth: 800px;
 
                 padding: 16px;
                 transform: scale(min(calc(var(--visibility) * 100% + 50%), 100%));
-                border: 2px solid transparent;
+                border: 2px solid var(--primaryBorderColor);
                 border-radius: var(--primaryBorderRadius);
                 border-width: 1px;
                 border-style: solid;
+
+                background-color: var(--formField);
     
                 h2 {
                     align-self: flex-start;
@@ -283,7 +287,7 @@ $mobileScreenWidth: 800px;
         .project-item {
             .media {
                 filter: drop-shadow(var(--shadowX, 0) var(--shadowY, 0) 8px var(--lightShadow));
-                @media screen and (max-width: var(--mobileScreenWidth)) {
+                @media screen and (max-width: $mobileScreenWidth) {
                     .background-img {
                         filter: brightness(90%) blur(calc(4px * var(--visibility)));
                     }

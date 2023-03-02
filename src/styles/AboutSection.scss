@@ -380,8 +380,17 @@ $heroAnimationDuration: $heroTitleAnimationDuration;
 
         width: 100%;
 
+        
+
         .bio {
             clip-path: circle(0% at 50% 0%);
+            .tool-list {
+                display: none;
+            }
+            .hook {
+                margin-top: 16px;
+                text-align: center;
+            }
         }
         .profile__img {
             transform: translateY(-10%);
@@ -393,7 +402,7 @@ $heroAnimationDuration: $heroTitleAnimationDuration;
             width: 100%;
 
             p {
-                text-align: justify;
+                text-align: center;
                 margin: 16px;
             }
 
@@ -407,6 +416,15 @@ $heroAnimationDuration: $heroTitleAnimationDuration;
                 font-size: 1rem;
             }
 
+        }
+
+        .links {
+            gap: 8px;
+
+            .link {
+                width: 35pt;
+                height: 35pt;
+            }
         }
     }
 }

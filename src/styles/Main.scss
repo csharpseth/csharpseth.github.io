@@ -2,6 +2,8 @@
 @import "./GlobalAnimations.scss";
 @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+$mobileScreenWidth: 800px;
+
 :root {
 
 	@media (prefers-color-scheme: dark) {
@@ -203,7 +205,7 @@ h5 {
 }
 
 
-@media only screen and (max-width: var(--mobileScreenWidth)) {
+@media only screen and (max-width: $mobileScreenWidth) {
 	:root {
 		font-size: 16px;
         line-height: 24px;
@@ -216,11 +218,11 @@ h5 {
 	.container {
 		overflow-y: scroll;
 		scroll-behavior: smooth;
-		padding-top: 0;
+		
 		.scroll-section {
 			justify-content: flex-start;
 			padding: 8px;
-			padding-top: calc(var(--navbarMenuIconSize) / 2);
+			margin-top: calc(var(--navbarHeight));
 			.section-title {
 				font-size: 2.2rem;
 			}
