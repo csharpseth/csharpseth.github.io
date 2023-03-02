@@ -2,10 +2,18 @@
 
 .textArea-wrapper {
     width: 100%;
-    background-color: transparent;
-    border: 1px solid transparent;
+    background-color: var(--formField);
+    border: 1px solid var(--formFieldBorder);
     border-radius: 12px;
     padding: 12px;
+
+    &.focus {
+        border-color: var(--formFieldSelectBorder);
+    }
+
+    label {
+        @include ScreenReaderText;
+    }
 
     textarea {
         margin: 0;

@@ -19,7 +19,7 @@ export default function AboutSection() {
             <div className={`profile ${landingPlayed ? "":"play"}`} style={{
                 opacity: (1 - RelativeRemap(scrollPercent, 0.05, 0.15))
             }}>
-                <img className="profile__img" src="/me.webp" alt="profile picture"/>
+                <img className="profile__img" src="/me.webp" alt="profile"/>
                 <div className="info">
                     <h1>{About.title}</h1>
                     <div className="bio">
@@ -35,16 +35,16 @@ export default function AboutSection() {
                 <div className="links" style={{
                     opacity: (1 - RelativeRemap(scrollPercent, 0, 0.2))
                 }}>
-                    <a className="link" href="#">
+                    <a className="link" href="https://www.linkedin.com/in/sethhamm" target="_blank" rel="noopener noreferrer" >
                         <img className="icon" src="/linkedin.png" alt="" />
                     </a>
-                    <a className="link" href="#">
+                    <a className="link" href="https://github.com/csharpseth" target="_blank" rel="noopener noreferrer">
                         <img className="icon" src="/github.png" alt="" />
                     </a>
-                    <a className="link" href="#">
+                    <a className="link" href="https://twitter.com/sethiesparkles" target="_blank" rel="noopener noreferrer">
                         <img className="icon" src="/twitter.png" alt="" />
                     </a>
-                    <a className="link" href="#">
+                    <a className="link" href="https://www.youtube.com/@codewithseth" target="_blank" rel="noopener noreferrer">
                         <img className="icon" src="/youtube.png" alt="" />
                     </a>
                 </div>

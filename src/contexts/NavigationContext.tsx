@@ -16,11 +16,11 @@ export function NavigationProvider(props: any) {
     let endTransition: any
 
     function SetURL(href: string, addToHistory: boolean = false) {
-        if(addToHistory) {
-            window.history.pushState("", "", `${href}`)
-        } else {
-            window.history.replaceState("", "", `${href}`)
-        }
+        // if(addToHistory) {
+        //     window.history.pushState("", "", `${href}`)
+        // } else {
+        //     window.history.replaceState("", "", `${href}`)
+        // }
     }
 
     function SetSuspendedHash(link: string, hash: string, loadCallback: any) {

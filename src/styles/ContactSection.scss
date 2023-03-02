@@ -73,6 +73,7 @@ $mobileScreenWidth: 800px;
     }
 
     .contact-form {
+        position: relative;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -93,7 +94,7 @@ $mobileScreenWidth: 800px;
         .overlay {
             position: absolute;
             inset: 0;
-            background-color: transparent;
+            background-color: var(--accentColorGreen);
 
             clip-path: circle(0% at 50% 50%);
 
@@ -103,15 +104,14 @@ $mobileScreenWidth: 800px;
             align-items: center;
 
             svg {
-                width: 16%;
-                //outline: 1px solid red;
+                width: 22%;
             }
 
-            $checkDuration: 2000ms;
+            $checkDuration: 1800ms;
 
             .checkmark {
                 stroke: #FFF;
-                stroke-width: 80;
+                stroke-width: 100;
                 stroke-linecap: round;
                 stroke-linejoin: round;
 
@@ -119,20 +119,22 @@ $mobileScreenWidth: 800px;
                 stroke-dashoffset: 700pt;
 
                 fill: none;
-                transform: translate(10%, 5%);
+                transform: translate(10%, 5%) scale(90%);
                 transform-origin: center;
+
+                filter: drop-shadow(0 0 32px rgba(25, 91, 42, 0.5));
             }
 
             &.playSuccess {
                 animation-name: PopInCircle;
-                animation-duration: var(--checkDuration);
-                animation-timing-function: var(--popBezierCurve);
+                animation-duration: 2000ms;
+                animation-timing-function: ease-in-out;
                 animation-fill-mode: forwards;
 
                 .checkmark {
                     animation-name: Check;
-                    animation-delay: calc($checkDuration * 0.1);
-                    animation-duration: 600ms;
+                    animation-delay: 100ms;
+                    animation-duration: 1900ms;
                     animation-timing-function: ease-in-out;
                     animation-fill-mode: forwards;
                 }
@@ -141,8 +143,15 @@ $mobileScreenWidth: 800px;
             
 
             @keyframes PopInCircle {
+                15% {
+                    clip-path: circle(22%);
+                }
                 50% {
-                    clip-path: circle(15%);
+                    clip-path: circle(18%);
+                }
+                80% {
+                    clip-path: circle(18%);
+
                 }
                 100% {
                     clip-path: circle(0%);
@@ -150,13 +159,23 @@ $mobileScreenWidth: 800px;
             }
 
             @keyframes Check {
-                80% {
+                10% {
+                    stroke-dashoffset: 700pt;
+                }
+                40% {
+                    stroke-dashoffset: 0pt;
+                }
+                90% {
                     stroke-dashoffset: 0pt;
                 }
                 100% {
-                    stroke-dashoffset: 0pt;
+                    stroke-dashoffset: 700pt;
                 }
             }
+        }
+
+        label {
+            @include ScreenReaderText;
         }
 
         label, input, textarea, span {
@@ -168,12 +187,17 @@ $mobileScreenWidth: 800px;
         }
 
         input[type=text], input[type=email] {
-            border: 1px solid transparent;
+            border: 1px solid var(--formFieldBorder);
+            background-color: var(--formField);
             outline: none;
             padding: 12px;
             border-radius: 12px;
             
             width: 100%;
+
+            &:focus {
+                border-color: var(--formFieldSelectBorder);
+            }
         }
 
         // #firstName {

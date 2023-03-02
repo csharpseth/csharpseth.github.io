@@ -1,6 +1,8 @@
 @import './GlobalVariables.scss';
 @import './GlobalAnimations.scss';
 
+$mobileScreenWidth: 800px;
+
 .projects {
     display: flex;
     flex-direction: column;
@@ -14,6 +16,11 @@
 
 
     .project-item {
+
+        .info {
+            border-color: var(--primaryBorderColor);
+            background-color: var(--foregroundColor);
+        }
 
         .links {
             width: 100%;
@@ -29,7 +36,7 @@
     }
 }
 
-@media only screen and (min-width: var(--mobileScreenWidth)) {
+@media only screen and (min-width: $mobileScreenWidth) {
     .projects {
         display: flex;
         flex-direction: column;
@@ -99,7 +106,7 @@
                 position: relative;
                 height: 100%;
     
-                border: 2px solid transparent;
+                border: 2px solid var(--primaryBorderColor);
                 border-radius: var(--primaryBorderRadius);
     
                 --mouseX: 0.0;
@@ -193,7 +200,7 @@
         }
     }
 }
-@media only screen and (max-width: var(--mobileScreenWidth)) {
+@media only screen and (max-width: $mobileScreenWidth) {
     .projects {
         gap: 5em;
 
@@ -276,8 +283,6 @@
         .project-item {
             filter: drop-shadow(var(--shadowX, 0) var(--shadowY, 0) 8px var(--lightShadow));
             .media {
-                border-color: var(--primaryBorderColorLight);
-
                 @media screen and (max-width: var(--mobileScreenWidth)) {
                     .background-img {
                         filter: brightness(90%) blur(calc(4px * var(--visibility)));
@@ -286,7 +291,6 @@
             }
             .info {
                 background: rgba($color: var(--foregroundColorLight), $alpha: var(--visibility));
-                border-color: var(--primaryBorderColorLight);
                 filter: drop-shadow(0 0 4px rgba($color: var(--lightShadow), $alpha: 0.2));
             }
         }
@@ -297,12 +301,9 @@
     .projects {
         .project-item {
             filter: drop-shadow(var(--shadowX) var(--shadowY) 8px var(--darkShadow));
-            .media {
-                border-color: var(--primaryBorderColorDark);
-            }
             .info {
                 background: rgba($color: var(--foregroundColorDark), $alpha: var(--visibility));
-                border-color: var(--primaryBorderColorDark);
+                border-color: var(--primaryBorderColor);
                 filter: drop-shadow(0 0 8px rgba($color: var(--darkShadow), $alpha: 1));
             }
         }
