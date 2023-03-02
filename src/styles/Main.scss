@@ -6,28 +6,30 @@
 
 	@media (prefers-color-scheme: dark) {
 		--fontColor: #eeeeee;
+		--fontColorFaint: #b1b1b1;
 		--backgroundFontColor: #AAAAAA;
-		--backgroundColor: #111111;
-		--foregroundColor: #1e1e1e;
-		--primaryBorderColor: #333333;
+		--backgroundColor: #0c0c0c;
+		--foregroundColor: #131313;
+		--primaryBorderColor: #2e2e2e;
 		--dividerColor: #333333;
 		--formField: var(--foregroundColor);
 		--formFieldBorder: var(--primaryBorderColor);
 
 
-		--navbarColor: #0d0d0dac;
+		--navbarColor: #0c0c0caa;
 		--navbarHoverColor: #81818155;
 	}
 	
 	@media (prefers-color-scheme: light) {
 		--fontColor: #111111;
+		--fontColorFaint: #404040;
 		--backgroundFontColor: #777777;
 		--backgroundColor: #DDDDDD;
 		--foregroundColor: #EEEEEE;
 		--primaryBorderColor: #BBBBBB;
 		--dividerColor: #BBBBBB;
-		--formField: --foregroundColor;
-		--formFieldBorder: --primaryBorderColor;
+		--formField: var(--foregroundColor);
+		--formFieldBorder: var(--primaryBorderColor);
 		--formFieldSelectBorder: var(--fontColor);
 
 		--navbarColor: #ffffffc9;

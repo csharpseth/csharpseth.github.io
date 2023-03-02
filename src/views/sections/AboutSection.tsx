@@ -23,12 +23,36 @@ export default function AboutSection() {
                 <div className="info">
                     <h1>{About.title}</h1>
                     <div className="bio">
-                        <p>
-                        A front-end <b>Web</b> and <b>Mobile</b> developer skilled in <b>React</b>, <b>React-Native</b>, <b>TypeScript</b>, and <b>SASS</b>.
-                        </p>
-                        <p>
+                        <h2 className="hook">
+                        Full-Stack <b>Web</b> and <b>Mobile</b> developer.
+                        </h2>
+                        
+                        <p className="subtext">
                         I build efficient and responsive user interfaces. My communication skills and ability to collaborate effectively make me a valuable team member for any development project.
                         </p>
+
+                        <ul className="tool-list">
+                            <li className="tool">
+                                <span className="title">NodeJS</span>
+                                <img className="color" src="/tool-logo-node-color.png" alt="" />
+                                <img className="white" src="/tool-logo-node-white.png" alt="" />
+                            </li>
+                            <li className="tool">
+                                <span className="title">ReactJS</span>
+                                <img className="color" src="/tool-logo-react-color.png" alt="" />
+                                <img className="white" src="/tool-logo-react-white.png" alt="" />
+                            </li>
+                            <li className="tool">
+                                <span className="title">TypeScript</span>
+                                <img className="color" src="/tool-logo-typescript-color.png" alt="" />
+                                <img className="white" src="/tool-logo-typescript-white.png" alt="" />
+                            </li>
+                            <li className="tool">
+                                <span className="title">Sass</span>
+                                <img className="color" src="/tool-logo-sass-color.png" alt="" />
+                                <img className="white" src="/tool-logo-sass-white.png" alt="" />
+                            </li>
+                        </ul>
                     </div>
                 </div>
 

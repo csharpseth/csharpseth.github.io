@@ -23,6 +23,10 @@ $mobileScreenWidth: 800px;
         opacity: var(--visibility);
     }
 
+    .background-text {
+        color: var(--fontColorFaint);
+    }
+
     .email {
         position: relative;
         cursor: pointer;
@@ -35,6 +39,10 @@ $mobileScreenWidth: 800px;
         h1 {
             opacity: 1;
             font-size: 3rem;
+        }
+
+        .at-sign {
+            font-size: 2.5rem;
         }
 
         .copy-indicator {
@@ -54,7 +62,7 @@ $mobileScreenWidth: 800px;
             }
 
             img {
-                opacity: 0;
+                opacity: 0.7;
                 width: 25pt;
                 transition: opacity 150ms ease-in-out;
             }
@@ -63,7 +71,7 @@ $mobileScreenWidth: 800px;
         &:hover {
             .copy-indicator {
                 img {
-                    opacity: 0.7;
+                    opacity: 1;
                 }
                 #active {
                     opacity: 0.8;
@@ -278,9 +286,6 @@ $mobileScreenWidth: 800px;
 }
 
 
-@media (prefers-color-scheme: dark) {
-	
-}
 
 @media (prefers-color-scheme: light) {
 	.contact-wrapper {
@@ -303,11 +308,11 @@ $mobileScreenWidth: 800px;
         &:hover {
             .copy-indicator {
                 img {
-                    opacity: 0.7;
+                    opacity: 1;
                 }
 
                 #active {
-                    opacity: 0.7;
+                    opacity: 1;
                 }
             }
         }

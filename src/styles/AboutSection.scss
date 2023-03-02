@@ -97,6 +97,92 @@ $heroAnimationDuration: $heroTitleAnimationDuration;
         animation-duration: 0;
         animation-timing-function: ease-in-out;
         animation-fill-mode: forwards;
+
+        .hook {
+            font-size: 1.4rem;
+            font-weight: 400;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        .tool-list {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+
+            gap: 8px;
+
+
+            .tool {
+                list-style: none;
+                position: relative;
+                width: 35px;
+                height: 35px;
+                img {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+
+                }
+                
+                @for $i from 1 to 10 {
+                    &:nth-child(#{$i}) {
+                        .white {
+                            animation-delay: calc(1500ms + ($i * 300ms));
+                        }
+
+                        .color {
+                            animation-delay: calc(1500ms + ($i * 300ms));
+                        }
+                    }
+                }
+
+                .white {
+                    opacity: 1;
+                    transition: opacity 150ms ease-in-out;
+                    animation-name: WhiteIconIn;
+                    animation-duration: 900ms;
+                    animation-timing-function: ease-in-out;
+                }
+
+                .color {
+                    opacity: 0;
+                    transition: opacity 150ms ease-in-out;
+                    animation-name: ColorIconIn;
+                    animation-duration: 900ms;
+                    animation-timing-function: ease-in-out;
+                }
+
+                &:hover {
+                    .white {
+                        opacity: 0;
+                    }
+    
+                    .color {
+                        opacity: 1;
+                    }
+
+                    .title {
+                        opacity: 1;
+                    }
+                }
+
+                .title {
+                    position: absolute;
+                    text-align: center;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translate(-50%, 100%);
+                    font-size: 0.8rem;
+                    opacity: 0;
+                    transition: opacity 150ms ease-in-out;
+                }
+            }
+        }
     }
 
     .info {
@@ -155,6 +241,35 @@ $heroAnimationDuration: $heroTitleAnimationDuration;
                 height: 100%;
             }
         }
+    }
+}
+
+@keyframes WhiteIconIn {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    55% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes ColorIconIn {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    55% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
     }
 }
 
