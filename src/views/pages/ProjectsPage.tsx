@@ -5,7 +5,6 @@ import ProjectPreviewComponent from '../components/ProjectPreviewComponent'
 export default function ProjectsPage() {
     return (
         <ContainerComponent>
-            <h1>Projects</h1>
             <ul className="projects-list">
                 <ProjectPreviewComponent />
             </ul>
