@@ -1,58 +1,65 @@
-import { forwardRef, useContext, useEffect, useRef } from "react"
-import ReactDOM from "react-dom"
+/** @format */
 
-import { DisplayContext } from "../../contexts/DisplayContext"
-import { NavigationContext } from "../../contexts/NavigationContext"
+import { forwardRef, useContext, useEffect, useRef } from 'react'
+import ReactDOM from 'react-dom'
+
+import { DisplayContext } from '../../contexts/DisplayContext'
+import { NavigationContext } from '../../contexts/NavigationContext'
 
 export const Link = forwardRef((props: any, ref: any) => {
-    const element = useRef<HTMLDivElement | null>()
-    
-    const { container } = useContext(DisplayContext)
-    const { SetSuspendedHash, Navigate } = useContext(NavigationContext)
+	const element = useRef<HTMLDivElement | null>()
 
-    useEffect(() => {
-        element.current = ReactDOM.findDOMNode(document.querySelector(`#${props.to}`)) as HTMLDivElement
-    }, [document.querySelector(`#${props.to}`)])
+	const { container } = useContext(DisplayContext)
+	const { SetSuspendedHash, Navigate } = useContext(NavigationContext)
 
-    function OnClick(event: any) {
+	useEffect(() => {
+		element.current = ReactDOM.findDOMNode(
+			document.querySelector(`#${props.to}`)
+		) as HTMLDivElement
+	}, [document.querySelector(`#${props.to}`)])
 
-        if(props.href) {
-            return
-        }
-        event.preventDefault()
+	function OnClick(event: any) {
+		if (props.href) {
+			return
+		}
+		event.preventDefault()
 
-        if(props.onClick) props.onClick()
+		if (props.onClick) props.onClick()
 
-        if(props.to && props.link){
-            SetSuspendedHash(props.link, props.to, To)
-        }
-        else if(props.to && !props.link) {
-            To()
-        }
+		if (props.to && props.link) {
+			SetSuspendedHash(props.link, props.to, To)
+		} else if (props.to && !props.link) {
+			To()
+		}
 
-        
-        if(props.link && !props.to)
-            Link()
-    }
+		if (props.link && !props.to) Link()
+	}
 
-    function To() {
-        if(!props.to) return
-        
-        container.current?.scrollTo({
-            top: element.current?.offsetTop,
-            behavior: 'smooth'
-        })
-    }
+	function To() {
+		if (!props.to) return
 
-    function Link() {
-        if(!props.link) return
-        Navigate(props.link)
-    }
+		container.current?.scrollTo({
+			top: element.current?.offsetTop,
+			behavior: 'smooth',
+		})
+	}
 
-    return (
-        <a ref={ref} id={props.id} className={props.className} href={props.href ? props.href : `#${props.to}`} onClick={OnClick} target="_blank" rel="noreferer" >
-            {props.children}
-        </a>
-    )
+	function Link() {
+		if (!props.link) return
+		Navigate(props.link)
+	}
 
+	return (
+		<a
+			ref={ref}
+			id={props.id}
+			className={props.className}
+			href={props.href ? props.href : `#${props.to}`}
+			onClick={OnClick}
+			target="_blank"
+			rel="noreferer"
+		>
+			{props.children}
+		</a>
+	)
 })

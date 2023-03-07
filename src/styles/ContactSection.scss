@@ -1,362 +1,362 @@
-@import './GlobalVariables.scss';
+/** @format */
 
+@import './GlobalVariables.scss';
 
 $mobileScreenWidth: 800px;
 
 .contact-wrapper {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 
-    gap: 2em;
+	gap: 2em;
 
-    --visibility: 0;
-    --inverseVisiblity: calc(1 - var(var(--visibility)));
+	--visibility: 0;
+	--inverseVisiblity: calc(1 - var(var(--visibility)));
 
-    opacity: var(--visibility);
+	opacity: var(--visibility);
 
-    h1, span {
-        @include NoSelect;
-        font-size: 1.5rem;
-        opacity: var(--visibility);
-    }
+	h1,
+	span {
+		@include NoSelect;
+		font-size: 1.5rem;
+		opacity: var(--visibility);
+	}
 
-    .background-text {
-        color: var(--fontColorFaint);
-    }
+	.background-text {
+		color: var(--fontColorFaint);
+	}
 
-    .email {
-        position: relative;
-        cursor: pointer;
+	.email {
+		position: relative;
+		cursor: pointer;
 
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: flex-start;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: flex-start;
 
-        h1 {
-            opacity: 1;
-            font-size: 3rem;
-        }
+		h1 {
+			opacity: 1;
+			font-size: 3rem;
+		}
 
-        .at-sign {
-            font-size: 2.5rem;
-        }
+		.at-sign {
+			font-size: 2.5rem;
+		}
 
-        .copy-indicator {
-            position: absolute;
-            right: 0;
-            transform: translateX(calc(100% + 8px));
+		.copy-indicator {
+			position: absolute;
+			right: 0;
+			transform: translateX(calc(100% + 8px));
 
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
 
-            span {
-                font-size: 1rem;
-                opacity: 0;
-                transition: opacity 150ms ease-in-out;
-            }
+			span {
+				font-size: 1rem;
+				opacity: 0;
+				transition: opacity 150ms ease-in-out;
+			}
 
-            img {
-                opacity: 0.7;
-                width: 25pt;
-                transition: opacity 150ms ease-in-out;
-            }
-        }
+			img {
+				opacity: 0.7;
+				width: 25pt;
+				transition: opacity 150ms ease-in-out;
+			}
+		}
 
-        &:hover {
-            .copy-indicator {
-                img {
-                    opacity: 1;
-                }
-                #active {
-                    opacity: 0.8;
-                }
-            }
-        }
-    }
+		&:hover {
+			.copy-indicator {
+				img {
+					opacity: 1;
+				}
+				#active {
+					opacity: 0.8;
+				}
+			}
+		}
+	}
 
-    .contact-form {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 1em;
+	.contact-form {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 1em;
 
-        transform: scale(calc(var(--visibility) * 10% + 90%));
+		transform: scale(calc(var(--visibility) * 10% + 90%));
 
-        .errorMessage {
-            color: var(--accentColorRed);
-            font-weight: 400;
-            font-size: 1rem;
-            transform: translateY(120%);
-            position: absolute;
-            bottom: 0;
-        }
+		.errorMessage {
+			color: var(--accentColorRed);
+			font-weight: 400;
+			font-size: 1rem;
+			transform: translateY(120%);
+			position: absolute;
+			bottom: 0;
+		}
 
-        .overlay {
-            position: absolute;
-            inset: 0;
-            background-color: var(--accentColorGreen);
+		.overlay {
+			position: absolute;
+			inset: 0;
+			background-color: var(--accentColorGreen);
 
-            clip-path: circle(0% at 50% 50%);
+			clip-path: circle(0% at 50% 50%);
 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
 
-            svg {
-                width: 22%;
-            }
+			svg {
+				width: 22%;
+			}
 
-            $checkDuration: 1800ms;
+			$checkDuration: 1800ms;
 
-            .checkmark {
-                stroke: #FFF;
-                stroke-width: 100;
-                stroke-linecap: round;
-                stroke-linejoin: round;
+			.checkmark {
+				stroke: #fff;
+				stroke-width: 100;
+				stroke-linecap: round;
+				stroke-linejoin: round;
 
-                stroke-dasharray: 700pt 100vh;
-                stroke-dashoffset: 700pt;
+				stroke-dasharray: 700pt 100vh;
+				stroke-dashoffset: 700pt;
 
-                fill: none;
-                transform: translate(10%, 5%) scale(90%);
-                transform-origin: center;
+				fill: none;
+				transform: translate(10%, 5%) scale(90%);
+				transform-origin: center;
 
-                filter: drop-shadow(0 0 32px rgba(25, 91, 42, 0.5));
-            }
+				filter: drop-shadow(0 0 32px rgba(25, 91, 42, 0.5));
+			}
 
-            &.playSuccess {
-                animation-name: PopInCircle;
-                animation-duration: 2000ms;
-                animation-timing-function: ease-in-out;
-                animation-fill-mode: forwards;
+			&.playSuccess {
+				animation-name: PopInCircle;
+				animation-duration: 2000ms;
+				animation-timing-function: ease-in-out;
+				animation-fill-mode: forwards;
 
-                .checkmark {
-                    animation-name: Check;
-                    animation-delay: 100ms;
-                    animation-duration: 1900ms;
-                    animation-timing-function: ease-in-out;
-                    animation-fill-mode: forwards;
-                }
-            }
+				.checkmark {
+					animation-name: Check;
+					animation-delay: 100ms;
+					animation-duration: 1900ms;
+					animation-timing-function: ease-in-out;
+					animation-fill-mode: forwards;
+				}
+			}
 
-            
+			@keyframes PopInCircle {
+				15% {
+					clip-path: circle(22%);
+				}
+				50% {
+					clip-path: circle(18%);
+				}
+				80% {
+					clip-path: circle(18%);
+				}
+				100% {
+					clip-path: circle(0%);
+				}
+			}
 
-            @keyframes PopInCircle {
-                15% {
-                    clip-path: circle(22%);
-                }
-                50% {
-                    clip-path: circle(18%);
-                }
-                80% {
-                    clip-path: circle(18%);
+			@keyframes Check {
+				10% {
+					stroke-dashoffset: 700pt;
+				}
+				40% {
+					stroke-dashoffset: 0pt;
+				}
+				90% {
+					stroke-dashoffset: 0pt;
+				}
+				100% {
+					stroke-dashoffset: 700pt;
+				}
+			}
+		}
 
-                }
-                100% {
-                    clip-path: circle(0%);
-                }
-            }
+		label {
+			@include ScreenReaderText;
+		}
 
-            @keyframes Check {
-                10% {
-                    stroke-dashoffset: 700pt;
-                }
-                40% {
-                    stroke-dashoffset: 0pt;
-                }
-                90% {
-                    stroke-dashoffset: 0pt;
-                }
-                100% {
-                    stroke-dashoffset: 700pt;
-                }
-            }
-        }
+		label,
+		input,
+		textarea,
+		span {
+			display: block;
+			font-size: 1.2rem;
 
-        label {
-            @include ScreenReaderText;
-        }
+			font-family: Kanit, sans-serif;
+			font-weight: 200;
+		}
 
-        label, input, textarea, span {
-            display: block;
-            font-size: 1.2rem;
+		input[type='text'],
+		input[type='email'] {
+			border: 1px solid var(--formFieldBorder);
+			background-color: var(--formField);
+			outline: none;
+			padding: 12px;
+			border-radius: 12px;
 
-            font-family: Kanit, sans-serif;
-            font-weight: 200;
-        }
+			width: 100%;
 
-        input[type=text], input[type=email] {
-            border: 1px solid var(--formFieldBorder);
-            background-color: var(--formField);
-            outline: none;
-            padding: 12px;
-            border-radius: 12px;
-            
-            width: 100%;
+			&:focus {
+				border-color: var(--formFieldSelectBorder);
+			}
+		}
 
-            &:focus {
-                border-color: var(--formFieldSelectBorder);
-            }
-        }
+		// #firstName {
+		//     transform: translateX(calc((1 - var(--visibility)) * -5%)) scale(calc(100% + (1 - var(--visibility)) * 20%));
+		// }
 
-        // #firstName {
-        //     transform: translateX(calc((1 - var(--visibility)) * -5%)) scale(calc(100% + (1 - var(--visibility)) * 20%));
-        // }
+		// #lastName {
+		//     transform: translateX(calc((1 - var(--visibility))* 5%)) scale(calc(100% + (1 - var(--visibility)) * 15%));
+		// }
 
-        // #lastName {
-        //     transform: translateX(calc((1 - var(--visibility))* 5%)) scale(calc(100% + (1 - var(--visibility)) * 15%));
-        // }
+		// #email {
+		//     transform: translateY(calc((1 - var(--visibility))* 50px)) scale(calc(100% + (1 - var(--visibility)) * 10%));
+		// }
 
-        // #email {
-        //     transform: translateY(calc((1 - var(--visibility))* 50px)) scale(calc(100% + (1 - var(--visibility)) * 10%));
-        // }
+		// .textArea-wrapper {
+		//     transform: translateY(calc((1 - var(--visibility))* 50px)) scale(calc(100% + (1 - var(--visibility)) * 5%));
+		// }
 
-        // .textArea-wrapper {
-        //     transform: translateY(calc((1 - var(--visibility))* 50px)) scale(calc(100% + (1 - var(--visibility)) * 5%));
-        // }
+		.submit-wrapper {
+			align-self: flex-end;
 
-        .submit-wrapper {
-            align-self: flex-end;
+			&.sent {
+				img {
+					animation-name: SendIcon;
+					animation-duration: 1500ms;
+					animation-fill-mode: forwards;
+				}
+			}
 
-            &.sent {
-                img {
-                    animation-name: SendIcon;
-                    animation-duration: 1500ms;
-                    animation-fill-mode: forwards;
-                }
-            } 
+			span {
+				font-weight: 400;
+			}
 
-            span {
-                font-weight: 400;
-            }
+			img {
+				height: 20pt;
+				translate: 10% 0;
+			}
 
-            img {
-                height: 20pt;
-                translate: 10% 0;
-            }
+			@keyframes SendIcon {
+				25% {
+					scale: 70% 120%;
+					translate: -25% 0;
+				}
+				32% {
+					scale: 150% 100%;
+				}
 
-            @keyframes SendIcon {
-                25% {
-                    scale: 70% 120%;
-                    translate: -25% 0;
-                }
-                32% {
-                    scale: 150% 100%;
-                }
+				90% {
+					translate: 50vw 0;
+					opacity: 1;
+				}
+				91% {
+					translate: 0 0;
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+					translate: 10% 0;
+				}
+			}
+		}
 
+		.vertical {
+			width: 100%;
+		}
 
-                90% {
-                    translate: 50vw 0;
-                    opacity: 1;
-                }
-                91% {
-                    translate: 0 0;
-                    opacity: 0;
-                }
-                100% {
-                    opacity: 1;
-                    translate: 10% 0;
-                }
-            }
-        }
+		.horizontal {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
 
-        .vertical {
-            width: 100%;
-        }
-
-        .horizontal {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-
-            gap: 1em;
-            width: 100%;
-        }
-    }
+			gap: 1em;
+			width: 100%;
+		}
+	}
 }
-
-
 
 @media (prefers-color-scheme: light) {
 	.contact-wrapper {
-        .contact-form {
-            .submit-wrapper {
-                img {
-                    filter: brightness(5%);
-                }
-            }
-        }
-    }
+		.contact-form {
+			.submit-wrapper {
+				img {
+					filter: brightness(5%);
+				}
+			}
+		}
+	}
 
-    .email {
-        .copy-indicator {
-            img {
-                filter: brightness(5%);
-            }
-        }
+	.email {
+		.copy-indicator {
+			img {
+				filter: brightness(5%);
+			}
+		}
 
-        &:hover {
-            .copy-indicator {
-                img {
-                    opacity: 1;
-                }
+		&:hover {
+			.copy-indicator {
+				img {
+					opacity: 1;
+				}
 
-                #active {
-                    opacity: 1;
-                }
-            }
-        }
-    }
+				#active {
+					opacity: 1;
+				}
+			}
+		}
+	}
 }
 
 @media only screen and (max-width: $mobileScreenWidth) {
 	.contact-wrapper {
-        gap: 12px;
-        .email {
-            h1 {
-                font-size: 1.8rem;
-                text-decoration: underline;
-            }
-    
-            .copy-indicator {
-                position: absolute;
-                right: 0;
-                transform: translate(calc(100% + 4px), 0%);
-    
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-    
-                span {
-                    opacity: 0;
-                    transition: opacity 150ms ease-in-out;
-                }
-    
-                img {
-                    opacity: 0.7;
-                    width: 12pt;
-                    @include NoSelect;
-                }
-            }
-    
-            &:hover {
-                .copy-indicator {
-                    img {
-                        opacity: 0.7;
-                    }
-                }
-            }
-        }
-    }
+		gap: 12px;
+		.email {
+			h1 {
+				font-size: 1.8rem;
+				text-decoration: underline;
+			}
+
+			.copy-indicator {
+				position: absolute;
+				right: 0;
+				transform: translate(calc(100% + 4px), 0%);
+
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+
+				span {
+					opacity: 0;
+					transition: opacity 150ms ease-in-out;
+				}
+
+				img {
+					opacity: 0.7;
+					width: 12pt;
+					@include NoSelect;
+				}
+			}
+
+			&:hover {
+				.copy-indicator {
+					img {
+						opacity: 0.7;
+					}
+				}
+			}
+		}
+	}
 }

@@ -1,108 +1,108 @@
+/** @format */
+
 @import './GlobalVariables.scss';
 
-$translateDelay: calc((var(--navbarMenuOpenSpeed)/5));
+$translateDelay: calc((var(--navbarMenuOpenSpeed) / 5));
 $translateSpeed: calc(var(--navbarMenuOpenSpeed) - $translateDelay);
 $vSpeed: $translateSpeed;
 $rDelay: $translateSpeed;
 $rSpeed: 200ms;
 
 .hamburgerButtonContainer {
-    display: none;
-    z-index: 20;
-    position: fixed;
+	display: none;
+	z-index: 20;
+	position: fixed;
 
-    top: 0;
-    right: 0;
-    padding: 8px;
+	top: 0;
+	right: 0;
+	padding: 8px;
 
-    width: var(--navbarMenuIconSize);
-    height: var(--navbarMenuIconSize);
+	width: var(--navbarMenuIconSize);
+	height: var(--navbarMenuIconSize);
 
-    cursor: pointer;
-    box-sizing: content-box;
+	cursor: pointer;
+	box-sizing: content-box;
 
-    background: transparent;
+	background: transparent;
 
-    border: none;
-    border-radius: 8px;
+	border: none;
+	border-radius: 8px;
 
-    transition: right var(--navbarMenuOpenSpeed) ease-in-out 0ms, backdrop-filter 250ms ease-in-out var(--navbarMenuOpenSpeed);
+	transition: right var(--navbarMenuOpenSpeed) ease-in-out 0ms,
+		backdrop-filter 250ms ease-in-out var(--navbarMenuOpenSpeed);
 
-    .buttonArea {
-        width: 100%;
-        height: 100%;
+	.buttonArea {
+		width: 100%;
+		height: 100%;
 
-        pointer-events: none;
+		pointer-events: none;
 
-        .line {
-            transform-origin: center;
+		.line {
+			transform-origin: center;
 
-            &.bottom {
-                transition:
-                    y $vSpeed $rSpeed,
-                    transform $rSpeed ease-in-out 0ms;
-            }
+			&.bottom {
+				transition: y $vSpeed $rSpeed, transform $rSpeed ease-in-out 0ms;
+			}
 
-            &.middle {
-                transition: opacity 0ms $vSpeed;
-            }
+			&.middle {
+				transition: opacity 0ms $vSpeed;
+			}
 
-            &.top {
-                transition:
-                    y $vSpeed $rSpeed,
-                    transform $rSpeed ease-in-out 0ms;
-            }
-        }
-    }
+			&.top {
+				transition: y $vSpeed $rSpeed, transform $rSpeed ease-in-out 0ms;
+			}
+		}
+	}
 
-    &#open {
-        transition: right $translateSpeed ease-in-out $translateDelay, backdrop-filter $translateDelay ease-in-out;
-        right: calc(var(--navbarOpenWidth) - (var(--navbarMenuIconSize) + 16px));
+	&#open {
+		transition: right $translateSpeed ease-in-out $translateDelay,
+			backdrop-filter $translateDelay ease-in-out;
+		right: calc(
+			var(--navbarOpenWidth) - (var(--navbarMenuIconSize) + 16px)
+		);
 
+		.buttonArea {
+			.top {
+				y: 40px;
+				transform: rotate(45deg);
+				transition: y $vSpeed, transform $rSpeed ease-in-out $rDelay;
+			}
 
-        .buttonArea {
-            .top {
-                y: 40px;
-                transform: rotate(45deg);
-                transition: y $vSpeed, transform $rSpeed ease-in-out $rDelay;
-            }
+			.middle {
+				opacity: 0;
+			}
 
-            .middle {
-                opacity: 0;
-            }
-
-            .bottom {
-                y: 40px;
-                transform: rotate(-45deg);
-                transition: y $vSpeed, transform $rSpeed ease-in-out $rDelay;
-            }
-        }
-    }
+			.bottom {
+				y: 40px;
+				transform: rotate(-45deg);
+				transition: y $vSpeed, transform $rSpeed ease-in-out $rDelay;
+			}
+		}
+	}
 }
 
-@media(prefers-color-scheme: light) {
-    .hamburgerButtonContainer {
-        backdrop-filter: blur(8px);
+@media (prefers-color-scheme: light) {
+	.hamburgerButtonContainer {
+		backdrop-filter: blur(8px);
 
-        &#open {
-            backdrop-filter: blur(0);
-        }
-    }
+		&#open {
+			backdrop-filter: blur(0);
+		}
+	}
 }
 
-@media(prefers-color-scheme: dark) {
-    .hamburgerButtonContainer {
-        backdrop-filter: blur(8px) brightness(50%);
+@media (prefers-color-scheme: dark) {
+	.hamburgerButtonContainer {
+		backdrop-filter: blur(8px) brightness(50%);
 
-
-        &#open {
-            backdrop-filter: blur(0) brightness(100%);
-        }
-    }
+		&#open {
+			backdrop-filter: blur(0) brightness(100%);
+		}
+	}
 }
 
 @media only screen and (max-width: var(--mobileScreenWidth)) {
-     .hamburgerButtonContainer {
-        display: block;
-     }
+	.hamburgerButtonContainer {
+		display: block;
+	}
 }

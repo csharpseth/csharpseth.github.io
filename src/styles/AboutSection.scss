@@ -1,5 +1,7 @@
-@import "./GlobalVariables.scss";
-@import "./GlobalAnimations.scss";
+/** @format */
+
+@import './GlobalVariables.scss';
+@import './GlobalAnimations.scss';
 
 $mobileScreenWidth: 800px;
 
@@ -10,421 +12,499 @@ $heroAnimationDelay: $heroTitleAnimationDuration - 500ms;
 $heroAnimationDuration: $heroTitleAnimationDuration;
 
 * {
-    transition: none;
+	transition: none;
 }
 
 .profile {
+	&.play {
+		h1 {
+			animation-duration: $heroTitleAnimationDuration;
+		}
 
-    &.play {
-        h1 {
-            animation-duration: $heroTitleAnimationDuration;
-        }
+		.profile__img {
+			animation-duration: 500ms;
+			animation-delay: $heroAnimationDelay;
+		}
 
-        .profile__img {
-            animation-duration: 500ms;
-            animation-delay: $heroAnimationDelay;
-        }
+		.bio {
+			animation-delay: $heroAnimationDelay;
+			animation-duration: 1000ms;
+		}
 
-        .bio {
-            animation-delay: $heroAnimationDelay;
-            animation-duration: 1000ms;
-        }
+		.info {
+			b {
+				animation-name: BrightIn;
+				animation-duration: 400ms;
+				animation-timing-function: ease-in-out;
+				animation-fill-mode: forwards;
 
-        .info {
-            b {
-                animation-name: BrightIn;
-                animation-duration: 400ms;
-                animation-timing-function: ease-in-out;
-                animation-fill-mode: forwards;
-    
-                @for $i from 1 through 20 {
-                    &:nth-child(#{$i}) {
-                        animation-delay: #{$heroAnimationDelay + 220ms + ($highlightedDelay * $i)};
-                    }
-                }
-            }
-        }
+				@for $i from 1 through 20 {
+					&:nth-child(#{$i}) {
+						animation-delay: #{$heroAnimationDelay +
+							220ms +
+							($highlightedDelay * $i)};
+					}
+				}
+			}
+		}
 
-        .links {
-            .link {
-                &:nth-child(1) {
-                    animation-delay: calc($heroAnimationDelay + 400ms);
-                }
-                &:nth-child(2) {
-                    animation-delay: calc($heroAnimationDelay + 200ms);
-                }
-                &:nth-child(3) {
-                    animation-delay: calc($heroAnimationDelay + 300ms);
-                }
-                &:nth-child(4) {
-                    animation-delay: calc($heroAnimationDelay + 500ms);
-                }
-            }
-        }
-    }
+		.links {
+			.link {
+				&:nth-child(1) {
+					animation-delay: calc($heroAnimationDelay + 400ms);
+				}
+				&:nth-child(2) {
+					animation-delay: calc($heroAnimationDelay + 200ms);
+				}
+				&:nth-child(3) {
+					animation-delay: calc($heroAnimationDelay + 300ms);
+				}
+				&:nth-child(4) {
+					animation-delay: calc($heroAnimationDelay + 500ms);
+				}
+			}
+		}
+	}
 
-    h1 {
-        color: #efefef;
-        position: absolute;
-        left: 50%;
-        top: 50%;
+	h1 {
+		color: #efefef;
+		position: absolute;
+		left: 50%;
+		top: 50%;
 
-        height: max-content;
-        font-size: 3rem;
+		height: max-content;
+		font-size: 3rem;
 
-        mix-blend-mode: difference;
+		mix-blend-mode: difference;
 
-        animation-name: TitleIn;
-        animation-delay: 0;
-        animation-duration: 0;
-        animation-timing-function: cubic-bezier(.42,0,.35,1.41);
-        animation-fill-mode: forwards;
-    }
+		animation-name: TitleIn;
+		animation-delay: 0;
+		animation-duration: 0;
+		animation-timing-function: cubic-bezier(0.42, 0, 0.35, 1.41);
+		animation-fill-mode: forwards;
+	}
 
-    .profile__img {
-        opacity: 0;
+	.profile__img {
+		opacity: 0;
 
-        animation-name: SlideIn;
-        animation-delay: 0;
-        animation-duration: 0;
-        animation-timing-function: ease-in-out;
-        animation-fill-mode: forwards;
-    }
+		animation-name: SlideIn;
+		animation-delay: 0;
+		animation-duration: 0;
+		animation-timing-function: ease-in-out;
+		animation-fill-mode: forwards;
+	}
+	.profile-media {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 
-    .bio {
-        animation-name: BodyIn;
-        animation-delay: 0;
-        animation-duration: 0;
-        animation-timing-function: ease-in-out;
-        animation-fill-mode: forwards;
+		width: 35%;
 
-        .hook {
-            font-size: 1.4rem;
-            font-weight: 400;
-        }
+		gap: 8px;
 
-        p {
-            text-align: justify;
-        }
+		.profile__img {
+			width: 100%;
+		}
 
-        .tool-list {
-            position: relative;
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-end;
-            align-items: center;
+		.name {
+			animation-name: FadeIn;
+			animation-delay: $heroAnimationDelay;
+			animation-duration: 600ms;
+			animation-timing-function: ease-in-out;
+			animation-fill-mode: forwards;
 
-            gap: 8px;
+			opacity: 0;
+		}
 
+		.location {
+			animation-name: FadeIn;
+			animation-delay: calc($heroAnimationDelay + 200ms);
+			animation-duration: 600ms;
+			animation-timing-function: ease-in-out;
+			animation-fill-mode: forwards;
 
-            .tool {
-                list-style: none;
-                position: relative;
-                width: 35px;
-                height: 35px;
-                img {
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
 
-                }
-                
-                @for $i from 1 to 10 {
-                    &:nth-child(#{$i}) {
-                        .white {
-                            animation-delay: calc(1500ms + ($i * 300ms));
-                        }
+			gap: 8px;
 
-                        .color {
-                            animation-delay: calc(1500ms + ($i * 300ms));
-                        }
-                    }
-                }
+			opacity: 0;
 
-                .white {
-                    opacity: 1;
-                    transition: opacity 150ms ease-in-out;
-                    animation-name: WhiteIconIn;
-                    animation-duration: 900ms;
-                    animation-timing-function: ease-in-out;
-                }
+			font-weight: 300;
 
-                .color {
-                    opacity: 0;
-                    transition: opacity 150ms ease-in-out;
-                    animation-name: ColorIconIn;
-                    animation-duration: 900ms;
-                    animation-timing-function: ease-in-out;
-                }
+			img {
+				height: 1rem;
+			}
+		}
+	}
 
-                &:hover {
-                    .white {
-                        opacity: 0;
-                    }
-    
-                    .color {
-                        opacity: 1;
-                    }
+	.bio {
+		@include NoSelect;
 
-                    .title {
-                        opacity: 1;
-                    }
-                }
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
 
-                .title {
-                    position: absolute;
-                    text-align: center;
-                    bottom: 0;
-                    left: 50%;
-                    transform: translate(-50%, 100%);
-                    font-size: 0.8rem;
-                    opacity: 0;
-                    transition: opacity 150ms ease-in-out;
-                }
-            }
-        }
-    }
+		gap: 1em;
 
-    .info {
-        b {
-            animation-name: BrightIn;
-            animation-duration: 300ms;
-            animation-timing-function: ease-in-out;
-            animation-fill-mode: forwards;
+		animation-name: BodyIn;
+		animation-delay: 0;
+		animation-duration: 0;
+		animation-timing-function: ease-in-out;
+		animation-fill-mode: forwards;
 
-            @for $i from 1 through 20 {
-                &:nth-child(#{$i}) {
-                    animation-delay: #{($highlightedDelay * $i)};
-                }
-            }
-        }
-    }
+		.hook {
+			--fontSize: clamp(1.6rem, 5vw, 3rem);
 
-    .links {
-        position: absolute;
-        bottom: 2vh;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
+			line-height: var(--fontSize);
+			font-size: var(--fontSize);
+			font-weight: 400;
 
-        justify-content: center;
-        align-items: center;
+			b {
+				font-weight: 500;
+			}
+		}
 
-        gap: 2em;
-    
-        .link {
-            width: 40pt;
-            height: 40pt;
-            opacity: 0;
-            transform: translateY(100%);
-    
-            animation-name: PopInFromBottom;
-            animation-duration: 600ms;
-            animation-timing-function: ease-in-out;
-            animation-fill-mode: forwards;
-            
-            &:nth-child(1) {
-                animation-delay: 400ms;
-            }
-            &:nth-child(2) {
-                animation-delay: 200ms;
-            }
-            &:nth-child(3) {
-                animation-delay: 300ms;
-            }
-            &:nth-child(4) {
-                animation-delay: 500ms;
-            }
-    
-            .icon {
-                width: 100%;
-                height: 100%;
-            }
-        }
-    }
+		p {
+			text-align: justify;
+		}
+
+		.tool-list {
+			position: relative;
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+			align-items: center;
+
+			gap: 8px;
+
+			.tool {
+				list-style: none;
+				position: relative;
+				width: 35px;
+				height: 35px;
+				img {
+					position: absolute;
+					width: 100%;
+					height: 100%;
+				}
+
+				@for $i from 1 to 10 {
+					&:nth-child(#{$i}) {
+						.white {
+							animation-delay: calc(1500ms + ($i * 300ms));
+						}
+
+						.color {
+							animation-delay: calc(1500ms + ($i * 300ms));
+						}
+					}
+				}
+
+				.white {
+					opacity: 1;
+					transition: opacity 150ms ease-in-out;
+					animation-name: WhiteIconIn;
+					animation-duration: 900ms;
+					animation-timing-function: ease-in-out;
+				}
+
+				.color {
+					opacity: 0;
+					transition: opacity 150ms ease-in-out;
+					animation-name: ColorIconIn;
+					animation-duration: 900ms;
+					animation-timing-function: ease-in-out;
+				}
+
+				&:hover {
+					.white {
+						opacity: 0;
+					}
+
+					.color {
+						opacity: 1;
+					}
+
+					.title {
+						opacity: 1;
+					}
+				}
+
+				.title {
+					position: absolute;
+					text-align: center;
+					bottom: 0;
+					left: 50%;
+					transform: translate(-50%, 100%);
+					font-size: 0.8rem;
+					opacity: 0;
+					transition: opacity 150ms ease-in-out;
+				}
+			}
+		}
+	}
+
+	.info {
+		b {
+			animation-name: BrightIn;
+			animation-duration: 300ms;
+			animation-timing-function: ease-in-out;
+			animation-fill-mode: forwards;
+
+			@for $i from 1 through 20 {
+				&:nth-child(#{$i}) {
+					animation-delay: #{($highlightedDelay * $i)};
+				}
+			}
+		}
+	}
+
+	.links {
+		position: absolute;
+		bottom: 2vh;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+
+		justify-content: center;
+		align-items: center;
+
+		gap: 2em;
+
+		.link {
+			width: 40pt;
+			height: 40pt;
+			opacity: 0;
+			transform: translateY(100%);
+
+			animation-name: PopInFromBottom;
+			animation-duration: 600ms;
+			animation-timing-function: ease-in-out;
+			animation-fill-mode: forwards;
+
+			&:nth-child(1) {
+				animation-delay: 400ms;
+			}
+			&:nth-child(2) {
+				animation-delay: 200ms;
+			}
+			&:nth-child(3) {
+				animation-delay: 300ms;
+			}
+			&:nth-child(4) {
+				animation-delay: 500ms;
+			}
+
+			.icon {
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+}
+
+@keyframes FadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 80%;
+	}
 }
 
 @keyframes WhiteIconIn {
-    0% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
-    55% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	55% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 @keyframes ColorIconIn {
-    0% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-    55% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	55% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
 }
 
 @keyframes BrightIn {
-    100% {
-        color: var(--fontColorHighlighted);
-    }
+	100% {
+		color: var(--fontColorHighlighted);
+	}
 }
 
 @keyframes SlideIn {
-    100% {
-        clip-path: circle(50%);
-        transform: translateX(0);
-        opacity: 1;
-    }
+	100% {
+		clip-path: circle(50%);
+		transform: translateX(0);
+		opacity: 1;
+	}
 }
 
 @keyframes BodyIn {
-    100% {
-        clip-path: circle(150%);
-    }
+	100% {
+		clip-path: circle(150%);
+	}
 }
 
 @keyframes TitleIn {
-    0% {
-        transform: translate(-50%, -50%) scale(200%);
-    }
-    50% {
-        transform: translate(-50%, -50%) scale(200%);
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0%);
-    }
+	0% {
+		transform: translate(-50%, -50%) scale(200%);
+	}
+	50% {
+		transform: translate(-50%, -50%) scale(200%);
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+		transform: translate(-50%, -50%) scale(0%);
+	}
 }
 
-@media(prefers-color-scheme: light) {
-    .links {
-        .link {
-            filter: brightness(5%);
-        }
-    }
+@media (prefers-color-scheme: light) {
+	.links {
+		.link {
+			filter: brightness(5%);
+		}
+	}
 }
 
-@media(prefers-color-scheme: dark) {
-    .social-links {
-        a {
-            
-        }
-    }
+@media (prefers-color-scheme: dark) {
+	.social-links {
+		a {
+		}
+	}
 }
 
 @media only screen and (min-width: $mobileScreenWidth) {
-    .profile {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-    
-        height: 30vh;
-    
-        gap: 2em; 
-    
-        .bio {
-            clip-path: circle(0% at 0% 50%);
-        }
+	.profile {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
 
-        p {
-            text-align: left;
-            margin-top: 12px;
-            margin-bottom: 12px;
-            font-size: 24px;
-            font-weight: 200;
-            line-height: 32px;
-        }
-    
-        .profile__img {
-            height: 100%;
-            clip-path: circle(0% at 50% 50%);
-    
-            transform: translateX(-5%);
-        }
+		height: 30vh;
 
-        
-        .links {
-            .link {
-                .icon {
-                    @include LinkHover;
-                }
-            }
-        }
-    
-    }
-    
+		gap: 2em;
+
+		.bio {
+			clip-path: circle(0% at 0% 50%);
+		}
+
+		p {
+			text-align: left;
+			margin-top: 12px;
+			margin-bottom: 12px;
+			font-size: 24px;
+			font-weight: 200;
+			line-height: 32px;
+		}
+
+		.profile__img {
+			height: 100%;
+			clip-path: circle(0% at 50% 50%);
+
+			transform: translateX(-5%);
+		}
+
+		.links {
+			.link {
+				.icon {
+					@include LinkHover;
+				}
+			}
+		}
+	}
 }
 
 @media only screen and (max-width: $mobileScreenWidth) {
-    * {
-        transition: none;
-    }
+	* {
+		transition: none;
+	}
 
-    .profile {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+	.profile {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 
-        width: 100%;
+		width: 100%;
 
-        
+		.bio {
+			clip-path: circle(0% at 50% 0%);
+			.tool-list {
+				display: none;
+			}
+			.hook {
+				margin-top: 16px;
+				text-align: center;
+			}
+		}
 
-        .bio {
-            clip-path: circle(0% at 50% 0%);
-            .tool-list {
-                display: none;
-            }
-            .hook {
-                margin-top: 16px;
-                text-align: center;
-            }
-        }
-        .profile__img {
-            transform: translateY(-10%);
-            opacity: 0;
-            width: 60%;
-            clip-path: circle(0% at 50% 50%);
-        }
-        .info {
-            width: 100%;
+		.profile-media {
+			width: 80%;
+		}
 
-            p {
-                text-align: center;
-                margin: 16px;
-            }
+		.profile__img {
+			transform: translateY(-10%);
+			opacity: 0;
+			clip-path: circle(0% at 50% 50%);
+		}
+		.info {
+			width: 100%;
 
-            h1 {
-                position: absolute;
-                top: 50%;
-                left: 50%;
+			p {
+				text-align: center;
+				margin: 16px;
+			}
 
-                transform: translate(-50%, -50%);
+			h1 {
+				position: absolute;
+				top: 50%;
+				left: 50%;
 
-                font-size: 1rem;
-            }
+				transform: translate(-50%, -50%);
 
-        }
+				font-size: 1.6rem;
+			}
+		}
 
-        .links {
-            gap: 8px;
+		.links {
+			gap: 8px;
 
-            .link {
-                width: 35pt;
-                height: 35pt;
-            }
-        }
-    }
+			.link {
+				width: 35pt;
+				height: 35pt;
+			}
+		}
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	.profile-media {
+		.location {
+			img {
+				filter: brightness(15%);
+			}
+		}
+	}
 }

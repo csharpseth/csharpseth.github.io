@@ -1,123 +1,157 @@
+/** @format */
+
 import { useEffect, useRef, useState } from 'react'
 import { useInView } from '../../hooks/VisibilityHooks'
 import '../../styles/Carousel.scss'
 
 export default function CarouselComponent(props: any) {
+	const carouselRef = useRef<HTMLDivElement>(null)
+	const elementsRef = useRef<HTMLDivElement[]>(
+		new Array<HTMLDivElement>(props.children?.length)
+	)
 
-    const carouselRef = useRef<HTMLDivElement>(null)
-    const elementsRef = useRef<HTMLDivElement[]>(new Array<HTMLDivElement>(props.children?.length))
+	let currentPosition = 0
+	let automatedMove = useRef<boolean>(false)
 
-    let currentPosition = 0
-    let automatedMove = useRef<boolean>(false)
+	const [activeIndex, setActiveIndex] = useState<number>(0)
+	const inView = useInView(carouselRef, 0.2)
 
-    const [activeIndex, setActiveIndex] = useState<number>(0)
-    const inView = useInView(carouselRef, 0.2)
+	function onScroll() {
+		if (automatedMove.current) return
 
-    function onScroll() {
-        if(automatedMove.current) return
+		currentPosition = carouselRef.current
+			? carouselRef.current.scrollLeft
+			: 0
+		for (let i = 0; i < elementsRef.current.length; i++) {
+			if (
+				Math.abs(elementsRef.current[i].offsetLeft - currentPosition) <=
+				elementsRef.current[i].offsetWidth / 4
+			) {
+				setActiveIndex(i)
+				break
+			}
+		}
+	}
 
-        currentPosition = carouselRef.current ? carouselRef.current.scrollLeft : 0
-        for(let i = 0; i < elementsRef.current.length; i++) {
-            if(Math.abs(elementsRef.current[i].offsetLeft - currentPosition) <= (elementsRef.current[i].offsetWidth / 4))
-            {
-                setActiveIndex(i)
-                break
-            }
-        }
-    }
+	function AdjustActiveIndex(amount: number) {
+		automatedMove.current = true
+		setTimeout(() => {
+			automatedMove.current = false
+		}, 1500)
+		let newVal = activeIndex + amount
+		if (newVal < 0) newVal = 0
+		if (newVal >= elementsRef.current.length)
+			newVal = elementsRef.current.length - 1
 
-    function AdjustActiveIndex(amount: number) {
-        automatedMove.current = true
-        setTimeout(() => { automatedMove.current = false }, 1500)
-        let newVal = activeIndex + amount
-        if(newVal < 0) newVal = 0
-        if(newVal >= elementsRef.current.length) newVal=elementsRef.current.length - 1
+		setActiveIndex(newVal)
+	}
 
-        setActiveIndex(newVal)
-    }
-    
-    function Left() {
-        if(!carouselRef.current || !elementsRef.current) return
+	function Left() {
+		if (!carouselRef.current || !elementsRef.current) return
 
-        const scrollWidth = Math.max(carouselRef.current?.scrollWidth, carouselRef.current?.offsetWidth)
-        
-        let position = elementsRef.current[activeIndex].offsetLeft - 24
-        if(position >= scrollWidth)
-            return
+		const scrollWidth = Math.max(
+			carouselRef.current?.scrollWidth,
+			carouselRef.current?.offsetWidth
+		)
 
-        AdjustActiveIndex(-1)
-        setActiveIndex(val => {
-            if(!carouselRef.current) return val
-            position = elementsRef.current[val].offsetLeft - 24
-            if(val === 0) {
-                position = 0
-            }
+		let position = elementsRef.current[activeIndex].offsetLeft - 24
+		if (position >= scrollWidth) return
 
-            carouselRef.current.scrollTo({
-                behavior: 'smooth',
-                left: position
-            })
-            return val
-        })
-    }
+		AdjustActiveIndex(-1)
+		setActiveIndex((val) => {
+			if (!carouselRef.current) return val
+			position = elementsRef.current[val].offsetLeft - 24
+			if (val === 0) {
+				position = 0
+			}
 
-    function Right() {
-        if(!carouselRef.current || !elementsRef.current) return
-        
-        const scrollWidth = Math.max(carouselRef.current?.scrollWidth, carouselRef.current?.offsetWidth)
-        
-        let position = elementsRef.current[activeIndex].offsetLeft - 24
-        if(position >= scrollWidth)
-            return
+			carouselRef.current.scrollTo({
+				behavior: 'smooth',
+				left: position,
+			})
+			return val
+		})
+	}
 
-        AdjustActiveIndex(1)
-        setActiveIndex(val => {
-            if(!carouselRef.current) return val
-            position = elementsRef.current[val].offsetLeft - 24
-            if(val === (elementsRef.current.length - 1)) {
-                position = carouselRef.current.scrollWidth
-            }
+	function Right() {
+		if (!carouselRef.current || !elementsRef.current) return
 
-            carouselRef.current.scrollTo({
-                behavior: 'smooth',
-                left: position
-            })
-            return val
-        })
-    }
+		const scrollWidth = Math.max(
+			carouselRef.current?.scrollWidth,
+			carouselRef.current?.offsetWidth
+		)
 
-    useEffect(() => {
-        carouselRef.current?.setAttribute("style", props.style)
-    }, [props.style])
+		let position = elementsRef.current[activeIndex].offsetLeft - 24
+		if (position >= scrollWidth) return
 
-    return (
-        <div className="carousel" ref={carouselRef} onScroll={onScroll}>
-            {props.canScroll ?
-            <>
-            {activeIndex > 0 ?
-            <button id="left" onClick={() => Left()}><img src='/left-arrow.png' alt='left arrow' width="485" height="926" /></button>
-            :''}
+		AdjustActiveIndex(1)
+		setActiveIndex((val) => {
+			if (!carouselRef.current) return val
+			position = elementsRef.current[val].offsetLeft - 24
+			if (val === elementsRef.current.length - 1) {
+				position = carouselRef.current.scrollWidth
+			}
 
-            {activeIndex < (elementsRef.current.length - 1) ?
-            <button id="right" onClick={() => Right()}><img src='/left-arrow.png' alt='right arrow' width="485" height="926" /></button>
-            :''}
-            </>
-            :''}
-            {props.children?.map((child: any, index: number) => {
-                return (
-                    <div
-                        style={props.elementStyle}
-                        className={inView ? "element in-view":"element"}
-                        id={activeIndex === index ? "active":""}
-                        key={index}
-                        ref={ref => {
-                            if(ref) elementsRef.current[index] = ref
-                        }}
-                    >
-                        {child}
-                    </div>
-                )
-            })}
-        </div>
-    )
+			carouselRef.current.scrollTo({
+				behavior: 'smooth',
+				left: position,
+			})
+			return val
+		})
+	}
+
+	useEffect(() => {
+		carouselRef.current?.setAttribute('style', props.style)
+	}, [props.style])
+
+	return (
+		<div className="carousel" ref={carouselRef} onScroll={onScroll}>
+			{props.canScroll ? (
+				<>
+					{activeIndex > 0 ? (
+						<button id="left" onClick={() => Left()}>
+							<img
+								src="/left-arrow.png"
+								alt="left arrow"
+								width="485"
+								height="926"
+							/>
+						</button>
+					) : (
+						''
+					)}
+
+					{activeIndex < elementsRef.current.length - 1 ? (
+						<button id="right" onClick={() => Right()}>
+							<img
+								src="/left-arrow.png"
+								alt="right arrow"
+								width="485"
+								height="926"
+							/>
+						</button>
+					) : (
+						''
+					)}
+				</>
+			) : (
+				''
+			)}
+			{props.children?.map((child: any, index: number) => {
+				return (
+					<div
+						style={props.elementStyle}
+						className={inView ? 'element in-view' : 'element'}
+						id={activeIndex === index ? 'active' : ''}
+						key={index}
+						ref={(ref) => {
+							if (ref) elementsRef.current[index] = ref
+						}}
+					>
+						{child}
+					</div>
+				)
+			})}
+		</div>
+	)
 }

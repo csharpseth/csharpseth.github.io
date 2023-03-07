@@ -1,49 +1,57 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { DisplayContext } from "../contexts/DisplayContext";
-import { Clamp } from "../MyMath";
+/** @format */
 
-export function useIntersect(ref: any):number {
-    const [amount, setAmount] = useState<number>(0)
-    const { container, scrollPercent, windowHeight, isMobile } = useContext(DisplayContext)
+import { useContext, useEffect, useRef, useState } from 'react'
+import { DisplayContext } from '../contexts/DisplayContext'
+import { Clamp } from '../MyMath'
 
-    useEffect(() => {
-        if(!ref.current || !container.current) return
+export function useIntersect(ref: any): number {
+	const [amount, setAmount] = useState<number>(0)
+	const { container, scrollPercent, windowHeight, isMobile } =
+		useContext(DisplayContext)
 
-        const c = container.current as HTMLDivElement
-        const scrollBottom = c.scrollTop + windowHeight
-        const offsetTop = ref.current.offsetTop - (windowHeight/2)
-        const height = ref.current.offsetHeight
+	useEffect(() => {
+		if (!ref.current || !container.current) return
 
-        let v = 0
-        if(isMobile) {
-            v = Clamp(scrollBottom-(offsetTop+(height/2)), 0, height) / height
-        } else {
-            v = Clamp(scrollBottom-(offsetTop+height), 0, height) / height
-        }
+		const c = container.current as HTMLDivElement
+		const scrollBottom = c.scrollTop + windowHeight
+		const offsetTop = ref.current.offsetTop - windowHeight / 2
+		const height = ref.current.offsetHeight
 
-        setAmount(v)
-    }, [scrollPercent, ref])
+		let v = 0
+		if (isMobile) {
+			v =
+				Clamp(scrollBottom - (offsetTop + height / 2), 0, height) /
+				height
+		} else {
+			v = Clamp(scrollBottom - (offsetTop + height), 0, height) / height
+		}
 
-    return amount
+		setAmount(v)
+	}, [scrollPercent, ref])
+
+	return amount
 }
 
-export function useInView(ref: any, threshold: number = 0.6):boolean {
-    const [onScreen, setOnScreen] = useState(false)
-    const observerRef = useRef<IntersectionObserver>()
+export function useInView(ref: any, threshold: number = 0.6): boolean {
+	const [onScreen, setOnScreen] = useState(false)
+	const observerRef = useRef<IntersectionObserver>()
 
-    useEffect(() => {
-        observerRef.current = new IntersectionObserver(([entry]) => {
-            setOnScreen(entry.isIntersecting)
-        }, { threshold })
-    }, [threshold])
+	useEffect(() => {
+		observerRef.current = new IntersectionObserver(
+			([entry]) => {
+				setOnScreen(entry.isIntersecting)
+			},
+			{ threshold }
+		)
+	}, [threshold])
 
-    useEffect(() => {
-        observerRef.current?.observe(ref.current)
-        
-        return () => {
-            observerRef.current?.disconnect()
-        }
-    }, [ref])
+	useEffect(() => {
+		observerRef.current?.observe(ref.current)
 
-    return onScreen
+		return () => {
+			observerRef.current?.disconnect()
+		}
+	}, [ref])
+
+	return onScreen
 }

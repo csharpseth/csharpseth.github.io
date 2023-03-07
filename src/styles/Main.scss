@@ -1,15 +1,16 @@
-@import "./GlobalVariables.scss";
-@import "./GlobalAnimations.scss";
+/** @format */
+
+@import './GlobalVariables.scss';
+@import './GlobalAnimations.scss';
 @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 $mobileScreenWidth: 800px;
 
 :root {
-
 	@media (prefers-color-scheme: dark) {
 		--fontColor: #eeeeee;
 		--fontColorFaint: #b1b1b1;
-		--backgroundFontColor: #AAAAAA;
+		--backgroundFontColor: #aaaaaa;
 		--backgroundColor: #0c0c0c;
 		--foregroundColor: #131313;
 		--primaryBorderColor: #2e2e2e;
@@ -17,19 +18,18 @@ $mobileScreenWidth: 800px;
 		--formField: var(--foregroundColor);
 		--formFieldBorder: var(--primaryBorderColor);
 
-
 		--navbarColor: #0c0c0caa;
 		--navbarHoverColor: #81818155;
 	}
-	
+
 	@media (prefers-color-scheme: light) {
 		--fontColor: #111111;
 		--fontColorFaint: #404040;
 		--backgroundFontColor: #777777;
-		--backgroundColor: #DDDDDD;
-		--foregroundColor: #EEEEEE;
-		--primaryBorderColor: #BBBBBB;
-		--dividerColor: #BBBBBB;
+		--backgroundColor: #dddddd;
+		--foregroundColor: #eeeeee;
+		--primaryBorderColor: #bbbbbb;
+		--dividerColor: #bbbbbb;
 		--formField: var(--foregroundColor);
 		--formFieldBorder: var(--primaryBorderColor);
 		--formFieldSelectBorder: var(--fontColor);
@@ -57,31 +57,28 @@ $mobileScreenWidth: 800px;
 	--navbarMenuOpenSpeed: 300ms;
 	--navbarMenuIconSize: 30pt;
 	--navbarOpenWidth: 50vw;
-	
+
 	--primaryBorderRadius: 12px;
 	--buttonBorderRadius: 8px;
-	
+
 	--fontColorHighlighted: #4488e7;
-	
+
 	--buttonColor: #4283df;
 	--buttonFontColor: var(--fontColorDark);
 	--buttonShadowColor: #1b509b;
-	
+
 	--accentColorBlue: #4283df;
 	--accentColorRed: #e12727;
-	--accentColorOrange: #EE7B30;
-	--accentColorGreen: #3BB273;
-	
+	--accentColorOrange: #ee7b30;
+	--accentColorGreen: #3bb273;
+
 	--buttonHoverColor: #396fba;
 	--buttonHoverShadowColor: #16407a;
-	
+
 	--darkShadow: rgba(0, 0, 0, 1);
 	--lightShadow: rgba(30, 30, 30, 0.4);
-	
-	--popBezierCurve: cubic-bezier(.64,.04,0,1.92);
 
-	
-
+	--popBezierCurve: cubic-bezier(0.64, 0.04, 0, 1.92);
 }
 
 * {
@@ -92,7 +89,6 @@ $mobileScreenWidth: 800px;
 }
 
 html {
-
 }
 
 img {
@@ -100,7 +96,8 @@ img {
 }
 
 a {
-	@include NoSelect;	
+	@include NoSelect;
+	color: var(--fontColor);
 }
 
 body {
@@ -113,8 +110,6 @@ body {
 	color: var(--fontColor);
 }
 
-
-
 p {
 	font-weight: 200;
 
@@ -123,10 +118,12 @@ p {
 	}
 }
 
-h1, h2 {
+h1,
+h2 {
 	font-weight: 600;
 }
-h3, h4 {
+h3,
+h4 {
 	font-weight: 500;
 }
 h5 {
@@ -134,7 +131,6 @@ h5 {
 }
 
 .container {
-	padding-top: var(--navbarHeight);
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -155,22 +151,23 @@ h5 {
 		@for $x from 1 through 10 {
 			&:nth-child(#{$x}) {
 				.path {
-					stroke: rgba(10*$x, 100*$x, 70*$x);
+					stroke: rgba(10 * $x, 100 * $x, 70 * $x);
 					stroke-linecap: round;
 					transition: 200ms;
-		
+
 					@for $i from 1 through 10 {
 						&:nth-child(#{$i}) {
-							stroke-width: calc((($i / 10) * 1 - ($x / 10)) * 150px);
+							stroke-width: calc(
+								(($i / 10) * 1 - ($x / 10)) * 150px
+							);
 							opacity: calc((1 - ($i / 10)) * 0.02);
-							r: calc(150px * $i)
+							r: calc(150px * $i);
 						}
 					}
 				}
 			}
 		}
-		
-	}	
+	}
 
 	.scroll-section {
 		display: flex;
@@ -185,9 +182,8 @@ h5 {
 		transition: opacity 250ms ease-in-out;
 
 		overflow: hidden;
-		
+
 		&.active {
-			
 		}
 
 		.content {
@@ -204,25 +200,26 @@ h5 {
 	}
 }
 
-
 @media only screen and (max-width: $mobileScreenWidth) {
 	:root {
 		font-size: 16px;
-        line-height: 24px;
+		line-height: 24px;
 	}
 
-	_::-webkit-full-page-media, _:future, :root .safari_only {
-	    padding-bottom: 55pt;
-    }
+	_::-webkit-full-page-media,
+	_:future,
+	:root .safari_only {
+		padding-bottom: 55pt;
+	}
 
 	.container {
 		overflow-y: scroll;
 		scroll-behavior: smooth;
-		
+
 		.scroll-section {
 			justify-content: flex-start;
 			padding: 8px;
-			margin-top: calc(var(--navbarHeight));
+			padding-top: 10vh;
 			.section-title {
 				font-size: 2.2rem;
 			}

@@ -1,227 +1,214 @@
+/** @format */
+
 @import './GlobalVariables.scss';
 @import './GlobalAnimations.scss';
-
 
 $navbarItemSpeed: 150ms;
 $navbarItemTransitionDelay: 60ms;
 
 .navbar-header {
-    position: absolute;
-    top: 0;
-    right: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
 
-    width: 100%;
-    height: var(--navbarHeight);
+	width: 100%;
+	height: var(--navbarHeight);
 
-    display: flex;
-    flex-direction: row;
+	display: flex;
+	flex-direction: row;
 
-    justify-content: center;
-    align-items: center;
+	justify-content: center;
+	align-items: center;
 
-    margin: 0;
-    padding: 8px;
-    gap: 16px;
+	margin: 0;
+	padding: 8px;
+	gap: 16px;
 
-    border-bottom: 1px solid var(--primaryBorderColor);
-    overflow: hidden;
+	border-bottom: 1px solid var(--primaryBorderColor);
+	overflow: hidden;
 
-    z-index: 10;
-    opacity: 0;
+	z-index: 10;
+	opacity: 0;
 
-    transition: opacity 200ms ease-in-out;
+	transition: opacity 200ms ease-in-out;
 
-    background-color: var(--foregroundColor);
+	background-color: var(--foregroundColor);
 
-    img {
-        position: absolute;
-        left: 12px;
-        height: 32px;
+	img {
+		position: absolute;
+		left: 12px;
+		height: 32px;
 
-        @include NoSelect;
+		@include NoSelect;
 
-        transform: translateY(-150%);
-        z-index: inherit;
+		transform: translateY(-150%);
+		z-index: inherit;
 
-        animation-name: DropInFromTop;
-        animation-duration: 300ms;
-        animation-timing-function: ease-in-out;
-        animation-fill-mode: forwards;
-    }
+		animation-name: DropInFromTop;
+		animation-duration: 300ms;
+		animation-timing-function: ease-in-out;
+		animation-fill-mode: forwards;
+	}
 
-    &.visible {
-        opacity: 1;
-        
-    }
+	&.visible {
+		opacity: 1;
+	}
 }
 
 .navbar {
-    position: fixed;
-    top: 0;
-    right: 50%;
-    transform: translateX(50%);
-    
-    height: var(--navbarHeight);
+	position: fixed;
+	top: 0;
+	right: 50%;
+	transform: translateX(50%);
 
-    display: flex;
-    flex-direction: row;
+	height: var(--navbarHeight);
 
-    justify-content: space-between;
-    align-items: center;
+	display: flex;
+	flex-direction: row;
 
-    margin: 0;
-    border: 1px solid transparent;
-    border-bottom-left-radius: var(--primaryBorderRadius);
-    border-bottom-right-radius: var(--primaryBorderRadius);
-    overflow: hidden;
-    transition:
-        background-color 100ms ease-in-out,
-        border-color 100ms ease-in-out,
-        height 150ms ease-in-out,
-        filter 200ms ease-in-out
-    ;
-    box-sizing: border-box;
-    padding: 4px;
-    backdrop-filter: brightness(100%) blur(0);
+	justify-content: space-between;
+	align-items: center;
 
-    filter: drop-shadow(0 0 4px transparent);
+	margin: 0;
+	border: 1px solid transparent;
+	border-bottom-left-radius: var(--primaryBorderRadius);
+	border-bottom-right-radius: var(--primaryBorderRadius);
+	overflow: hidden;
+	transition: background-color 100ms ease-in-out,
+		border-color 100ms ease-in-out, height 150ms ease-in-out,
+		filter 200ms ease-in-out;
+	box-sizing: border-box;
+	padding: 4px;
+	backdrop-filter: brightness(100%) blur(0);
 
-    z-index: 11;
+	filter: drop-shadow(0 0 4px transparent);
 
-    gap: 12px;
+	z-index: 11;
 
-    a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+	gap: 12px;
 
-        position: relative;
-        text-decoration: none;
-        padding: 8px;
-        padding-inline: 20px;
-        flex: 1;
+	a {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 
-        border-radius: var(--primaryBorderRadius);
-        overflow: hidden;
+		position: relative;
+		text-decoration: none;
+		padding: 8px;
+		padding-inline: 20px;
+		flex: 1;
 
-        font-size: 20px;
-        height: 100%;
+		border-radius: var(--primaryBorderRadius);
+		overflow: hidden;
 
-        color: var(--fontColor);
-        
-        @include NoSelect;
+		font-size: 20px;
+		height: 100%;
 
-        transition:
-            padding-inline 100ms ease-in-out,
-            margin 100ms ease-in-out,
-            gap 100ms ease-in-out
-        ;
+		color: var(--fontColor);
 
-        transform: translateY(-150%);
+		@include NoSelect;
 
-        animation-name: DropInFromTop;
-        animation-duration: 300ms;
-        animation-timing-function: ease-in-out;
-        animation-fill-mode: forwards;
+		transition: padding-inline 100ms ease-in-out, margin 100ms ease-in-out,
+			gap 100ms ease-in-out;
 
-        @for $i from 1 through 8 {
-            &:nth-child(#{$i}) {
-                animation-delay: calc($navbarItemTransitionDelay * $i);
-            }
-        }
+		transform: translateY(-150%);
 
+		animation-name: DropInFromTop;
+		animation-duration: 300ms;
+		animation-timing-function: ease-in-out;
+		animation-fill-mode: forwards;
 
-        span {
-            z-index: 1;
+		@for $i from 1 through 8 {
+			&:nth-child(#{$i}) {
+				animation-delay: calc($navbarItemTransitionDelay * $i);
+			}
+		}
 
-            transition: transform 250ms var(--popBezierCurve);
-        }
+		span {
+			z-index: 1;
 
-        &:hover, &:focus, &.active {
-            background-color: var(--navbarHoverColor);
-        }
-    }
+			transition: transform 250ms var(--popBezierCurve);
+		}
 
-    &.undocked {
-        background-color: var(--navbarColor);
-        backdrop-filter: blur(10px);
-        gap: 4px;
-        a {
-            padding-inline: 12px;
-        }
-    }
+		&:hover,
+		&:focus,
+		&.active {
+			background-color: var(--navbarHoverColor);
+		}
+	}
+
+	&.undocked {
+		background-color: var(--navbarColor);
+		backdrop-filter: blur(10px);
+		gap: 4px;
+		a {
+			padding-inline: 12px;
+		}
+	}
 }
 
 @media (prefers-color-scheme: dark) {
-    .navbar-header {
-        img {
-            filter: brightness(95%);
-        }
-    }
+	.navbar-header {
+		img {
+			filter: brightness(95%);
+		}
+	}
 }
 
 @media (prefers-color-scheme: light) {
-    .navbar-header {
-        img {
-            filter: brightness(15%);
-        }
-    }
+	.navbar-header {
+		img {
+			filter: brightness(15%);
+		}
+	}
 }
 
 @media only screen and (max-width: 850px) {
-    .navbar {
-        position: fixed;
-        top: 0;
-        right: 0;
-        transform: translateX(0);
+	.navbar {
+		position: fixed;
+		top: 0;
+		right: 0;
+		transform: translateX(0);
 
-        transition: 
-            background-color 100ms ease-in-out,
-            border-color 100ms ease-in-out,
-            height 150ms ease-in-out,
-            filter 200ms ease-in-out,
-            right 200ms ease-in-out,
-            transform 200ms ease-in-out
-        ;
+		transition: background-color 100ms ease-in-out,
+			border-color 100ms ease-in-out, height 150ms ease-in-out,
+			filter 200ms ease-in-out, right 200ms ease-in-out,
+			transform 200ms ease-in-out;
 
-        gap: 4px;
-        a {
-            padding-inline: 12px;
-        }
+		gap: 4px;
+		a {
+			padding-inline: 12px;
+		}
 
-        &.undocked {
-            right: 50%;
-            transform: translateX(50%);
-        }
-    }
+		&.undocked {
+			right: 50%;
+			transform: translateX(50%);
+		}
+	}
 }
 
 @media only screen and (max-width: 500px) {
-    .navbar-header {
-        img {
-            display: none;
-        }
-    }
+	.navbar-header {
+		img {
+			display: none;
+		}
+	}
 
-    .navbar {
-        position: fixed;
-        top: 0;
-        right: 50%;
-        transform: translateX(50%);
+	.navbar {
+		position: fixed;
+		top: 0;
+		right: 50%;
+		transform: translateX(50%);
 
-        transition: 
-            background-color 100ms ease-in-out,
-            border-color 100ms ease-in-out,
-            height 150ms ease-in-out,
-            filter 200ms ease-in-out,
-            right 200ms ease-in-out,
-            transform 200ms ease-in-out
-        ;
-        
-        gap: 4px;
+		transition: background-color 100ms ease-in-out,
+			border-color 100ms ease-in-out, height 150ms ease-in-out,
+			filter 200ms ease-in-out, right 200ms ease-in-out,
+			transform 200ms ease-in-out;
 
-        a {
-            padding-inline: 12px;
-        }
-    }
+		gap: 4px;
+
+		a {
+			padding-inline: 12px;
+		}
+	}
 }

@@ -1,58 +1,58 @@
-@import "./GlobalVariables.scss";
+/** @format */
+
+@import './GlobalVariables.scss';
 
 $laneWidth: 5vw;
 
 .background-scroll-effect {
-    position: absolute;
-    inset: 0;
+	position: absolute;
+	inset: 0;
 
-    z-index: 0;
+	z-index: 0;
 
-    --scrollPercent: 0;
-    --scrollHeight: 0px;
-    
-    --opacity: 0;
-    --blur: 0;
+	--scrollPercent: 0;
+	--scrollHeight: 0px;
 
-    .container {
-        height: var(--scrollHeight);
+	--opacity: 0;
+	--blur: 0;
 
-        filter: blur(calc(30px * var(--blur)));
-        .path {
-            position: absolute;
-            height: 100%;
+	.container {
+		height: var(--scrollHeight);
 
-            opacity: var(--opacity);
+		filter: blur(calc(30px * var(--blur)));
+		.path {
+			position: absolute;
+			height: 100%;
 
-            fill: none;
-            stroke-width: 2pt;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            stroke-dashoffset: calc(var(--scrollPercent) * 100vh);
+			opacity: var(--opacity);
 
-            filter: drop-shadow(0 0 2px black);
+			fill: none;
+			stroke-width: 2pt;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+			stroke-dashoffset: calc(var(--scrollPercent) * 100vh);
 
-            $rotation: 0deg;
+			filter: drop-shadow(0 0 2px black);
 
-            &:nth-child(1) {
-                transform: rotate($rotation) translateX($laneWidth);
-                stroke: $buttonColor;
-                stroke-width: 1pt;
-                
-            }
-            &:nth-child(2) {
-                transform: rotate($rotation) translateX(0%);
-                stroke: #FFF;
-                stroke-width: 1pt;
-                
-                stroke-dasharray: 2vh 5vh;
-            }
-            &:nth-child(3) {
-                transform: rotate($rotation) translateX(-$laneWidth);
-                stroke: $buttonColor;
-                stroke-width: 1pt;
-                
-            }
-        }
-    }
+			$rotation: 0deg;
+
+			&:nth-child(1) {
+				transform: rotate($rotation) translateX($laneWidth);
+				stroke: $buttonColor;
+				stroke-width: 1pt;
+			}
+			&:nth-child(2) {
+				transform: rotate($rotation) translateX(0%);
+				stroke: #fff;
+				stroke-width: 1pt;
+
+				stroke-dasharray: 2vh 5vh;
+			}
+			&:nth-child(3) {
+				transform: rotate($rotation) translateX(-$laneWidth);
+				stroke: $buttonColor;
+				stroke-width: 1pt;
+			}
+		}
+	}
 }

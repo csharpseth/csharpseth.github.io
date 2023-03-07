@@ -1,28 +1,28 @@
-import NavbarComponent from './NavbarComponent';
+/** @format */
 
-import { Route } from "../../contexts/NavigationContext";
-import HomePage from '../pages/HomePage';
-import SentimentRecognitionPage from '../pages/projects/SentimentRecognitionPage';
-import DistanceSorterPage from '../pages/projects/DistanceSorterPage';
-import ProjectsPage from '../pages/ProjectsPage';
+import NavbarComponent from './NavbarComponent'
+
+import { Route } from '../../contexts/NavigationContext'
+import HomePage from '../pages/HomePage'
+import SentimentRecognitionPage from '../pages/projects/SentimentRecognitionPage'
+import DistanceSorterPage from '../pages/projects/DistanceSorterPage'
+import ProjectsPage from '../pages/ProjectsPage'
 
 export default function RouterComponent() {
-
-    return (
-        <>
-			<NavbarComponent />
+	return (
+		<>
 			<Route path="/">
-                <HomePage />
-            </Route>
+				<HomePage />
+			</Route>
 			<Route path="/projects">
-                <ProjectsPage />
-            </Route>
-            <Route path="/ai-sentiment-recognition">
-                <SentimentRecognitionPage />
-            </Route>
-            <Route path="/distance-sorter">
-                <DistanceSorterPage />
-            </Route>
-        </>
-    )
+				<ProjectsPage />
+			</Route>
+			<Route path="/ai-sentiment-recognition">
+				<SentimentRecognitionPage />
+			</Route>
+			<Route path="/distance-sorter">
+				<DistanceSorterPage />
+			</Route>
+		</>
+	)
 }
