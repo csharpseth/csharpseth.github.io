@@ -136,7 +136,7 @@ h5 {
 	height: 100%;
 
 	transition: top var(--scrollSpeed) ease-in-out;
-	scrollbar-width: none;
+	overflow-y: scroll;
 	scroll-behavior: smooth;
 
 	.scroll-path {
@@ -182,9 +182,6 @@ h5 {
 		transition: opacity 250ms ease-in-out;
 
 		overflow: hidden;
-
-		&.active {
-		}
 
 		.content {
 			display: flex;
