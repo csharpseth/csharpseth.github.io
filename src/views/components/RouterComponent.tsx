@@ -1,7 +1,11 @@
+import { lazy } from 'react';
 import { NoRoute, Route } from '../../contexts/NavigationContext';
-import HomePage from '../pages/HomePage';
-import SentimentRecognitionPage from '../pages/projects/SentimentRecognitionPage';
-import ProjectsPage from '../pages/ProjectsPage';
+
+const HomePage = lazy(() => import('../pages/HomePage'));
+const ProjectsPage = lazy(() => import('../pages/ProjectsPage'));
+const SentimentRecognitionPage = lazy(
+	() => import('../pages/projects/SentimentRecognitionPage')
+);
 
 export default function RouterComponent() {
 	return (
@@ -15,9 +19,7 @@ export default function RouterComponent() {
 			<Route path="/ai-sentiment-recognition">
 				<SentimentRecognitionPage />
 			</Route>
-			<NoRoute redirectUrl="/">
-				<h1>404</h1>
-			</NoRoute>
+			<NoRoute redirectUrl="/"></NoRoute>
 		</>
 	);
 }

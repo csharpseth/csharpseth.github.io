@@ -1,13 +1,15 @@
 /** @format */
 
-import { QuarterPageSpacerComponent } from '../components/PageSpacerComponent'
+import { QuarterPageSpacerComponent } from '../components/PageSpacerComponent';
 
-import AboutSection from '../sections/AboutSection'
-import ProjectSection from '../sections/ProjectSection'
-import ContactSection from '../sections/ContactSection'
-import ContainerComponent from '../components/ContainerComponent'
+import ContainerComponent from '../components/ContainerComponent';
 
-import '../../styles/HomePage.scss'
+import '../../styles/HomePage.scss';
+import { lazy } from 'react';
+
+const AboutSection = lazy(() => import('../sections/AboutSection'));
+const ProjectSection = lazy(() => import('../sections/ProjectSection'));
+const ContactSection = lazy(() => import('../sections/ContactSection'));
 
 export default function HomePage(props: any) {
 	return (
@@ -18,5 +20,5 @@ export default function HomePage(props: any) {
 			<QuarterPageSpacerComponent />
 			<ContactSection />
 		</ContainerComponent>
-	)
+	);
 }

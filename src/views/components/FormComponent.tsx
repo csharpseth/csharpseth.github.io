@@ -42,10 +42,8 @@ export const FormComponent = forwardRef((props: any, ref: any) => {
 				setResponseMessage(
 					'Failed To Send Contact Request: Server Down.'
 				);
-				setTimeout(() => {
-					setSuccess(false);
-					setWaitingForResponse(false);
-				}, 2500);
+				setSuccess(false);
+				setWaitingForResponse(false);
 			});
 	}
 

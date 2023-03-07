@@ -1,8 +1,8 @@
 /** @format */
 
-import '../../styles/ButtonComponent.scss'
-import { Link } from './UtilityComponents'
-import { forwardRef } from 'react'
+import '../../styles/ButtonComponent.scss';
+import { Link } from './UtilityComponents';
+import { forwardRef } from 'react';
 
 export const LinkButtonComponent = forwardRef((props: any, ref: any) => {
 	return (
@@ -18,8 +18,8 @@ export const LinkButtonComponent = forwardRef((props: any, ref: any) => {
 		>
 			{props.children}
 		</Link>
-	)
-})
+	);
+});
 
 export const ButtonComponent = forwardRef((props: any, ref: any) => {
 	return (
@@ -32,5 +32,5 @@ export const ButtonComponent = forwardRef((props: any, ref: any) => {
 		>
 			{props.children}
 		</button>
-	)
-})
+	);
+});
