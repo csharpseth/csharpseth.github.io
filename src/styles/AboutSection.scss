@@ -137,6 +137,7 @@ $heroAnimationDuration: $heroTitleAnimationDuration;
 
 			img {
 				height: 1rem;
+				width: 0.6rem;
 			}
 		}
 	}
@@ -457,17 +458,21 @@ $heroAnimationDuration: $heroTitleAnimationDuration;
 			.hook {
 				margin-top: 16px;
 				text-align: center;
+				width: 100%;
 			}
 		}
 
 		.profile-media {
-			width: 80%;
+			width: 80vw;
 		}
 
 		.profile__img {
 			transform: translateY(-10%);
 			opacity: 0;
 			clip-path: circle(0% at 50% 50%);
+
+			width: 80vw;
+			height: 80vw;
 		}
 		.info {
 			width: 100%;

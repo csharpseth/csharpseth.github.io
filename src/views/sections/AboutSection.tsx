@@ -1,20 +1,20 @@
 /** @format */
 
-import ScrollSectionComponent from '../components/ScrollSectionComponent'
+import ScrollSectionComponent from '../components/ScrollSectionComponent';
 
-import { About } from '../../Data'
-import '../../styles/AboutSection.scss'
-import { useContext, useEffect } from 'react'
-import { DisplayContext } from '../../contexts/DisplayContext'
-import { RelativeRemap } from '../../MyMath'
+import { About } from '../../Data';
+import '../../styles/AboutSection.scss';
+import { useContext, useEffect } from 'react';
+import { DisplayContext } from '../../contexts/DisplayContext';
+import { RelativeRemap } from '../../MyMath';
 
 export default function AboutSection() {
 	const { scrollPercent, SetLandingPlayed, landingPlayed } =
-		useContext(DisplayContext)
+		useContext(DisplayContext);
 
 	useEffect(() => {
-		setTimeout(SetLandingPlayed, 2000)
-	}, [SetLandingPlayed])
+		setTimeout(SetLandingPlayed, 2000);
+	}, [SetLandingPlayed]);
 
 	return (
 		<ScrollSectionComponent id="about">
@@ -29,10 +29,17 @@ export default function AboutSection() {
 						className="profile__img"
 						src="/me.webp"
 						alt="profile"
+						width="1000"
+						height="1000"
 					/>
 					<h2 className="name">Seth Hamm</h2>
 					<span className="location">
-						<img src="/icon_location.png" alt="" />
+						<img
+							src="/icon_location.png"
+							alt=""
+							width="319"
+							height="512"
+						/>
 						Wichita, KS
 					</span>
 				</div>
@@ -84,7 +91,13 @@ export default function AboutSection() {
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<img className="icon" src="/linkedin.png" alt="" />
+						<img
+							className="icon"
+							src="/linkedin.png"
+							alt="linkedin"
+							width="512"
+							height="512"
+						/>
 					</a>
 					<a
 						className="link"
@@ -92,7 +105,13 @@ export default function AboutSection() {
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<img className="icon" src="/github.png" alt="" />
+						<img
+							className="icon"
+							src="/github.png"
+							alt="github"
+							width="512"
+							height="512"
+						/>
 					</a>
 					<a
 						className="link"
@@ -100,7 +119,13 @@ export default function AboutSection() {
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<img className="icon" src="/twitter.png" alt="" />
+						<img
+							className="icon"
+							src="/twitter.png"
+							alt="twitter"
+							width="512"
+							height="512"
+						/>
 					</a>
 					<a
 						className="link"
@@ -108,10 +133,16 @@ export default function AboutSection() {
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<img className="icon" src="/youtube.png" alt="" />
+						<img
+							className="icon"
+							src="/youtube.png"
+							alt="youtube"
+							width="512"
+							height="512"
+						/>
 					</a>
 				</div>
 			</div>
 		</ScrollSectionComponent>
-	)
+	);
 }

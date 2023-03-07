@@ -1,13 +1,13 @@
 /** @format */
 
-import { useContext } from 'react'
-import { DisplayContext } from '../../contexts/DisplayContext'
-import { Clamp01, RelativeRemap } from '../../MyMath'
+import { useContext } from 'react';
+import { DisplayContext } from '../../contexts/DisplayContext';
+import { Clamp01, RelativeRemap } from '../../MyMath';
 
-import '../../styles/Footer.scss'
+import '../../styles/Footer.scss';
 
 export default function FooterComponent() {
-	const { scrollPercent, windowWidth } = useContext(DisplayContext)
+	const { scrollPercent, windowWidth } = useContext(DisplayContext);
 
 	return (
 		<footer
@@ -26,7 +26,13 @@ export default function FooterComponent() {
 					target="_blank"
 					rel="noopener noreferrer"
 				>
-					<img className="icon" src="/linkedin.png" alt="" />
+					<img
+						className="icon"
+						src="/linkedin.png"
+						alt="linkedin"
+						width="512"
+						height="512"
+					/>
 				</a>
 				<a
 					className="link"
@@ -34,7 +40,13 @@ export default function FooterComponent() {
 					target="_blank"
 					rel="noopener noreferrer"
 				>
-					<img className="icon" src="/github.png" alt="" />
+					<img
+						className="icon"
+						src="/github.png"
+						alt="github"
+						width="512"
+						height="512"
+					/>
 				</a>
 				<a
 					className="link"
@@ -42,7 +54,13 @@ export default function FooterComponent() {
 					target="_blank"
 					rel="noopener noreferrer"
 				>
-					<img className="icon" src="/twitter.png" alt="" />
+					<img
+						className="icon"
+						src="/twitter.png"
+						alt="twitter"
+						width="512"
+						height="512"
+					/>
 				</a>
 				<a
 					className="link"
@@ -50,10 +68,16 @@ export default function FooterComponent() {
 					target="_blank"
 					rel="noopener noreferrer"
 				>
-					<img className="icon" src="/youtube.png" alt="" />
+					<img
+						className="icon"
+						src="/youtube.png"
+						alt="youtube"
+						width="512"
+						height="512"
+					/>
 				</a>
 			</div>
 			<span>&copy; Seth Hamm 2023</span>
 		</footer>
-	)
+	);
 }

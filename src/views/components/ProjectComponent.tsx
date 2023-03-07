@@ -83,17 +83,28 @@ export default function ProjectComponent(props: any) {
 					className="background-img"
 					src={`${props.coverImageURL}`}
 					alt=""
+					width="640"
+					height="900"
 				/>
 				{props.isMobile ? (
 					''
 				) : (
 					<video
 						className="background-gif"
-						src={`${props.coverVideoURL}`}
 						autoPlay
+						playsInline
 						loop
 						muted
-					/>
+						width="640"
+						height="900"
+						poster={`${props.coverImageURL}`}
+					>
+						<source
+							src={`${props.coverVideoURL}`}
+							type="video/mp4"
+						/>
+						Your browser does not support the video tag.
+					</video>
 				)}
 			</div>
 

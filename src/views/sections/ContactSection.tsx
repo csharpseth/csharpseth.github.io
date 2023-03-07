@@ -1,48 +1,48 @@
 /** @format */
 
-import ScrollSectionComponent from '../components/ScrollSectionComponent'
-import '../../styles/ContactSection.scss'
-import { useState, useRef, useContext, useEffect } from 'react'
-import { DisplayContext } from '../../contexts/DisplayContext'
-import TextAreaComponent from '../components/TextAreaComponent'
-import { ButtonComponent } from '../components/Buttons'
-import { useIntersect } from '../../hooks/VisibilityHooks'
-import { TextInputComponent } from '../components/Inputs'
-import { FormComponent } from '../components/FormComponent'
+import ScrollSectionComponent from '../components/ScrollSectionComponent';
+import '../../styles/ContactSection.scss';
+import { useState, useRef, useContext, useEffect } from 'react';
+import { DisplayContext } from '../../contexts/DisplayContext';
+import TextAreaComponent from '../components/TextAreaComponent';
+import { ButtonComponent } from '../components/Buttons';
+import { useIntersect } from '../../hooks/VisibilityHooks';
+import { TextInputComponent } from '../components/Inputs';
+import { FormComponent } from '../components/FormComponent';
 
 export default function ContactSection() {
-	const [copied, setCopied] = useState<boolean>(false)
-	const [sent, setSent] = useState<boolean>(false)
-	const sectionRef = useRef<HTMLDivElement>(null)
-	const formRef = useRef<HTMLFormElement>(null)
-	const submitButtonRef = useRef<HTMLButtonElement>(null)
+	const [copied, setCopied] = useState<boolean>(false);
+	const [sent, setSent] = useState<boolean>(false);
+	const sectionRef = useRef<HTMLDivElement>(null);
+	const formRef = useRef<HTMLFormElement>(null);
+	const submitButtonRef = useRef<HTMLButtonElement>(null);
 
-	const visibility = useIntersect(formRef)
+	const visibility = useIntersect(formRef);
 
-	const { isMobile } = useContext(DisplayContext)
+	const { isMobile } = useContext(DisplayContext);
 
 	useEffect(() => {
-		if (!sectionRef.current) return
-		sectionRef.current.style.setProperty('--visibility', `${visibility}`)
-	}, [visibility, sectionRef])
+		if (!sectionRef.current) return;
+		sectionRef.current.style.setProperty('--visibility', `${visibility}`);
+	}, [visibility, sectionRef]);
 
 	function CopyEmailToClipboard(e: any) {
 		if (isMobile) {
-			window.location.href = 'mailto:csharpseth@gmail.com'
-			return
+			window.location.href = 'mailto:csharpseth@gmail.com';
+			return;
 		}
 
-		navigator.clipboard.writeText('csharpseth@gmail.com')
-		setCopied(true)
+		navigator.clipboard.writeText('csharpseth@gmail.com');
+		setCopied(true);
 	}
 
 	function OnSubmitForm(e: any) {
 		if (submitButtonRef.current) {
-			submitButtonRef.current.blur()
+			submitButtonRef.current.blur();
 		}
 		if (!sent) {
-			setSent(true)
-			setTimeout(() => setSent(false), 1500)
+			setSent(true);
+			setTimeout(() => setSent(false), 1500);
 		}
 	}
 
@@ -60,6 +60,8 @@ export default function ContactSection() {
 						<img
 							src={`/icon_${isMobile ? 'goto' : 'clipboard'}.png`}
 							alt="clipboard"
+							width="407"
+							height="512"
 						/>
 						<span id={copied ? 'active' : ''}>Copied!</span>
 					</div>
@@ -111,10 +113,15 @@ export default function ContactSection() {
 						onClick={OnSubmitForm}
 					>
 						<span>Send</span>
-						<img src="/icon-send.png" alt="" />
+						<img
+							src="/icon-send.png"
+							alt=""
+							width="512"
+							height="470"
+						/>
 					</ButtonComponent>
 				</FormComponent>
 			</div>
 		</ScrollSectionComponent>
-	)
+	);
 }
