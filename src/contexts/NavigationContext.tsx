@@ -1,21 +1,27 @@
 /** @format */
 
-import { createContext, useContext, useLayoutEffect, useState } from 'react'
-import { DisplayContext } from './DisplayContext'
+import {
+	createContext,
+	useContext,
+	useEffect,
+	useLayoutEffect,
+	useState,
+} from 'react';
+import { DisplayContext } from './DisplayContext';
 
-export const NavigationContext = createContext({} as any)
+export const NavigationContext = createContext({} as any);
 
 export function NavigationProvider(props: any) {
-	const [currentPath, setCurrentPath] = useState<string>('/')
-	const [suspendedHash, setSuspendedHash] = useState<SuspendedHash>()
-	const [transitioning, setTransitioning] = useState<boolean>(false)
+	const [currentPath, setCurrentPath] = useState<string>('/');
+	const [transitioning, setTransitioning] = useState<boolean>(false);
+	const [routeFound, setRouteFound] = useState<boolean>(false);
 
-	const { ScrollToTop } = useContext(DisplayContext)
+	const { ScrollToTop } = useContext(DisplayContext);
 
-	const overallTransitionTime = 1600
+	const overallTransitionTime = 1600;
 
-	let changePage: any
-	let endTransition: any
+	let changePage: any;
+	let endTransition: any;
 
 	function SetURL(href: string, addToHistory: boolean = false) {
 		// if(addToHistory) {
@@ -25,94 +31,100 @@ export function NavigationProvider(props: any) {
 		// }
 	}
 
-	function SetSuspendedHash(link: string, hash: string, loadCallback: any) {
-		if (link === currentPath) {
-			SetURL(`#${hash}`)
-			loadCallback()
-			return
-		}
-
-		setSuspendedHash({
-			hash,
-			loadCallback,
-		})
-
-		NavigatePath(link)
+	function ClearURL() {
+		window.history.replaceState('', '', '/');
 	}
 
-	function ExecuteSuspendedHash() {
-		if (!suspendedHash) return
-
-		if (!currentPath) {
-			SetURL(`#${suspendedHash.hash}`)
-		} else {
-			SetURL(`${currentPath}#${suspendedHash.hash}`)
+	function Redirect(to: string) {
+		if (currentPath === to) {
+			ScrollToTop();
+			return;
 		}
-		if (suspendedHash.loadCallback) suspendedHash.loadCallback()
 
-		setSuspendedHash(undefined)
+		ClearRouteFound();
+		ClearURL();
+		setCurrentPath(to);
 	}
 
 	function Navigate(to: string) {
-		if (to.startsWith('#')) NavigatHash(to)
-		else NavigatePath(to)
-	}
-
-	function NavigatePath(to: string) {
 		if (currentPath === to) {
-			ScrollToTop()
-			return
+			ScrollToTop();
+			return;
 		}
 
 		if (transitioning === true) {
-			clearTimeout(changePage)
-			clearTimeout(endTransition)
+			clearTimeout(changePage);
+			clearTimeout(endTransition);
 		}
 
-		setTransitioning(true)
+		setTransitioning(true);
 		changePage = setTimeout(() => {
-			SetURL(to)
-			setCurrentPath(to)
-		}, overallTransitionTime / 2)
+			ClearRouteFound();
+			SetURL(to);
+			setCurrentPath(to);
+		}, overallTransitionTime / 2);
 		endTransition = setTimeout(() => {
-			setTransitioning(false)
-		}, overallTransitionTime)
+			setTransitioning(false);
+		}, overallTransitionTime);
 	}
 
-	function NavigatHash(to: string) {
-		SetURL(to.startsWith('#') ? to : `#${to}`)
+	function RouteFound() {
+		setRouteFound(true);
+	}
+
+	function ClearRouteFound() {
+		setRouteFound(false);
 	}
 
 	useLayoutEffect(() => {
-		setCurrentPath(window.location.pathname)
-	}, [window.location.pathname])
+		setCurrentPath(window.location.pathname);
+	}, []);
 
 	return (
 		<NavigationContext.Provider
 			value={{
 				Navigate,
-				SetSuspendedHash,
-				ExecuteSuspendedHash,
+				RouteFound,
+				ClearRouteFound,
+				Redirect,
 				transitioning,
 				currentPath,
+				routeFound,
 			}}
 		>
 			{props.children}
 		</NavigationContext.Provider>
-	)
+	);
 }
 
 export function Route(props: any) {
-	const { currentPath } = useContext(NavigationContext)
+	const { currentPath, RouteFound } = useContext(NavigationContext);
 
-	if (currentPath != props.path) {
-		return <div></div>
+	useEffect(() => {
+		if (currentPath !== props.path) return;
+
+		RouteFound();
+	}, [currentPath, RouteFound, props.path]);
+
+	if (currentPath !== props.path) {
+		return <></>;
 	}
 
-	return <>{props.children}</>
+	return props.children;
 }
 
-interface SuspendedHash {
-	hash: string
-	loadCallback: any
+export function NoRoute(props: any) {
+	const { routeFound, Redirect } = useContext(NavigationContext);
+
+	useEffect(() => {
+		if (routeFound === true) return;
+
+		Redirect(props.redirectUrl);
+	}, [Redirect, props.redirectUrl, routeFound]);
+
+	if (routeFound === true) {
+		return <></>;
+	}
+
+	return <>{props.children}</>;
 }

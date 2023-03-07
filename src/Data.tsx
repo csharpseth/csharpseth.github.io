@@ -24,16 +24,16 @@ export const About = {
 			alt: 'youtube',
 		},
 	],
-}
+};
 
 interface Project {
-	title: string
-	previewText: string
-	coverImageURL: string
-	coverVideoURL: string
-	sourceLink: string
-	demoLink: string
-	pageLink: string
+	title: string;
+	previewText: string;
+	coverImageURL: string;
+	coverVideoURL: string;
+	sourceLink: string;
+	demoLink: string;
+	pageLink: string;
 }
 
 export const Projects: Project[] = [
@@ -45,7 +45,7 @@ export const Projects: Project[] = [
 		coverVideoURL: '/sentiment-recognition.mp4',
 		sourceLink: 'https://github.com/csharpseth/expression-analysis',
 		demoLink: '',
-		pageLink: '/ai-sentiment-recognition',
+		pageLink: '',
 	},
 	{
 		title: 'Distance Sorter 9000',
@@ -67,4 +67,4 @@ export const Projects: Project[] = [
 		demoLink: '',
 		pageLink: '',
 	},
-]
+];

@@ -1,13 +1,12 @@
 /** @format */
 
-import { forwardRef, useContext, useRef } from 'react'
-import { useInView } from '../../hooks/VisibilityHooks'
-import { NavigationContext } from '../../contexts/NavigationContext'
-import { MergeRefs } from '../../Utility'
+import { forwardRef, useRef } from 'react';
+import { useInView } from '../../hooks/VisibilityHooks';
+import { MergeRefs } from '../../Utility';
 
 const ScrollSectionComponent = forwardRef((props: any, ref: any) => {
-	const sectionRef = useRef(null)
-	const onScreen = useInView(sectionRef)
+	const sectionRef = useRef(null);
+	const onScreen = useInView(sectionRef);
 
 	return (
 		<section
@@ -18,7 +17,7 @@ const ScrollSectionComponent = forwardRef((props: any, ref: any) => {
 		>
 			<div className="content">{props.children}</div>
 		</section>
-	)
-})
+	);
+});
 
-export default ScrollSectionComponent
+export default ScrollSectionComponent;

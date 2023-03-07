@@ -1,22 +1,21 @@
 /** @format */
 
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import { AnalyticaProvider } from './contexts/AnalyticaContext'
-import { DisplayProvider } from './contexts/DisplayContext'
-import { NavigationProvider } from './contexts/NavigationContext'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import { DisplayProvider } from './contexts/DisplayContext';
+import { NavigationProvider } from './contexts/NavigationContext';
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
+const root = ReactDOM.createRoot(
+	document.getElementById('root') as HTMLElement
+);
 
 root.render(
 	<React.StrictMode>
 		<DisplayProvider>
-			<AnalyticaProvider>
-				<NavigationProvider>
-					<App />
-				</NavigationProvider>
-			</AnalyticaProvider>
+			<NavigationProvider>
+				<App />
+			</NavigationProvider>
 		</DisplayProvider>
 	</React.StrictMode>
-)
+);

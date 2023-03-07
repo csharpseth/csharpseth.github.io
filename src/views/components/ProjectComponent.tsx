@@ -1,44 +1,34 @@
 /** @format */
 
-import { useContext, useEffect, useRef, useState } from 'react'
-import { DisplayContext } from '../../contexts/DisplayContext'
-import { Link } from '../components/UtilityComponents'
-import { useIntersect } from '../../hooks/VisibilityHooks'
-import { Clamp, Clamp01, RemapPercent, SlopeToAngle } from '../../MyMath'
-import { LinkButtonComponent } from './Buttons'
-import { API_MEDIA_URL } from '../../config/Config'
+import { useContext, useEffect, useRef } from 'react';
+import { DisplayContext } from '../../contexts/DisplayContext';
+import { useIntersect } from '../../hooks/VisibilityHooks';
+import { RemapPercent, SlopeToAngle } from '../../MyMath';
+import { LinkButtonComponent } from './Buttons';
 
 export default function ProjectComponent(props: any) {
-	const {
-		mouseX,
-		mouseY,
-		windowWidth,
-		windowHeight,
-		scrollPercent,
-		container,
-		isMobile,
-	} = useContext(DisplayContext)
-	const mediaRef = useRef<HTMLDivElement>(null)
+	const { mouseX, mouseY } = useContext(DisplayContext);
+	const mediaRef = useRef<HTMLDivElement>(null);
 
-	const projectRef = useRef<HTMLDivElement>(null)
-	const visibility = useIntersect(projectRef)
+	const projectRef = useRef<HTMLDivElement>(null);
+	const visibility = useIntersect(projectRef);
 
 	function ResetMediaTransform() {
-		if (!mediaRef.current) return
+		if (!mediaRef.current) return;
 
-		mediaRef.current.style.setProperty('--mouseX', `${0}`)
-		mediaRef.current.style.setProperty('--mouseY', `${0}`)
-		mediaRef.current.style.setProperty('--lightAngle', `0deg`)
+		mediaRef.current.style.setProperty('--mouseX', `${0}`);
+		mediaRef.current.style.setProperty('--mouseY', `${0}`);
+		mediaRef.current.style.setProperty('--lightAngle', `0deg`);
 	}
 
 	useEffect(() => {
-		if (!mediaRef.current) return
+		if (!mediaRef.current) return;
 
 		function HandleMouseMove(event: any) {
-			if (!mediaRef.current) return
+			if (!mediaRef.current) return;
 
-			const xPercent = event.offsetX / mediaRef.current.offsetWidth
-			const yPercent = event.offsetY / mediaRef.current.offsetHeight
+			const xPercent = event.offsetX / mediaRef.current.offsetWidth;
+			const yPercent = event.offsetY / mediaRef.current.offsetHeight;
 
 			// mediaRef.current.setAttribute("style",
 			//     `
@@ -50,30 +40,33 @@ export default function ProjectComponent(props: any) {
 			//     `
 			// )
 
-			const centralY = RemapPercent(yPercent, -1, 1)
-			const centralX = RemapPercent(xPercent, -1, 1)
+			const centralY = RemapPercent(yPercent, -1, 1);
+			const centralX = RemapPercent(xPercent, -1, 1);
 
-			mediaRef.current.style.setProperty('--mouseX', `${centralX}`)
-			mediaRef.current.style.setProperty('--mouseY', `${centralY}`)
-			let angle = SlopeToAngle(centralX, centralY)
+			mediaRef.current.style.setProperty('--mouseX', `${centralX}`);
+			mediaRef.current.style.setProperty('--mouseY', `${centralY}`);
+			let angle = SlopeToAngle(centralX, centralY);
 
 			mediaRef.current.style.setProperty(
 				'--lightAngle',
 				`${angle - 90}deg`
-			)
+			);
 		}
 
-		mediaRef.current.addEventListener('mousemove', HandleMouseMove)
+		mediaRef.current.addEventListener('mousemove', HandleMouseMove);
 
 		return () => {
-			mediaRef.current?.removeEventListener('mousemove', HandleMouseMove)
-		}
-	}, [mouseX, mouseY])
+			if (!mediaRef.current) return;
+
+			// eslint-disable-next-line react-hooks/exhaustive-deps
+			mediaRef.current.removeEventListener('mousemove', HandleMouseMove);
+		};
+	}, [mouseX, mouseY]);
 
 	useEffect(() => {
-		if (!projectRef.current) return
-		projectRef.current.style.setProperty('--visibility', `${visibility}`)
-	}, [visibility, projectRef])
+		if (!projectRef.current) return;
+		projectRef.current.style.setProperty('--visibility', `${visibility}`);
+	}, [visibility, projectRef]);
 
 	return (
 		<div
@@ -132,5 +125,5 @@ export default function ProjectComponent(props: any) {
 				</div>
 			</div>
 		</div>
-	)
+	);
 }
