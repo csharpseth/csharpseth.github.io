@@ -1,9 +1,9 @@
 /** @format */
 
-const URL = 'http://csharpseth.com:4000/analytics'
-const PING_DELAY_SECONDS = 5
+const URL = 'https://api.csharpseth.com/analytics';
+const PING_DELAY_SECONDS = 5;
 
-const mobile = window.innerWidth <= 768
+const mobile = window.innerWidth <= 768;
 
 async function POST(url, data) {
 	try {
@@ -13,23 +13,23 @@ async function POST(url, data) {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(data),
-		})
-		if (response.status !== 200) return { success: false }
-		return response.json()
+		});
+		if (response.status !== 200) return { success: false };
+		return response.json();
 	} catch (err) {
-		return { success: false }
+		return { success: false };
 	}
 }
 
 async function EstablishAnalyticVisit() {
 	try {
-		POST(`${URL}/push/visit`, { mobile: mobile }).then((res) => {})
+		POST(`${URL}/push/visit`, { mobile: mobile }).then((res) => {});
 	} catch (err) {
-		console.log(err)
+		console.log(err);
 	}
 }
 
-EstablishAnalyticVisit()
+EstablishAnalyticVisit();
 
 const interval = setInterval(() => {
 	try {
@@ -43,13 +43,13 @@ const interval = setInterval(() => {
 			.then((res) => res.json())
 			.then((data) => {
 				if (!data) {
-					clearInterval(interval)
+					clearInterval(interval);
 				}
 			})
 			.catch((err) => {
-				clearInterval(interval)
-			})
+				clearInterval(interval);
+			});
 	} catch (err) {
-		clearInterval(interval)
+		clearInterval(interval);
 	}
-}, PING_DELAY_SECONDS * 1000)
+}, PING_DELAY_SECONDS * 1000);
