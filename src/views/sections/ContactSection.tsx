@@ -49,7 +49,7 @@ export default function ContactSection() {
 	return (
 		<ScrollSectionComponent id="contact">
 			<div className="contact-wrapper" ref={sectionRef}>
-				<h1 className="background-text">Contact Me</h1>
+				<h1 className="background-text contact">Contact Me</h1>
 				<div
 					className="email"
 					onClick={CopyEmailToClipboard}
@@ -57,16 +57,26 @@ export default function ContactSection() {
 				>
 					<h1>csharpseth@gmail.com</h1>
 					<div className="copy-indicator">
-						<img
-							src={`/icon_${isMobile ? 'goto' : 'clipboard'}.png`}
-							alt="clipboard"
-							width="407"
-							height="512"
-						/>
+						{isMobile ? (
+							<img
+								src="/icon_goto.png"
+								alt="clipboard"
+								width="512"
+								height="499"
+							/>
+						) : (
+							<img
+								src="/icon_clipboard.png"
+								alt="clipboard"
+								width="407"
+								height="512"
+							/>
+						)}
+
 						<span id={copied ? 'active' : ''}>Copied!</span>
 					</div>
 				</div>
-				<span className="background-text">Or</span>
+				<span className="background-text or">Or</span>
 				<FormComponent className="contact-form" ref={formRef}>
 					<div className="horizontal">
 						<TextInputComponent

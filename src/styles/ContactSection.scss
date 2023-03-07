@@ -93,7 +93,7 @@ $mobileScreenWidth: 800px;
 		gap: 1em;
 
 		transform: scale(calc(var(--visibility) * 10% + 90%));
-		width: 80%;
+		width: 70%;
 
 		.errorMessage {
 			color: var(--accentColorRed);
@@ -325,11 +325,23 @@ $mobileScreenWidth: 800px;
 
 @media only screen and (max-width: $mobileScreenWidth) {
 	.contact-wrapper {
-		gap: 12px;
+		gap: 16px;
+
+		.contact-form {
+			width: 95%;
+		}
+
+		.or {
+			font-size: 1rem;
+		}
+
 		.email {
 			h1 {
 				font-size: 1.8rem;
 				text-decoration: underline;
+				text-underline-position: below;
+				-ms-text-underline-position: 4px;
+				text-underline-offset: 4px;
 			}
 
 			.copy-indicator {
@@ -350,6 +362,7 @@ $mobileScreenWidth: 800px;
 				img {
 					opacity: 0.7;
 					width: 12pt;
+					height: 12pt;
 					@include NoSelect;
 				}
 			}
