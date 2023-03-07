@@ -35,13 +35,13 @@ export const FormComponent = forwardRef((props: any, ref: any) => {
 
 				if (res.data.success === false) {
 					setResponseMessage(res.data.message);
+				} else {
+					formRef.current?.reset();
 				}
 			})
 			.catch((err) => {
 				console.log(`Form Post Error :: ${err}`);
-				setResponseMessage(
-					'Failed To Send Contact Request: Server Down.'
-				);
+				setResponseMessage('Failed To Send Contact Request.');
 				setSuccess(false);
 				setWaitingForResponse(false);
 			});

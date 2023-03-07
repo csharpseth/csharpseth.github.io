@@ -58,8 +58,6 @@ export function DisplayProvider(props: any) {
 	function ScrollToTop(smooth: boolean = false) {
 		if (!container.current) return;
 
-		console.log(`Current Top: ${container.current.scrollTop}`);
-
 		container.current.scrollTo({
 			top: 0,
 			behavior: smooth ? 'smooth' : 'auto',

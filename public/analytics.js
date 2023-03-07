@@ -1,7 +1,5 @@
-/** @format */
-
 const URL = 'https://api.csharpseth.com/analytics';
-const PING_DELAY_SECONDS = 5;
+const PING_DELAY_SECONDS = 30;
 
 const mobile = window.innerWidth <= 768;
 
@@ -24,9 +22,7 @@ async function POST(url, data) {
 async function EstablishAnalyticVisit() {
 	try {
 		POST(`${URL}/push/visit`, { mobile: mobile }).then((res) => {});
-	} catch (err) {
-		console.log(err);
-	}
+	} catch (err) {}
 }
 
 EstablishAnalyticVisit();
